@@ -15,10 +15,19 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('lab_id');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('icon')->nullable();
+            $table->boolean('student_or_not');
+            $table->string('thema', 50)->nullable();
+            $table->text('background')->nullable();
+            $table->text('motivation')->nullable();
+            $table->string('object')->nullable();
+            $table->string('github_account', 100)->nullable();
+            $table->boolean('timer_mode');
             $table->rememberToken();
             $table->timestamps();
         });
