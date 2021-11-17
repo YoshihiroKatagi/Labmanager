@@ -11,4 +11,8 @@
 |
 */
 
-Route::get('/labtasks', 'TaskController@index');
+Route::get('/', 'TaskController@index');
+
+Route::get('/upload/image', 'TaskController@input');
+// Route::post('/upload/image', 'TaskController@');
+Route::get('/output/image', 'TaskController@output');

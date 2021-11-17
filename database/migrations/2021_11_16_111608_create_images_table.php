@@ -17,7 +17,7 @@ class CreateImagesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('labtask_id');
             $table->string('image_path');
-            $table->string('description');
+            $table->string('description')->nullable();
         });
     }
 
