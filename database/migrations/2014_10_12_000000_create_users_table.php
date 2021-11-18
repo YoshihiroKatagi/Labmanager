@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->text('motivation')->nullable();
             $table->string('object')->nullable();
             $table->string('github_account', 100)->nullable();
-            $table->boolean('timer_mode');
+            $table->boolean('timer_mode')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

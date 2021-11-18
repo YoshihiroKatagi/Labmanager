@@ -4,7 +4,7 @@
     <br>
     @foreach ($images as $image)
         <img src="{{ $image['image_path'] }}">
-        <p>{{ $image['description'] }}</p>
+        <p>{{ $image->description }}</p>
         <br>
     @endforeach
 @endsection

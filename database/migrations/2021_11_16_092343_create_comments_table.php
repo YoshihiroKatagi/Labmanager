@@ -20,7 +20,7 @@ class CreateCommentsTable extends Migration
             $table->text('content');
             $table->timestamps();
             $table->unsignedBigInteger('mention_to')->nullable();
-            $table->integer('is_liked');
+            $table->integer('is_liked')->default(0);
         });
     }
 

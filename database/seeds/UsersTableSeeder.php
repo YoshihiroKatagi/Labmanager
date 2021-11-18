@@ -22,7 +22,6 @@ class UsersTableSeeder extends Seeder
             'motivation' => '義手技術への応用に向けて研究をすることで、よりバリアフリーな社会の実現に貢献したいと考えた',
             'object' => '筋隆起を用いた関節角度推定法を確立し、その精度を評価する',
             'github_account' => 'https://github.com/YoshihiroKatagi',
-            'timer_mode' => 1,
         ];
         DB::table('users')->insert($param);
         
@@ -36,7 +35,6 @@ class UsersTableSeeder extends Seeder
             'background' => 'ものの位相を最適化することで理想的な密度の構成を構築できる',
             'motivation' => '形状最適化の前段階として・・・',
             'object' => '～のテスト問題を解き、・・・の位相最適化を考える',
-            'timer_mode' => 0,
         ];
         DB::table('users')->insert($param);
         
@@ -50,7 +48,6 @@ class UsersTableSeeder extends Seeder
             'background' => '人の動きをサポートするエクソスーツの研究開発が多く行われている。そして・・・',
             'motivation' => '人の肘関節の動きをサポートすることで・・・',
             'object' => '～部分に特化したエクソスーツを開発する',
-            'timer_mode' => 0,
         ];
         DB::table('users')->insert($param);
         
@@ -60,7 +57,6 @@ class UsersTableSeeder extends Seeder
             'email' => 'koba@gmail.com',
             'password' => 'koba111',
             'student_or_not' => 1,
-            'timer_mode' => 0,
         ];
         DB::table('users')->insert($param);
         

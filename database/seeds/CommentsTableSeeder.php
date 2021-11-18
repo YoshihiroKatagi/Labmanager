@@ -17,7 +17,6 @@ class CommentsTableSeeder extends Seeder
             'content' => 'オプティカルフローとはどのような手法ですか？',
             'created_at' => '2021-11-12 12:00:00',
             'mention_to' => 1,
-            'is_liked' => 0,
         ];
         DB::table('comments')->insert($param);
         
@@ -27,7 +26,6 @@ class CommentsTableSeeder extends Seeder
             'content' => 'コーナー検出と特徴点一致判定という2つのポイントによって画像にフローベクトルを表示する手法です。',
             'created_at' => '2021-11-13 12:00:00',
             'mention_to' => 2,
-            'is_liked' => 0,
         ];
         DB::table('comments')->insert($param);
         
@@ -37,7 +35,6 @@ class CommentsTableSeeder extends Seeder
             'content' => 'なるほど、面白そうですね！',
             'created_at' => '2021-11-13 20:00:00',
             'mention_to' => 2,
-            'is_liked' => 0,
         ];
         DB::table('comments')->insert($param);
         
@@ -47,7 +44,6 @@ class CommentsTableSeeder extends Seeder
             'content' => '研究室にあるものではだめなのですか？',
             'created_at' => '2021-11-13 12:00:00',
             'mention_to' => 2,
-            'is_liked' => 0,
         ];
         DB::table('comments')->insert($param);
         
@@ -57,7 +53,6 @@ class CommentsTableSeeder extends Seeder
             'content' => 'VDI-HDMIケーブル、コンバータが必要なのですが、研究室にはないので選定して購入していただく予定です',
             'created_at' => '2021-11-13 21:00:00',
             'mention_to' => 1,
-            'is_liked' => 1,
         ];
         DB::table('comments')->insert($param);
         

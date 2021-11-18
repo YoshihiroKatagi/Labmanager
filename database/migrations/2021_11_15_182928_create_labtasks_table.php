@@ -15,12 +15,12 @@ class CreateLabtasksTable extends Migration
     {
         Schema::create('labtasks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('title', 50);
             $table->string('description', 200);
             $table->timestamps();
-            $table->boolean('is_done');
-            $table->integer('is_liked');
+            $table->boolean('is_done')->default(0);
+            $table->integer('is_liked')->default(0);
         });
     }
 
