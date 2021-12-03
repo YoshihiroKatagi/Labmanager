@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+    <a href="/labpage/labtop">ラボトップページへ</a>
     <h1>メンバータスクページ</h1>
     <h2>メンバータスク</h2>
     @foreach($labtasks as $labtask)
         <br>
         <p>ID：{{ $labtask->id }}</p>
-        <h2>タイトル：{{ $labtask->title }}</h2>
+        <h2>タイトル：<a href="/labpage/membertask/{{ $labtask->id }}/comment">{{ $labtask->title }}</a></h2>
         <p>ユーザID：{{ $labtask->user_id }}</p>
         <p>作成日時：{{ $labtask->created_at }}</p>
         <p>タスク状態：{{ $labtask->is_done }}</p>

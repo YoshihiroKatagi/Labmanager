@@ -16,14 +16,15 @@ class MypageController extends Controller
         return view('index');
     }
     
-    public function mytask(User $user, Mytask $mytask, Labtask $labtask)
-    {
-        return view('mypages/mytask')->with([
-            'user' => $user,
-            'mytasks' => $mytask->get(),
-            'labtasks' => $labtask->get()
-        ]);
-    }
+    // #MytaskControllerに移動
+    // public function mytask(User $user, Mytask $mytask, Labtask $labtask)
+    // {
+    //     return view('mypages/mytask')->with([
+    //         'user' => $user,
+    //         'mytasks' => $mytask->get(),
+    //         'labtasks' => $labtask->get()
+    //     ]);
+    // }
     
     
     // #LabtaskControllerに移動

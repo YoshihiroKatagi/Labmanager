@@ -1,6 +1,10 @@
+<!--ラボトップページ(5)-->
+
 @extends('layouts.app')
 
 @section('content')
+    <a href="/mypage/mytask">マイタスクページへ</a>
+    <a href="/labpage/membertask">メンバータスクページへ</a>
     <h1>ラボトップページ</h1>
     <h2>ラボ情報</h2>
     @foreach($labs as $lab)

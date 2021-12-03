@@ -14,7 +14,7 @@ class LabpageController extends Controller
 {
     public function index(Lab $lab, User $user, Labtask $labtask, Event $event)
     {
-        return view('labpages/index')->with([
+        return view('labpages/labtop')->with([
             'labs' => $lab->get(),
             'users' => $user->get(),
             'labtasks' => $labtask->get(),
@@ -30,15 +30,16 @@ class LabpageController extends Controller
         ]);
     }
     
-    public function comment(User $user, Labtask $labtask, Comment $comment, Image $image)
-    {
-        return view('labpages/comment')->with([
-            'users' => $user->get(),
-            'labtasks' => $labtask->get(),
-            'comments' => $comment->get(),
-            'images' => $image->get()
-        ]);
-    }
+    // CommentControllerに移動
+    // public function index(User $user, Labtask $labtask, Comment $comment, Image $image)
+    // {
+    //     return view('labpages/comment')->with([
+    //         'users' => $user->get(),
+    //         'labtask' => $labtask,
+    //         'comments' => $comment->get(),
+    //         'images' => $image->get()
+    //     ]);
+    // }
     
     public function mention(User $user, Labtask $labtask, Comment $comment)
     {

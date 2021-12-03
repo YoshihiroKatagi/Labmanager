@@ -20,7 +20,7 @@ class LabtaskController extends Controller
         ]);
     }
     
-    public function store(LabtaskRequest $request, Labtask $labtask)
+    public function create(LabtaskRequest $request, Labtask $labtask)
     {
         $input = $request['labtask'];
         $labtask->fill($input)->save();

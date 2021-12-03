@@ -1,3 +1,5 @@
+<!--ラボタスク詳細ページ(15)-->
+
 @extends('layouts.app')
 
 @section('content')

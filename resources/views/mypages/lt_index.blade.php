@@ -1,6 +1,9 @@
+<!--ラボタスクページ(2)-->
+
 @extends('layouts.app')
 
 @section('content')
+    <a href="/mypage/mytask">マイタスクへ</a>
     <h2>ラボタスク</h2>
     <h3>新規作成</h3>
     <form action="/mypage/labtask" method="POST">
