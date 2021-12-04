@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Mytask extends Model
 {
@@ -23,15 +24,15 @@ class Mytask extends Model
     ];
     
     // データ取得制限
-    public function getByLimit(int $limit_count = 20)
+    public function getByLimit()
     {
-        return $this::with('labtask')->orderBy('created_at', 'ASC')->limit($limit_count)->get();
+        return $this::with('labtask')->orderBy('created_at', 'ASC')->get();
     }
     
     public function getByToday()
     {
-        // return $this::with('labtask')::where('will_finish_on', today())->orderBy('created_at', 'ASC')->get();
-        return $this::with('labtask')::whereDate('will_finish_on', Carbon::today())->orderBy('created_at', 'ASC')->get();
+        // return $this::with('labtask')->where('will_finish_on', today())->orderBy('created_at', 'ASC')->get(); #同義だった
+        return $this::with('labtask')->whereDate('will_finish_on', Carbon::today())->orderBy('created_at', 'ASC')->get();
     }
     
     // リレーション

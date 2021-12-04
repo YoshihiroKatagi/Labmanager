@@ -12,14 +12,14 @@ class Labtask extends Model
     ];
     
     // データ取得制限
-    public function getByLimit(int $limit_count = 20)
+    public function getByLimit()
     {
-        return $this->orderBy('created_at', 'ASC')->limit($limit_count)->get();
+        return $this->orderBy('created_at', 'ASC')->get();
     }
     
     public function getByLabtask(int $limit_count = 20)
     {
-        return $this->mytasks()->with('labtask')->orderBy('created_at', 'ASC')->limit($limit_count)->get();
+        return $this->mytasks()->with('labtask')->orderBy('created_at', 'ASC')->get();
     }
     
     // リレーション

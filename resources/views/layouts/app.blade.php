@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>LabManager</title>
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
     </head>
     <body>
         <h1>LabManager</h1>

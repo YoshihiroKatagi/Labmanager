@@ -10,25 +10,20 @@
         @method('PUT')
         <p>タイトル：</p>
         <input type="text" name="mytask[title]" value="{{ $mytask->title }}">
-        <!--<p style="color:red">{{ $errors->first('mytask.title') }}</p>-->
+        <p style="color:red">{{ $errors->first('mytask.title') }}</p>
         <p>詳細：</p>
         <textarea name="mytask[description]">{{ $mytask->description }}</textarea>
-        <!--<p style="color:red">{{ $errors->first('mytask.description') }}</p>-->
+        <p style="color:red">{{ $errors->first('mytask.description') }}</p>
         <p>開始予定日：</p>
         <input type="date" name="mytask[will_begin_on]" value="{{ $mytask->will_begin_on }}">
-        <!--<p style="color:red">{{ $errors->first('mytask.will_begin_on') }}</p>-->
         <p>開始予定時刻：</p>
         <input type="time" name="mytask[will_begin_at]" value="{{ $mytask->will_begin_at }}">
-        <!--<p style="color:red">{{ $errors->first('mytask.will_begin_at') }}</p>-->
         <p>完了予定日：</p>
         <input type="date" name="mytask[will_finish_on]" value="{{ $mytask->will_finish_on }}">
-        <!--<p style="color:red">{{ $errors->first('mytask.will_finish_on') }}</p>-->
         <p>完了予定時刻：</p>
         <input type="time" name="mytask[will_finish_at]" value="{{ $mytask->will_finish_at }}">
-        <!--<p style="color:red">{{ $errors->first('mytask.will_finish_at') }}</p>-->
         <p>想定タイマー数：</p>
         <input type="number" name="mytask[timer_count]" value="{{ $mytask->timer_count }}">
-        <!--<p style="color:red">{{ $errors->first('mytask.timer_count') }}</p>-->
         <p>関連ラボタスク</p>
             <select name="mytask[labtask_id]">
                 @foreach($labtasks as $labtask)
