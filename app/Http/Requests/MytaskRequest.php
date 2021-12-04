@@ -26,7 +26,6 @@ class MytaskRequest extends FormRequest
         return [
             'mytask.title' => 'max:50',
             'mytask.description' => 'max:250',
-            'mytask.labtask_id' => 'required',
         ];
     }
 }

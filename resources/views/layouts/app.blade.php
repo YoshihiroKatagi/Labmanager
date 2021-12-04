@@ -7,7 +7,6 @@
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <h1>LabManager</h1>
         @yield('content')
     </body>
 </html>

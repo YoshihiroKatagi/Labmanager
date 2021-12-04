@@ -74,8 +74,13 @@ class MytaskController extends Controller
     }
     public function today_update(MytaskRequest $request, Mytask $mytask)
     {
-        $input = $request['Mytask'];
+        $input = $request['mytask'];
         $mytask->fill($input)->save();
+        return redirect('mypage/mytask/today');
+    }
+    public function today_delete(Mytask $mytask)
+    {
+        $mytask->delete();
         return redirect('mypage/mytask/today');
     }
     

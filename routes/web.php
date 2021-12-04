@@ -22,6 +22,7 @@ Route::get('/mypage/mytask/today', 'MytaskController@today');
 Route::post('/mypage/mytask/today', 'MytaskController@today_create');
 Route::get('/mypage/mytask/today/{mytask}', 'MytaskController@today_edit');
 Route::put('/mypage/mytask/today/{mytask}', 'MytaskController@today_update');
+Route::delete('/mypage/mytask/today/{mytask}', 'MytaskController@today_delete');
 
 Route::get('/mypage/mytask/tomorrow', 'MytaskController@tomorrow');
 Route::get('/mypage/mytask/thisweek', 'MytaskController@thisweek');
