@@ -17,7 +17,7 @@ class Labtask extends Model
         return $this->orderBy('created_at', 'ASC')->get();
     }
     
-    public function getByLabtask(int $limit_count = 20)
+    public function getByLabtask()
     {
         return $this->mytasks()->with('labtask')->orderBy('created_at', 'ASC')->get();
     }

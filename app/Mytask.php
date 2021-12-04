@@ -31,7 +31,6 @@ class Mytask extends Model
     
     public function getByToday()
     {
-        // return $this::with('labtask')->where('will_finish_on', today())->orderBy('created_at', 'ASC')->get(); #同義だった
         return $this::with('labtask')->whereDate('will_finish_on', Carbon::today())->orderBy('created_at', 'ASC')->get();
     }
     

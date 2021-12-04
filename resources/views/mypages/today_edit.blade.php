@@ -9,7 +9,7 @@
             <a href="/mypage/mytask">マイタスクページトップへ</a>
             <h2>現在のラボタスク</h2>
             @foreach($labtasks as $labtask)
-                    <a href="/mypage/mytask/{{ $labtask->id }}">{{ $labtask->title }}</a><br>
+                    <a href="/mypage/mytask/bylabtask/{{ $labtask->id }}">{{ $labtask->title }}</a><br>
             @endforeach
             
             <h2>日程別</h2>
@@ -55,7 +55,7 @@
                 @endforeach
             </div>
             <div class="complete_list">
-                <h2>Complete</h2>
+                <h2>Completed</h2>
                 @foreach($mytasks as $mytask)
                     @if($mytask->task_state == 2)
                         <h3>タイトル：<a href="/mypage/mytask/{{ $mytask->id }}/edit">{{ $mytask->title }}</a></h3>

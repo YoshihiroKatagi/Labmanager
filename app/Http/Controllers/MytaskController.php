@@ -91,12 +91,29 @@ class MytaskController extends Controller
             'labtasks' => $labtask->getByLimit(),
         ]);
     }
-    
     public function bylabtask_create(MytaskRequest $request, Mytask $mytask)
     {
         $input = $request['mytask'];
         $mytask->fill($input)->save();
-        return redirect('/mypage/mytask/' . $mytask->labtask->id);
+        return redirect('/mypage/mytask/bylabtask/' . $mytask->labtask_id);
     }
-    
+    public function bylabtask_edit(Labtask $labtask, Mytask $mytask)
+    {
+        return view('mypages/bylabtask_edit')->with([
+            'Mytask' => $mytask,
+            'mytasks' => $labtask->getByLabtask(),
+            'labtasks' => $labtask->getByLimit(),
+        ]);
+    }
+    public function bylabtask_update(Labtask $labtask, Mytask $mytask, MytaskRequest $request)
+    {
+        $input = $request['mytask'];
+        $mytask->fill($input)->save();
+        return redirect('mypage/mytask/bylabtask/' . $mytask->labtask_id);
+    }
+    public function bylabtask_delete(Labtask $labtask, Mytask $mytask)
+    {
+        $mytask->delete();
+        return redirect('mypage/mytask/bylabtask/' . $mytask->labtask_id);
+    }
 }
