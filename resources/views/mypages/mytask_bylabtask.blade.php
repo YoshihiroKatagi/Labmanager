@@ -22,9 +22,9 @@
         <div class="content" style="width:50%; text-align:center;">
             <div class="create_mytask">
                 <h2>新規作成</h2>
-                <form action="/mypage/mytask/bylabtask/{{ $mytasks[0]->labtask->id }}" method="POST">
+                <form action="/mypage/mytask/bylabtask/{{ $Labtask->id }}" method="POST">
                     @csrf
-                    <input type="hidden" name="mytask[labtask_id]" value="{{ $mytasks[0]->labtask->id }}">
+                    <input type="hidden" name="mytask[labtask_id]" value="{{ $Labtask->id }}">
                     <input type="text" name="mytask[title]" placeholder="Press Enter to Add Task" value="{{ old('mytask.title') }}">
                     <p style="color:red">{{ $errors->first('mytask.title') }}</p>
                 </form>
@@ -32,12 +32,12 @@
             <br>
         
             <div class="mytask_list">
-                <h1>ラボタスク：{{ $mytasks[0]->labtask->title }}</h1>
+                <h1>ラボタスク：{{ $Labtask->title }}</h1>
                 @foreach($mytasks as $mytask)
                     @if($mytask->task_state != 2)
-                        <h3>タイトル：<a href="/mypage/mytask/bylabtask/{{ $mytask->labtask->id }}/{{ $mytask->id }}">{{ $mytask->title }}</a></h3>
+                        <h3>タイトル：<a href="/mypage/mytask/bylabtask/{{ $Labtask->id }}/{{ $mytask->id }}">{{ $mytask->title }}</a></h3>
                         <p>完了予定日：{{ $mytask->will_finish_on }}</p>
-                        <form action="/mypage/mytask/bylabtask/{{ $mytask->labtask->id }}/{{ $mytask->id }}" method="POST">
+                        <form action="/mypage/mytask/bylabtask/{{ $Labtask->id }}/{{ $mytask->id }}" method="POST">
                             @csrf
                             @method('PUT')
                             <input type="checkbox" name="mytask[task_state]" value=0>todo
@@ -54,8 +54,8 @@
                 <h2>Completed</h2>
                 @foreach($mytasks as $mytask)
                     @if($mytask->task_state == 2)
-                        <h3>タイトル：<a href="/mypage/mytask/bylabtask/{{ $mytask->labtask->id }}/{{ $mytask->id }}">{{ $mytask->title }}</a></h3>
-                        <form action="/mypage/mytask/bylabtask/{{ $mytask->labtask->id }}/{{ $mytask->id }}" method="POST">
+                        <h3>タイトル：<a href="/mypage/mytask/bylabtask/{{ $Labtask->id }}/{{ $mytask->id }}">{{ $mytask->title }}</a></h3>
+                        <form action="/mypage/mytask/bylabtask/{{ $Labtask->id }}/{{ $mytask->id }}" method="POST">
                             @csrf
                             @method('PUT')
                             <input type="checkbox" name="mytask[task_state]" value=0>todo

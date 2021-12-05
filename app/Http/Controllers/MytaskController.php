@@ -89,6 +89,7 @@ class MytaskController extends Controller
         return view('mypages/mytask_bylabtask')->with([
             'mytasks' => $labtask->getByLabtask(),
             'labtasks' => $labtask->getByLimit(),
+            'Labtask' => $labtask,
         ]);
     }
     public function bylabtask_create(MytaskRequest $request, Mytask $mytask)

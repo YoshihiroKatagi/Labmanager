@@ -24,7 +24,7 @@
     <div class="filter">
         <h2>現在のラボタスク</h2>
         @foreach($labtasks as $labtask)
-                <a href="/mypage/mytask/{{ $labtask->id }}">{{ $labtask->title }}</a><br>
+                <a href="/mypage/mytask/bylabtask/{{ $labtask->id }}">{{ $labtask->title }}</a><br>
         @endforeach
         
         <h2>日程別</h2>
