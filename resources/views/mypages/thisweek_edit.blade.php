@@ -21,9 +21,9 @@
         <div class="content" style="width:50%; text-align:center;">
             <div class="create_mytask">
                 <h2>新規作成</h2>
-                <form action="/mypage/mytask/today" method="POST">
+                <form action="/mypage/mytask/thisweek" method="POST">
                     @csrf
-                    <input type="hidden" name="mytask[will_finish_on]" value="{{ \Carbon\Carbon::today() }}">
+                    <input type="hidden" name="mytask[will_finish_on]" value="{{ \Carbon\Carbon::now()->endOfWeek() }}">
                     <select name="mytask[labtask_id]">
                         @foreach($labtasks as $labtask)
                             <option value="{{ $labtask->id }}">{{ $labtask->title }}</option>
@@ -35,13 +35,13 @@
             </div>
             <br>
             <div class="mytask_list">
-                <h1>Today</h1>
+                <h1>This Week</h1>
                 @foreach($mytasks as $mytask)
                     @if($mytask->task_state != 2)
-                        <h3>タイトル：<a href="/mypage/mytask/today/{{ $mytask->id }}">{{ $mytask->title }}</a></h3>
+                        <h3>タイトル：<a href="/mypage/mytask/thisweek/{{ $mytask->id }}">{{ $mytask->title }}</a></h3>
                         <p>関連ラボタスク：{{ $mytask->labtask->title }}</p>
                         <p>完了予定日：{{ $mytask->will_finish_on }}</p>
-                        <form action="/mypage/mytask/today/{{ $mytask->id }}" method="POST">
+                        <form action="/mypage/mytask/thisweek/{{ $mytask->id }}" method="POST">
                             @csrf
                             @method('PUT')
                             <input type="checkbox" name="mytask[task_state]" value=0>todo
@@ -57,8 +57,8 @@
                 <h2>Completed</h2>
                 @foreach($mytasks as $mytask)
                     @if($mytask->task_state == 2)
-                        <h3>タイトル-：<a href="/mypage/mytask/today/{{ $mytask->id }}">{{ $mytask->title }}</a></h3>
-                        <form action="/mypage/mytask/today/{{ $mytask->id }}" method="POST">
+                        <h3>タイトル：<a href="/mypage/mytask/thisweek/{{ $mytask->id }}">{{ $mytask->title }}</a></h3>
+                        <form action="/mypage/mytask/thisweek/{{ $mytask->id }}" method="POST">
                             @csrf
                             @method('PUT')
                             <input type="checkbox" name="mytask[task_state]" value=0>todo
@@ -71,9 +71,9 @@
         </div>
         
         <div class="edit_sidebar" style="width:30%; text-align:center;">
-            <a href="/mypage/mytask/today">閉じる</a>
+            <a href="/mypage/mytask/thisweek">閉じる</a>
             <h2>マイタスク詳細・編集</h2>
-            <form action="/mypage/mytask/today/{{ $Mytask->id }}" method="POST">
+            <form action="/mypage/mytask/thisweek/{{ $Mytask->id }}" method="POST">
                 @csrf
                 @method('PUT')
                 <p>タイトル：</p>
@@ -107,7 +107,7 @@
             <p>期限内完了：{{ $Mytask->on_time_or_not }}</p>
             <p>想定タイマー数完了：{{ $Mytask->within_timer_count }}</p>
             
-            <form action="/mypage/mytask/today/{{ $Mytask->id }}" method="POST">
+            <form action="/mypage/mytask/thisweek/{{ $Mytask->id }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <input type="submit" value="削除">

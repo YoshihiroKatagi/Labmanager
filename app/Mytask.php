@@ -31,7 +31,22 @@ class Mytask extends Model
     
     public function getByToday()
     {
-        return $this::with('labtask')->whereDate('will_finish_on', Carbon::today())->orderBy('created_at', 'ASC')->get();
+        return $this::with('labtask')->whereDate('will_finish_on', '<=', Carbon::today())->orderBy('created_at', 'ASC')->get();
+    }
+    
+    public function getByTomorrow()
+    {
+        return $this::with('labtask')->whereDate('will_finish_on', '<=', Carbon::tomorrow())->orderby('created_at', 'ASC')->get();
+    }
+    
+    public function getByThisweek()
+    {
+        return $this::with('labtask')->whereDate('will_finish_on','<=', Carbon::now()->endOfWeek())->orderby('created_at', 'ASC')->get();
+    }
+    
+    public function getByThismonth()
+    {
+        return $this::with('labtask')->whereDate('will_finish_on','<=', Carbon::now()->endOfMonth())->orderby('created_at', 'ASC')->get();
     }
     
     // リレーション

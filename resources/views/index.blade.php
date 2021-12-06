@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <p>テストページ</p>
-    <a href="/mypage/mytask">マイページへ</a>
+    <p>トップページ</p>
+    <a href="/mypage/mytask/today">マイタスクページ(Today)へ</a><br>
+    <a href="/mypage/labtask">ラボタスクページへ</a><br>
 @endsection

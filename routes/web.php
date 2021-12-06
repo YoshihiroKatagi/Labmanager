@@ -14,9 +14,7 @@
 //マイタスクページ
 Route::get('/check', 'MytaskController@check');
 
-Route::get('/', 'MypageController@test');
-Route::get('/mypage/mytask', 'MytaskController@index');
-Route::post('/mypage/mytask', 'MytaskController@create');
+Route::get('/', 'MytaskController@top');
 
 Route::get('/mypage/mytask/bylabtask/{labtask}', 'MytaskController@bylabtask');
 Route::post('/mypage/mytask/bylabtask/{labtask}', 'MytaskController@bylabtask_create');
@@ -31,8 +29,22 @@ Route::put('/mypage/mytask/today/{mytask}', 'MytaskController@today_update');
 Route::delete('/mypage/mytask/today/{mytask}', 'MytaskController@today_delete');
 
 Route::get('/mypage/mytask/tomorrow', 'MytaskController@tomorrow');
+Route::post('/mypage/mytask/tomorrow', 'MytaskController@tomorrow_create');
+Route::get('/mypage/mytask/tomorrow/{mytask}', 'MytaskController@tomorrow_edit');
+Route::put('/mypage/mytask/tomorrow/{mytask}', 'MytaskController@tomorrow_update');
+Route::delete('/mypage/mytask/tomorrow/{mytask}', 'MytaskController@tomorrow_delete');
+
 Route::get('/mypage/mytask/thisweek', 'MytaskController@thisweek');
+Route::post('/mypage/mytask/thisweek', 'MytaskController@thisweek_create');
+Route::get('/mypage/mytask/thisweek/{mytask}', 'MytaskController@thisweek_edit');
+Route::put('/mypage/mytask/thisweek/{mytask}', 'MytaskController@thisweek_update');
+Route::delete('/mypage/mytask/thisweek/{mytask}', 'MytaskController@thisweek_delete');
+
 Route::get('/mypage/mytask/thismonth', 'MytaskController@thismonth');
+Route::post('/mypage/mytask/thismonth', 'MytaskController@thismonth_create');
+Route::get('/mypage/mytask/thismonth/{mytask}', 'MytaskController@thismonth_edit');
+Route::put('/mypage/mytask/thismonth/{mytask}', 'MytaskController@thismonth_update');
+Route::delete('/mypage/mytask/thismonth/{mytask}', 'MytaskController@thismonth_delete');
 
 
 Route::get('/mypage/mytask/{mytask}/edit', 'MytaskController@edit');

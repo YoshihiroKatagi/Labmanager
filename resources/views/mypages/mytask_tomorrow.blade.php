@@ -6,7 +6,6 @@
     <div class="container" style="display:flex">
         <div class="filter" style="width:20%; text-align:center;">
             <h1>Filter</h1>
-            <a href="/">トップへ</a>
             <h2>現在のラボタスク</h2>
             @foreach($labtasks as $labtask)
                     <a href="/mypage/mytask/bylabtask/{{ $labtask->id }}">{{ $labtask->title }}</a><br>
@@ -22,9 +21,9 @@
         <div class="content" style="width:50%; text-align:center;">
             <div class="create_mytask">
                 <h2>新規作成</h2>
-                <form action="/mypage/mytask/today" method="POST">
+                <form action="/mypage/mytask/tomorrow" method="POST">
                     @csrf
-                    <input type="hidden" name="mytask[will_finish_on]" value="{{ \Carbon\Carbon::today() }}">
+                    <input type="hidden" name="mytask[will_finish_on]" value="{{ \Carbon\Carbon::tomorrow() }}">
                     <select name="mytask[labtask_id]">
                         @foreach($labtasks as $labtask)
                             <option value="{{ $labtask->id }}">{{ $labtask->title }}</option>
@@ -36,13 +35,13 @@
             </div>
             <br>
             <div class="mytask_list">
-                <h1>Today</h1>
+                <h1>Tomorrow</h1>
                 @foreach($mytasks as $mytask)
                     @if($mytask->task_state != 2)
-                        <h3>タイトル：<a href="/mypage/mytask/today/{{ $mytask->id }}">{{ $mytask->title }}</a></h3>
+                        <h3>タイトル：<a href="/mypage/mytask/tomorrow/{{ $mytask->id }}">{{ $mytask->title }}</a></h3>
                         <p>関連ラボタスク：{{ $mytask->labtask->title }}</p>
                         <p>完了予定日：{{ $mytask->will_finish_on }}</p>
-                        <form action="/mypage/mytask/today/{{ $mytask->id }}" method="POST">
+                        <form action="/mypage/mytask/tomorrow/{{ $mytask->id }}" method="POST">
                             @csrf
                             @method('PUT')
                             <input type="checkbox" name="mytask[task_state]" value=0>todo
@@ -58,8 +57,8 @@
                 <h2>Completed</h2>
                 @foreach($mytasks as $mytask)
                     @if($mytask->task_state == 2)
-                        <h3>タイトル：<a href="/mypage/mytask/today/{{ $mytask->id }}">{{ $mytask->title }}</a></h3>
-                        <form action="/mypage/mytask/today/{{ $mytask->id }}" method="POST">
+                        <h3>タイトル：<a href="/mypage/mytask/tomorrow/{{ $mytask->id }}">{{ $mytask->title }}</a></h3>
+                        <form action="/mypage/mytask/tomorrow/{{ $mytask->id }}" method="POST">
                             @csrf
                             @method('PUT')
                             <input type="checkbox" name="mytask[task_state]" value=0>todo

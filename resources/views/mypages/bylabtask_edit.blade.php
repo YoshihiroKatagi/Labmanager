@@ -6,7 +6,6 @@
     <div class="container" style="display:flex">
         <div class="filter" style="width:20%; text-align:center;">
             <h1>Filter</h1>
-            <a href="/mypage/mytask">マイタスクページトップへ</a>
             <h2>現在のラボタスク</h2>
             @foreach($labtasks as $labtask)
                     <a href="/mypage/mytask/bylabtask/{{ $labtask->id }}">{{ $labtask->title }}</a><br>
