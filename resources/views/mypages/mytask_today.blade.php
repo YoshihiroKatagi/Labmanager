@@ -45,7 +45,6 @@
                         <form action="/mypage/mytask/today/{{ $mytask->id }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <input type="checkbox" name="mytask[task_state]" value=0>todo
                             <input type="checkbox" name="mytask[task_state]" value=1>doing
                             <input type="checkbox" name="mytask[task_state]" value=2>done
                             <input type="submit" value="保存">

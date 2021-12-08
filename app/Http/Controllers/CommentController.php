@@ -10,9 +10,10 @@ use App\Image;
 
 class CommentController extends Controller
 {
-    public function index(User $user, Labtask $labtask, Comment $comment, Image $image)
+    public function comment(User $user, Labtask $labtask, Comment $comment, Image $image)
     {
-        return view('labpages/comment')->with([
+        return view('labtasks/membertask_comment')->with([
+            'User' => $user,
             'users' => $user->get(),
             'labtask' => $labtask,
             'comments' => $comment->get(),
@@ -20,17 +21,34 @@ class CommentController extends Controller
         ]);
     }
     
-    public function create(Request $request, Comment $comment, Labtask $labtask)
+    public function comment_post(Request $request, User $user, Labtask $labtask, Comment $comment)
     {
         $input = $request['comment'];
         $comment->fill($input)->save();
-        return redirect('/labpage/membertask/' . $labtask->id . '/comment');
+        return redirect('/labpage/membertask/' . $user->id . '/' . $labtask->id . '/comment');
     }
     
-    public function update(Request $request, Comment $comment)
+    public function comment_edit(User $user, Labtask $labtask, Comment $comment, Image $image)
+    {
+        return view('labtasks/comment_edit')->with([
+            'User' => $user,
+            'users' => $user->get(),
+            'labtask' => $labtask,
+            'comments' => $comment->get(),
+            'images' => $image->get()
+        ]);
+    }
+    
+    public function comment_update(Request $request, User $user, Labtask $labtask, Comment $comment)
     {
         $input = $request['comment'];
         $comment->fill($input)->save();
-        return redirect('/labpage/membertask/' . $labtask->id . '/comment');
+        return redirect('/labpage/membertask/' . $user->id . '/' . $labtask->id . '/comment');
+    }
+    
+    public function comment_delete(Request $request, User $user, Labtask $labtask, Comment $comment)
+    {
+        $comment->delete();
+        return redirect('/labpage/membertask/' . $user->id . '/' . $labtask->id . '/comment');
     }
 }

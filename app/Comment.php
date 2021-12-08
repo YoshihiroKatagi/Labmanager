@@ -11,6 +11,7 @@ class Comment extends Model
         'user_id',
         'labtask_id',
         'mention_to',
+        'is_liked',
     ];
     
     public function labtask()

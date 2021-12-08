@@ -9,42 +9,59 @@ use App\Http\Requests\LabtaskRequest;
 
 class LabtaskController extends Controller
 {
-    public function labtask()
+    public function labtask(User $user, Labtask $labtask)
     {
-        $users = User::all();
-        $labtasks = Labtask::all();
-        
-        return view('mypages/lt_index')->with([
-            'users' => $users,
-            'labtasks' => $labtasks
+        return view('labtasks/labtask')->with([
+            'user' => $user->first(),
+            'labtasks' => $labtask->get(),
         ]);
     }
-    
-    public function create(LabtaskRequest $request, Labtask $labtask)
+    public function labtask_new(User $user, Labtask $labtask)
+    {
+        return view('labtasks/labtask_create')->with([
+            'user' => $user->first(),
+            'labtasks' => $labtask->get(),
+        ]);
+    }
+    public function labtask_create(LabtaskRequest $request, Labtask $labtask)
     {
         $input = $request['labtask'];
         $labtask->fill($input)->save();
         return redirect('/mypage/labtask');
     }
-    
-    public function edit(User $user, Labtask $labtask, Image $image)
+    public function labtask_edit(Labtask $labtask, Image $image)
     {
-        return view('mypages/lt_edit')->with([
-            'users' => $user->get(),
+        return view('labtasks/labtask_edit')->with([
             'labtask' => $labtask,
-            'images' => $image->get()]);
+            'images' => $image->get(),
+        ]);
     }
-    
-    public function update(LabtaskRequest $request, Labtask $labtask)
+    public function labtask_update(LabtaskRequest $request, Labtask $labtask)
     {
         $input = $request['labtask'];
         $labtask->fill($input)->save();
-        return redirect('/mypage/labtask/' . $labtask->id . '/edit');
+        return redirect('/mypage/labtask');
     }
-    
-    public function delete(Labtask $labtask)
+    public function labtask_delete(Labtask $labtask)
     {
         $labtask->delete();
         return redirect('/mypage/labtask');
+    }
+    
+    
+    public function membertask(User $user, Labtask $labtask)
+    {
+        return view('/labtasks/membertask')->with([
+            'user' => $user,
+            'labtasks' => $labtask->get(),
+        ]);
+    }
+    public function membertask_detail(User $user, Labtask $labtask, Image $image)
+    {
+        return view('/labtasks/membertask_detail')->with([
+            'user' => $user,
+            'labtask' => $labtask,
+            'images' => $image->get(),
+        ]);
     }
 }

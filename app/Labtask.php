@@ -9,6 +9,9 @@ class Labtask extends Model
     protected $fillable = [
         'title',
         'description',
+        'user_id',
+        'is_done',
+        'is_liked',
     ];
     
     // データ取得制限

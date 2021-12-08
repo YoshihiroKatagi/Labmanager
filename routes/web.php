@@ -12,8 +12,6 @@
 */
 
 //マイタスクページ
-Route::get('/check', 'MytaskController@check');
-
 Route::get('/', 'MytaskController@top');
 
 Route::get('/mypage/mytask/bylabtask/{labtask}', 'MytaskController@bylabtask');
@@ -47,19 +45,26 @@ Route::put('/mypage/mytask/thismonth/{mytask}', 'MytaskController@thismonth_upda
 Route::delete('/mypage/mytask/thismonth/{mytask}', 'MytaskController@thismonth_delete');
 
 
-Route::get('/mypage/mytask/{mytask}/edit', 'MytaskController@edit');
-Route::put('/mypage/mytask/{mytask}/edit', 'MytaskController@update');
-Route::delete('/mypage/mytask/{mytask}/edit', 'MytaskController@delete');
-
-
-
 //ラボタスクページ
 Route::get('/mypage/labtask', 'LabtaskController@labtask');
-Route::post('/mypage/labtask', 'LabtaskController@create');
-Route::get('/mypage/labtask/{labtask}/edit', 'LabtaskController@edit');
-Route::put('/mypage/labtask/{labtask}/edit', 'LabtaskController@update');
-Route::delete('/mypage/labtask/{labtask}/edit', 'LabtaskController@delete');
+Route::get('mypage/labtask/create', 'LabtaskController@labtask_new');
+Route::post('/mypage/labtask/create', 'LabtaskController@labtask_create');
+Route::get('/mypage/labtask/{labtask}', 'LabtaskController@labtask_edit');
+Route::put('/mypage/labtask/{labtask}', 'LabtaskController@labtask_update');
+Route::delete('/mypage/labtask/{labtask}', 'LabtaskController@labtask_delete');
 
+
+//メンバータスクページ
+Route::get('/labpage/membertask/{user}', 'LabtaskController@membertask');
+Route::get('/labpage/membertask/{user}/{labtask}', 'LabtaskController@membertask_detail');
+
+
+//コメントページ
+Route::get('/labpage/membertask/{user}/{labtask}/comment', 'CommentController@comment');
+Route::post('/labpage/membertask/{user}/{labtask}/comment', 'CommentController@comment_post');
+Route::get('/labpage/membertask/{user}/{labtask}/comment/{comment}', 'CommentController@comment_edit');
+Route::put('/labpage/membertask/{user}/{labtask}/comment/{comment}', 'CommentController@comment_update');
+Route::delete('/labpage/membertask/{user}/{labtask}/comment/{comment}', 'CommentController@comment_delete');
 
 
 
@@ -67,10 +72,6 @@ Route::delete('/mypage/labtask/{labtask}/edit', 'LabtaskController@delete');
 //ラボページ
 Route::get('/labpage/labtop', 'LabpageController@index');
 
-Route::get('/labpage/membertask', 'LabpageController@member');
 
-Route::get('/labpage/membertask/{labtask}/comment', 'CommentController@index');
-Route::post('/labpage/membertask/{labtask}/comment', 'CommentController@create');
-Route::put('/labpage/membertask/{labtask}/comment/{comment}', 'CommentController@update');
 
 Route::get('/labpage/mention', 'LabpageController@mention');

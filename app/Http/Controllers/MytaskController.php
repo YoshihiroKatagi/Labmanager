@@ -10,9 +10,11 @@ use App\Http\Requests\MytaskRequest;
 
 class MytaskController extends Controller
 {
-    public function top()
+    public function top(User $user)
     {
-        return view('index');
+        return view('index')->with([
+            'users' => $user->get(),
+        ]);
     }
     
     public function bylabtask(Labtask $labtask)
