@@ -14,7 +14,6 @@
             <div class="image">
                 <h2>補足画像</h2>
                 @foreach($images as $image)
-                    <p>ID:{{$image->id }}</p>
                     <img src="{{ $image->image_path }}">
                     <p>説明：{{ $image->description }}</p>
                 @endforeach
@@ -29,20 +28,16 @@
                 <a href="/labpage/membertask/{{ $User->id }}/{{ $labtask->id }}">閉じる</a>
                 @foreach($comments as $comment)
                     <div class="comment" style="border:solid; margin:10px;">
-                        <p>{{ $users["$comment->user_id"]->name }}</p>
-                        <h3>{{ $comment->content }}</h3>
+                        <p>{{ $users["$comment->user_id"-1]->name }}</p>
                         <p>{{ $comment->created_at->format('Y年m月d日') }}</p>
-                        <p>@ {{ $comment->mention_to }}</p>
                         <p>いいね：{{ $comment->is_liked }}</p>
-                        <form action="labpage/membertask/{{ $User->id }}/{{ $labtask->id }}/comment/{{ $comment->id }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <input type="submit" value="削除">
-                        </form>
+                        <p>@ {{ $users["$comment->mention_to"-1]->name }}</p>
+                        <h3>{{ $comment->content }}</h3>
+                        <a href="/labpage/membertask/{{ $User->id }}/{{ $labtask->id }}/comment/{{ $comment->id }}">編集</a>
                     </div>
                 @endforeach
             </div>
-            <div class="comment_create" style="border:solid;">
+            <div class="comment_post" style="border:solid;">
                 <h2>コメント作成</h2>
                 <form action="/labpage/membertask/{{ $User->id }}/{{ $labtask->id }}/comment" method="POST">
                     @csrf

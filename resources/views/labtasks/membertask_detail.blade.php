@@ -10,16 +10,10 @@
             <h2>ラボタスク：{{ $labtask->title }}</h2>
             <p>{{ $labtask->created_at->format('Y年m月d日') }}~</p>
             <p>いいね：{{ $labtask->is_liked }}</p>
-            <form action="/labpage/membertask/{{ $user->id }}/{{ $labtask->id }}" method="POST">
-                @csrf
-                @method('PUT')
-                <input type="button" name="labtask[is_liked]" value="+1">
-            </form>
             <p>詳細：{{ $labtask->description }}</p>
             <div class="image">
                 <h2>補足画像</h2>
                 @foreach($images as $image)
-                    <p>ID:{{$image->id }}</p>
                     <img src="{{ $image->image_path }}">
                     <p>説明：{{ $image->description }}</p>
                 @endforeach

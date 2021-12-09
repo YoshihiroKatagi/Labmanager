@@ -34,6 +34,7 @@ class CommentController extends Controller
             'User' => $user,
             'users' => $user->get(),
             'labtask' => $labtask,
+            'Comment' => $comment,
             'comments' => $comment->get(),
             'images' => $image->get()
         ]);
