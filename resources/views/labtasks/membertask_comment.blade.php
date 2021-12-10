@@ -33,7 +33,9 @@
                         <p>いいね：{{ $comment->is_liked }}</p>
                         <p>@ {{ $users["$comment->mention_to"-1]->name }}</p>
                         <h3>{{ $comment->content }}</h3>
-                        <a href="/labpage/membertask/{{ $User->id }}/{{ $labtask->id }}/comment/{{ $comment->id }}">編集</a>
+                        @if($comment->user_id == Auth::user()->id)
+                            <a href="/labpage/membertask/{{ $User->id }}/{{ $labtask->id }}/comment/{{ $comment->id }}">編集</a>
+                        @endif
                     </div>
                 @endforeach
             </div>
@@ -41,7 +43,7 @@
                 <h2>コメント作成</h2>
                 <form action="/labpage/membertask/{{ $User->id }}/{{ $labtask->id }}/comment" method="POST">
                     @csrf
-                    <input type="hidden" name="comment[user_id]" value={{ $users[0]->id }}>
+                    <input type="hidden" name="comment[user_id]" value={{ Auth::user()->id }}>
                     <input type="hidden" name="comment[labtask_id]" value="{{ $labtask->id }}">
                     <p>@</p>
                     <select name="comment[mention_to]">

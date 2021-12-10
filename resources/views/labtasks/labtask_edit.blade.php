@@ -14,6 +14,7 @@
             <p style="color:red">{{ $errors->first('labtask.title') }}</p>
             <p>{{ $labtask->created_at->format('Y年m月d日') }}~</p>
             <p>いいね：{{ $labtask->is_liked }}</p>
+            <p>ユーザ：{{ $labtask->user_id }}</p>
             <h2>詳細：</h2>
             <textarea name="labtask[description]">{{ $labtask->description }}</textarea>
             <p style="color:red">{{ $errors->first('labtask.description') }}</p>
@@ -28,7 +29,7 @@
             <input type="submit" value="保存">
         </form>
         
-        <a href="/labpage/membertask/{{ $labtask->id }}">コメント確認</a>
+        <a href="/labpage/membertask/{{ Auth::user()->id }}/{{ $labtask->id }}/comment">コメント確認</a>
         
         <form action="/mypage/labtask/{{ $labtask->id }}" method="POST">
             @csrf
