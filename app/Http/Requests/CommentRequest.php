@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MytaskRequest extends FormRequest
+class CommentRequest extends FormRequest
 {
     // /**
     //  * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class MytaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'mytask.title' => 'required|max:50',
-            'mytask.description' => 'max:250',
-            'mytask.timer_count' => 'min:0',
+            'comment.content' => 'required|string',
         ];
     }
 }

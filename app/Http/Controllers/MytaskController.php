@@ -6,6 +6,7 @@ use App\User;
 use App\Mytask;
 use App\Labtask;
 use App\Http\Requests\MytaskRequest;
+use Illuminate\Support\Facades\Auth;
 
 
 class MytaskController extends Controller
@@ -21,7 +22,7 @@ class MytaskController extends Controller
     {
         return view('mypages/mytask_bylabtask')->with([
             'mytasks' => $labtask->getByLabtask(),
-            'labtasks' => $labtask->getByLimit(),
+            'labtasks' => Auth::user()->getByUser(),
             'Labtask' => $labtask,
         ]);
     }
@@ -36,7 +37,7 @@ class MytaskController extends Controller
         return view('mypages/bylabtask_edit')->with([
             'Mytask' => $mytask,
             'mytasks' => $labtask->getByLabtask(),
-            'labtasks' => $labtask->getByLimit(),
+            'labtasks' => Auth::user()->getByUser(),
         ]);
     }
     public function bylabtask_update(Labtask $labtask, Mytask $mytask, MytaskRequest $request)
@@ -51,10 +52,10 @@ class MytaskController extends Controller
         return redirect('mypage/mytask/bylabtask/' . $mytask->labtask_id);
     }
     
-    public function today(Labtask $labtask, Mytask $mytask)
+    public function today(Mytask $mytask)
     {
         return view('mypages/mytask_today')->with([
-            'labtasks' => $labtask->getByLimit(),
+            'labtasks' => Auth::user()->getByUser(),
             'mytasks' => $mytask->getByToday(),
         ]);
     }
@@ -69,7 +70,7 @@ class MytaskController extends Controller
         return view('mypages/today_edit')->with([
             'Mytask' => $mytask,
             'mytasks' => $mytask->getByToday(),
-            'labtasks' => $labtask->getByLimit(),
+            'labtasks' => Auth::user()->getByUser(),
         ]);
     }
     public function today_update(MytaskRequest $request, Mytask $mytask)
@@ -84,10 +85,10 @@ class MytaskController extends Controller
         return redirect('mypage/mytask/today');
     }
     
-    public function tomorrow(Labtask $labtask, Mytask $mytask)
+    public function tomorrow(Mytask $mytask)
     {
         return view('mypages/mytask_tomorrow')->with([
-            'labtasks' => $labtask->getByLimit(),
+            'labtasks' => Auth::user()->getByUser(),
             'mytasks' => $mytask->getByTomorrow(),
         ]);
     }
@@ -97,12 +98,12 @@ class MytaskController extends Controller
         $mytask->fill($input)->save();
         return redirect('/mypage/mytask/tomorrow');
     }
-    public function tomorrow_edit(Mytask $mytask, Labtask $labtask)
+    public function tomorrow_edit(Mytask $mytask)
     {
         return view('mypages/tomorrow_edit')->with([
             'Mytask' => $mytask,
             'mytasks' => $mytask->getByTomorrow(),
-            'labtasks' => $labtask->getByLimit(),
+            'labtasks' => Auth::user()->getByUser(),
         ]);
     }
     public function tomorrow_update(MytaskRequest $request, Mytask $mytask)
@@ -117,10 +118,10 @@ class MytaskController extends Controller
         return redirect('mypage/mytask/tomorrow');
     }
     
-    public function thisweek(Labtask $labtask, Mytask $mytask)
+    public function thisweek(Mytask $mytask)
     {
         return view('mypages/mytask_thisweek')->with([
-            'labtasks' => $labtask->getByLimit(),
+            'labtasks' => Auth::user()->getByUser(),
             'mytasks' => $mytask->getByThisweek(),
         ]);
     }
@@ -130,12 +131,12 @@ class MytaskController extends Controller
         $mytask->fill($input)->save();
         return redirect('/mypage/mytask/thisweek');
     }
-    public function thisweek_edit(Mytask $mytask, Labtask $labtask)
+    public function thisweek_edit(Mytask $mytask)
     {
         return view('mypages/thisweek_edit')->with([
             'Mytask' => $mytask,
             'mytasks' => $mytask->getByThisweek(),
-            'labtasks' => $labtask->getByLimit(),
+            'labtasks' => Auth::user()->getByUser(),
         ]);
     }
     public function thisweek_update(MytaskRequest $request, Mytask $mytask)
@@ -150,10 +151,10 @@ class MytaskController extends Controller
         return redirect('mypage/mytask/thisweek');
     }
     
-    public function thismonth(Labtask $labtask, Mytask $mytask)
+    public function thismonth(Mytask $mytask)
     {
         return view('mypages/mytask_thismonth')->with([
-            'labtasks' => $labtask->getByLimit(),
+            'labtasks' => Auth::user()->getByUser(),
             'mytasks' => $mytask->getByThismonth(),
         ]);
     }
@@ -163,12 +164,12 @@ class MytaskController extends Controller
         $mytask->fill($input)->save();
         return redirect('/mypage/mytask/thismonth');
     }
-    public function thismonth_edit(Mytask $mytask, Labtask $labtask)
+    public function thismonth_edit(Mytask $mytask)
     {
         return view('mypages/thismonth_edit')->with([
             'Mytask' => $mytask,
             'mytasks' => $mytask->getByThismonth(),
-            'labtasks' => $labtask->getByLimit(),
+            'labtasks' => Auth::user()->getByUser(),
         ]);
     }
     public function thismonth_update(MytaskRequest $request, Mytask $mytask)

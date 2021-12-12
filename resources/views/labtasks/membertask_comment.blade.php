@@ -48,10 +48,13 @@
                     <p>@</p>
                     <select name="comment[mention_to]">
                         @foreach($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @if($user->id != Auth::user()->id)
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endif
                         @endforeach
                     </select>
                     <textarea name="comment[content]" placeholder="コメントする..."></textarea>
+                    <p style="color:red">{{ $errors->first('comment.content') }}</p>
                     <input type="submit" value="送信">
                 </form>
             </div>

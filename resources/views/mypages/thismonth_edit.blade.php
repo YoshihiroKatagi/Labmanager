@@ -77,7 +77,7 @@
                 @method('PUT')
                 <p>タイトル：</p>
                 <input type="text" name="mytask[title]" value="{{ $Mytask->title }}">
-                <p style="color:red">{{ $errors->first('Mytask.title') }}</p>
+                <p style="color:red">{{ $errors->first('mytask.title') }}</p>
                 <p>詳細：</p>
                 <textarea name="mytask[description]">{{ $Mytask->description }}</textarea>
                 <p style="color:red">{{ $errors->first('mytask.description') }}</p>
@@ -90,11 +90,15 @@
                 <p>完了予定時刻：</p>
                 <input type="time" name="mytask[will_finish_at]" value="{{ $Mytask->will_finish_at }}">
                 <p>想定タイマー数：</p>
-                <input type="number" name="mytask[timer_count]" value="{{ $Mytask->timer_count }}">
+                <input type="number" name="mytask[timer_count]" value="{{ $Mytask->timer_count }}" min='0'>
                 <p>関連ラボタスク</p>
                     <select name="mytask[labtask_id]">
                         @foreach($labtasks as $labtask)
-                            <option value="{{ $labtask->id }}">{{ $labtask->title }}</option>
+                            @if($labtask->id == $Mytask->labtask_id)
+                                <option value="{{ $labtask->id }}" selected>{{ $labtask->title }}</option>
+                            @else
+                                <option value="{{ $labtask->id }}">{{ $labtask->title }}</option>
+                            @endif
                         @endforeach
                     </select>
                 <input type="submit" value="保存">

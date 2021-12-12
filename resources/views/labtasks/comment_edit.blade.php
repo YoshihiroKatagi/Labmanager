@@ -33,16 +33,21 @@
                             <p>{{ $comment->created_at->format('Y年m月d日') }}</p>
                             <p>いいね：{{ $comment->is_liked }}</p>
                             <form action="/labpage/membertask/{{ $User->id }}/{{ $labtask->id }}/comment/{{ $comment->id }}" method="POST">
+                                @csrf
+                                @method('PUT')
                                 <select name="comment[mention_to]">
                                     @foreach($users as $user)
-                                        @if($user->id == $Comment->mention_to)
-                                            <option value="{{ $user->id }}" selected>{{ $user->name }}</option>
-                                        @else
-                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                        @if($user->id != Auth::user()->id)
+                                            @if($user->id == $Comment->mention_to)
+                                                <option value="{{ $user->id }}" selected>{{ $user->name }}</option>
+                                            @else
+                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                            @endif
                                         @endif
                                     @endforeach
                                 </select>
                                 <textarea name="comment[content]">{{ $comment->content }}</textarea>
+                                <p style="color:red">{{ $errors->first('comment.content') }}</p>
                                 <input type="submit" value="保存">
                             </form>
                             <form action="/labpage/membertask/{{ $User->id }}/{{ $labtask->id }}/comment/{{ $comment->id }}" method="POST">
@@ -57,7 +62,7 @@
                             <p>{{ $users["$comment->user_id"-1]->name }}</p>
                             <h3>{{ $comment->content }}</h3>
                             <p>{{ $comment->created_at->format('Y年m月d日') }}</p>
-                            <p>@ {{ $users["$comment->mention_to"]->name }}</p>
+                            <p>@ {{ $users["$comment->mention_to"-1]->name }}</p>
                             <p>いいね：{{ $comment->is_liked }}</p>
                         </div>
                     @endif
@@ -72,10 +77,13 @@
                     <p>@</p>
                     <select name="comment[mention_to]">
                         @foreach($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @if($user->id != Auth::user()->id)
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endif
                         @endforeach
                     </select>
                     <textarea name="comment[content]" placeholder="コメントする..."></textarea>
+                    <p style="color:red">{{ $errors->first('comment.content') }}</p>
                     <input type="submit" value="送信">
                 </form>
             </div>

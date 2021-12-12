@@ -76,6 +76,19 @@ Route::group(['middleware' => 'auth'], function(){
     
     
     Route::get('/labpage/mention', 'LabpageController@mention');
+    
+    
+    //設定ページ
+    Route::get('/setting/account', 'UserController@account');
+    
+    Route::get('/setting/profile', 'UserController@profile');
+    
+    Route::get('/setting/outline', 'UserController@outline');
+    Route::put('/setting/outline', 'UserController@outline_update');
+    Route::delete('/setting/outline', 'UserController@outline_delete');
+    
+    Route::get('/setting/timer', 'UserController@timier');
+    
 });
 
 
