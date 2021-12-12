@@ -16,6 +16,7 @@ class CreateMytasksTable extends Migration
         Schema::create('mytasks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('labtask_id');
+            $table->foreign('labtask_id')->references('id')->on('labtasks')->onDelete('CASCADE');
             $table->string('title', 50);
             $table->string('description', 200)->nullable();
             $table->timestamps();

@@ -25,6 +25,16 @@ class Labtask extends Model
         return $this->mytasks()->with('labtask')->orderBy('created_at', 'ASC')->get();
     }
     
+    public function getWithUser()
+    {
+        return $this::with('user')->orderBy('created_at', 'ASC')->get();
+    }
+    
+    public function getByLabtaskForComment()
+    {
+        return $this::comments()->with('labtask')->orderBy('created_at', 'ASC')->get();
+    }
+    
     // リレーション
     public function user()
     {

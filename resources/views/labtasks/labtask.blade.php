@@ -48,11 +48,11 @@
         
         <div class="research">
             <h1>研究概要</h1>
-            <h2>ユーザ名：{{ $user->name }}</h2>
-            <h3>研究テーマ：{{ $user->thema }}</h3>
-            <h3>研究背景：{{ $user->background }}</h3>
-            <h3>研究動機：{{ $user->motivation }}</h3>
-            <h3>研究目的：{{ $user->object }}</h3>
+            <a href="/setting/outline">編集</a>
+            <h3>研究テーマ：{{ Auth::user()->thema }}</h3>
+            <h3>研究背景：{{ Auth::user()->background }}</h3>
+            <h3>研究動機：{{ Auth::user()->motivation }}</h3>
+            <h3>研究目的：{{ Auth::user()->object }}</h3>
             <br>
         </div>
     </div>

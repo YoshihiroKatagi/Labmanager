@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,18 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
+        'lab_id',
+        'icon',
+        'student_or_not',
+        'thema',
+        'background',
+        'motivation',
+        'object',
+        'github_account',
+        'timer_mode',
     ];
 
     /**
@@ -37,6 +49,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
+    //データ取得制限
+    public function getByUser()
+    {
+        return $this->labtasks()->with('user')->orderBy('created_at', 'ASC')->get();
+    }
+    
+    
+    //リレーション
     public function lab()
     {
         return $this->belongsTo('App\Lab');

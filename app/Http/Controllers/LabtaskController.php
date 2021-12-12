@@ -6,21 +6,20 @@ use App\User;
 use App\Labtask;
 use App\Image;
 use App\Http\Requests\LabtaskRequest;
+use Illuminate\Support\Facades\Auth;
 
 class LabtaskController extends Controller
 {
-    public function labtask(User $user, Labtask $labtask)
+    public function labtask()
     {
         return view('labtasks/labtask')->with([
-            'user' => $user->first(),
-            'labtasks' => $labtask->get(),
+            'labtasks' => Auth::user()->getByUser(),
         ]);
     }
-    public function labtask_new(User $user, Labtask $labtask)
+    public function labtask_new()
     {
         return view('labtasks/labtask_create')->with([
-            'user' => $user->first(),
-            'labtasks' => $labtask->get(),
+            'labtasks' => Auth::user()->getByUser(),
         ]);
     }
     public function labtask_create(LabtaskRequest $request, Labtask $labtask)
@@ -53,7 +52,7 @@ class LabtaskController extends Controller
     {
         return view('/labtasks/membertask')->with([
             'user' => $user,
-            'labtasks' => $labtask->get(),
+            'labtasks' => $user->getByUser(),
         ]);
     }
     public function membertask_detail(User $user, Labtask $labtask, Image $image)
