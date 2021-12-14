@@ -49,6 +49,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
+    
     //データ取得制限
     public function getByUser()
     {

@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('icon')->nullable();
-            $table->boolean('student_or_not')->nullable();
+            $table->boolean('student_or_not');
             $table->string('thema', 50)->nullable();
             $table->text('background')->nullable();
             $table->text('motivation')->nullable();

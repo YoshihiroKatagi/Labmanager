@@ -50,10 +50,19 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            //'student_or_not' => ['requured'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'student_or_not' => 'required',
+            // 'lab_id' => 'integer',
+            // 'icon' => 'string',
+            // 'thema' => 'string', 'max:50',
+            // 'background' => 'text', 'max:500',
+            // 'motivation' => 'text', 'max:300',
+            // 'object' => 'string', 'max:150',
+            // 'github_account' => 'string',
+            // 'timer_mode' => 'required',
+            
         ]);
     }
 
@@ -67,7 +76,7 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            //'student_or_not' => $data['student_or_not'],
+            'student_or_not' => $data['student_or_not'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

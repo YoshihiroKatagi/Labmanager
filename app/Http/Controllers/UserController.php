@@ -20,4 +20,25 @@ class UserController extends Controller
         $user->fill($input)->save();
         return redirect('/setting/outline');
     }
+    
+    public function index()
+    {
+        return view('users.index');
+    }
+    public function edit($id)
+    {
+        return view('users.edit');
+    }
+    public function update(UserRequest $request, User $user)
+    {
+        $user->fill($request->all());
+        
+        if (!is_null($request->password)) {
+            $user->password = Hash::make($request->password);
+        } else {
+            unset($user->password);
+        }
+        $user->save();
+        return redirect(route('users.index'));
+    }
 }
