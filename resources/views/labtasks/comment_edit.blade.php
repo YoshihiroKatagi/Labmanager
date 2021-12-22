@@ -47,8 +47,8 @@
                         <div class="comment" style="border:solid; margin:10px;">
                             <p>{{ $users["$comment->user_id"-1]->name }}</p>
                             <p>{{ $comment->created_at->format('Y年m月d日') }}</p>
-                            @if (Auth::id() != $User->id)
-                                @if (Auth::user()->is_cfavorite($comment->id))
+                            @if (Auth::id() != $comment->user_id)
+                                @if (Auth::user()->is_c_favorite($comment->id))
                                     <form action="/cfavorite/unfavorite/{{ $comment->id }}" method="POST">
                                         @csrf
                                         @method('DELETE')
@@ -95,7 +95,23 @@
                             <h3>{{ $comment->content }}</h3>
                             <p>{{ $comment->created_at->format('Y年m月d日') }}</p>
                             <p>@ {{ $users["$comment->mention_to"-1]->name }}</p>
-                            <p>いいね：{{ $comment->is_liked }}</p>
+                            @if (Auth::id() != $comment->user_id)
+                                @if (Auth::user()->is_c_favorite($comment->id))
+                                    <form action="/cfavorite/unfavorite/{{ $comment->id }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="submit" value="いいね！を外す" class="button btn btn-warning">
+                                    </form>
+                                @else
+                                    <form action="/cfavorite/favorite/{{ $comment->id }}" method="POST">
+                                        @csrf
+                                        <input type="submit" value="いいね！" class="button btn btn-success">
+                                    </form>
+                                @endif
+                            @endif
+                            <div>いいね！
+                                <span class="badge badge-pill badge-success">{{ $comment->is_liked }}</span>
+                            </div>
                         </div>
                     @endif
                 @endforeach

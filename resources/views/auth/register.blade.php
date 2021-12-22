@@ -38,6 +38,23 @@
                                 @enderror
                             </div>
                         </div>
+                        
+                        <div class="form-group row">
+                            <label for="student_or_not" class="col-md-4 col-form-label text-md-right">Status</label>
+
+                            <div class="col-md-6" style="padding-top: 8px">
+                                <input id="status_s" type="radio" name="student_or_not" value=0>
+                                <label for="status_s">Student</label>
+                                <input id="status_t" type="radio" name="student_or_not" value=1>
+                                <label for="status_t">Teacher</label>
+
+                                @error('student_or_not')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
@@ -61,26 +78,6 @@
                             </div>
                         </div>
                         
-                        <div class="form-group row">
-                            <label for="student_or_not" class="col-md-4 col-form-label text-md-right">{{ __('Student or Not') }}</label>
-
-                            <div class="col-md-6">
-                                <div>
-                                    <input id="student_or_not" type="radio" class="form-control @error('student_or_not') is-invalid @enderror" name="student_or_not" value="0" required autofocus checked>
-                                    <label for="student_or_not">student</label>
-                                </div>
-                                <div>
-                                    <input id="student_or_not" type="radio" class="form-control @error('student_or_not') is-invalid @enderror" name="student_or_not" value="1" required autofocus>
-                                    <label for="student_or_not">teacher</label>
-                                </div>
-
-                                @error('student_or_not')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

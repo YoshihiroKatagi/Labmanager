@@ -50,22 +50,6 @@ class User extends Authenticatable
     ];
     
     
-    public static $rules = [
-        'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        'password' => ['required', 'string', 'min:8', 'confirmed'],
-        'lab_id' => ['integer'],
-        'icon' => ['string'],
-        'student_or_not' => ['required'],
-        'thema' => ['string', 'max:50'],
-        'background' => ['text', 'max:500'],
-        'motivation' => ['text', 'max:300'],
-        'object' => ['string', 'max:150'],
-        'github_account' => ['string'],
-        'timer_mode' => ['required'],
-    ];
-    
-    
     //データ取得制限
     public function getByUser()
     {

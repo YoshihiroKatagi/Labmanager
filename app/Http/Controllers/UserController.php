@@ -14,31 +14,16 @@ class UserController extends Controller
             'authUser' => Auth::user(),
         ]);
     }
-    public function outline_update(Request $request, User $user)
+    public function outline_update(Request $request)
     {
-        $input = $request['user'];
-        $user->fill($input)->save();
-        return redirect('/setting/outline');
-    }
-    
-    public function index()
-    {
-        return view('users.index');
-    }
-    public function edit($id)
-    {
-        return view('users.edit');
-    }
-    public function update(UserRequest $request, User $user)
-    {
-        $user->fill($request->all());
+        $param = [
+            'thema' => $request->thema,
+            'background' => $request->background,
+            'motivation' => $request->motivation,
+            'object' => $request->object,
+        ];
         
-        if (!is_null($request->password)) {
-            $user->password = Hash::make($request->password);
-        } else {
-            unset($user->password);
-        }
-        $user->save();
-        return redirect(route('users.index'));
+        User::where('id', Auth::user()->id)->update($param);
+        return redirect('mypage/labtask');
     }
 }
