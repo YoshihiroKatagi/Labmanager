@@ -29,10 +29,20 @@ class LabtasksTableSeeder extends Seeder
         DB::table('labtasks')->insert($param);
         
         $param = [
+            'user_id' => 1,
+            'title' => 'ミーティング 準備',
+            'description' => 'ミーティングに向けて、相談内容の整理',
+            'created_at' => '2021-11-01 00:00:00',
+            'is_done' => 1,
+        ];
+        DB::table('labtasks')->insert($param);
+        
+        $param = [
             'user_id' => 2,
             'title' => '実験器具選定',
             'description' => '必要な実験器具を選定し、教授に報告する',
             'created_at' => '2021-11-13 00:00:00',
+            'is_done' => 1,
         ];
         DB::table('labtasks')->insert($param);
         

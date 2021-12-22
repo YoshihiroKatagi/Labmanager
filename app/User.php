@@ -50,6 +50,22 @@ class User extends Authenticatable
     ];
     
     
+    public static $rules = [
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'password' => ['required', 'string', 'min:8', 'confirmed'],
+        'lab_id' => ['integer'],
+        'icon' => ['string'],
+        'student_or_not' => ['required'],
+        'thema' => ['string', 'max:50'],
+        'background' => ['text', 'max:500'],
+        'motivation' => ['text', 'max:300'],
+        'object' => ['string', 'max:150'],
+        'github_account' => ['string'],
+        'timer_mode' => ['required'],
+    ];
+    
+    
     //データ取得制限
     public function getByUser()
     {
@@ -71,5 +87,70 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany('App\Comment');
+    }
+    
+    public function lt_favorites()
+    {
+        return $this->belongsToMany(Labtask::class, 'ltfavorites', 'user_id', 'labtask_id')->withTimestamps();
+    }
+    
+    public function c_favorites()
+    {
+        return $this->belongsToMany(Comment::class, 'cfavorites', 'user_id', 'comment_id')->withTimestamps();
+    }
+    
+    //いいね機能
+    public function lt_favorite($labtaskId)
+    {
+        $exist = $this->is_lt_favorite($labtaskId);
+        
+        if($exist){
+            return false;
+        }else{
+            $this->lt_favorites()->attach($labtaskId);
+            return true;
+        }
+    }
+    public function lt_unfavorite($labtaskId)
+    {
+        $exist = $this->is_lt_favorite($labtaskId);
+        
+        if($exist){
+            $this->lt_favorites()->detach($labtaskId);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public function is_lt_favorite($labtaskId)
+    {
+        return $this->lt_favorites()->where('labtask_id', $labtaskId)->exists();
+    }
+    
+    public function c_favorite($commentId)
+    {
+        $exist = $this->is_c_favorite($commentId);
+        
+        if($exist){
+            return false;
+        }else{
+            $this->c_favorites()->attach($commentId);
+            return true;
+        }
+    }
+    public function c_unfavorite($commentId)
+    {
+        $exist = $this->is_c_favorite($commentId);
+        
+        if($exist){
+            $this->c_favorites()->detach($commentId);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public function is_c_favorite($commentId)
+    {
+        return $this->c_favorites()->where('comment_id', $commentId)->exists();
     }
 }

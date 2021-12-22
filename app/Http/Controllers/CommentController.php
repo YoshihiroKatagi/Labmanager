@@ -17,7 +17,7 @@ class CommentController extends Controller
             'users' => $user->get(),
             'labtask' => $labtask,
             'comments' => $labtask->getByLabtaskForComment(),
-            'images' => $image->get()
+            'images' => $image->get(),
         ]);
     }
     
@@ -36,7 +36,7 @@ class CommentController extends Controller
             'labtask' => $labtask,
             'Comment' => $comment,
             'comments' => $labtask->getByLabtaskForComment(),
-            'images' => $image->get()
+            'images' => $image->get(),
         ]);
     }
     

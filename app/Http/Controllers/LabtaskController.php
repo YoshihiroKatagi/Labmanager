@@ -10,10 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class LabtaskController extends Controller
 {
-    public function labtask()
+    public function labtask(Labtask $labtask)
     {
+        $labtasks = Auth::user()->getByUser();
         return view('labtasks/labtask')->with([
-            'labtasks' => Auth::user()->getByUser(),
+            'labtasks' => $labtasks,
         ]);
     }
     public function labtask_new()

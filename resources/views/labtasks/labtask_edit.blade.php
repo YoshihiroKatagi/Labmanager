@@ -13,15 +13,15 @@
             <input type="text" name="labtask[title]" value="{{ $labtask->title }}">
             <p style="color:red">{{ $errors->first('labtask.title') }}</p>
             <p>{{ $labtask->created_at->format('Y年m月d日') }}~</p>
-            <p>いいね：{{ $labtask->is_liked }}</p>
-            <p>ユーザ：{{ $labtask->user_id }}</p>
+            <div>いいね！
+                <span class="badge badge-pill badge-success">{{ $labtask->is_liked }}</span>
+            </div>
             <h2>詳細：</h2>
             <textarea name="labtask[description]">{{ $labtask->description }}</textarea>
             <p style="color:red">{{ $errors->first('labtask.description') }}</p>
             <div class="image">
                 <h2>画像</h2>
                 @foreach($images as $image)
-                    <p>ID:{{$image->id }}</p>
                     <img src="{{ $image->image_path }}">
                     <p>説明：{{ $image->description }}</p>
                 @endforeach
