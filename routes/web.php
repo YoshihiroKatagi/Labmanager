@@ -67,6 +67,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('/labpage/membertask/{user}/{labtask}/comment/{comment}', 'CommentController@comment_update');
     Route::delete('/labpage/membertask/{user}/{labtask}/comment/{comment}', 'CommentController@comment_delete');
     
+    //いいね処理
+    Route::post('/ltfavorite/favorite/{labtask}', 'FavoriteController@ltfavorite_store');
+    Route::delete('/ltfavorite/unfavorite/{labtask}', 'FavoriteController@ltfavorite_destroy');
+    Route::post('/cfavorite/favorite/{comment}', 'FavoriteController@cfavorite_store');
+    Route::delete('/cfavorite/unfavorite/{comment}', 'FavoriteController@cfavorite_destroy');
     
     
     

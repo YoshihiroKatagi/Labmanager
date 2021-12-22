@@ -12,7 +12,9 @@
                     <div class="labtask" style="width:40%; margin:20px; border:solid;">
                         <h2>タイトル：<a href="/labpage/membertask/{{ $user->id }}/{{ $labtask->id }}">{{ $labtask->title }}</a></h2>
                         <p>{{ $labtask->created_at->format('Y年m月d日') }}~</p>
-                        <p>いいね：{{ $labtask->is_liked }}</p>
+                        <div>いいね！
+                            <span class="badge badge-pill badge-success">{{ $labtask->is_liked }}</span>
+                        </div>
                         <br>
                     </div>
                 @endif
@@ -26,7 +28,9 @@
                     <div class="labtask" style="width:40%; margin:20px; border:solid;">
                         <h2>タイトル：<a href="/labpage/membertask/{{ $user->id }}/{{ $labtask->id }}">{{ $labtask->title }}</a></h2>
                         <p>{{ $labtask->created_at->format('Y年m月d日') }}~</p>
-                        <p>いいね：{{ $labtask->is_liked }}</p>
+                        <div>いいね！
+                            <span class="badge badge-pill badge-success">{{ $labtask->is_liked }}</span>
+                        </div>
                         <br>
                     </div>
                 @endif

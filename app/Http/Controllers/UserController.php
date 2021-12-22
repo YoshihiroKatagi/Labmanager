@@ -6,7 +6,6 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
 class UserController extends Controller
 {
     public function outline()
@@ -15,19 +14,31 @@ class UserController extends Controller
             'authUser' => Auth::user(),
         ]);
     }
-    public function outline_update(Request $request)
+    public function outline_update(Request $request, User $user)
     {
-        
-        $param = [
-            'thema' => $request->thema,
-            'background' => $request->background,
-            'motivation' => $request->motivation,
-            'object' => $request->object,
-        ];
-        
-        User::where('id', Auth::user()->id)->update($param);
-        return redirect('mypage/labtask');
+        $input = $request['user'];
+        $user->fill($input)->save();
+        return redirect('/setting/outline');
     }
     
-
+    public function index()
+    {
+        return view('users.index');
+    }
+    public function edit($id)
+    {
+        return view('users.edit');
+    }
+    public function update(UserRequest $request, User $user)
+    {
+        $user->fill($request->all());
+        
+        if (!is_null($request->password)) {
+            $user->password = Hash::make($request->password);
+        } else {
+            unset($user->password);
+        }
+        $user->save();
+        return redirect(route('users.index'));
+    }
 }

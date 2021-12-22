@@ -9,7 +9,23 @@
             <h1>{{ $User->name }}のラボタスク詳細</h1>
             <h2>ラボタスク：{{ $labtask->title }}</h2>
             <p>{{ $labtask->created_at->format('Y年m月d日') }}~</p>
-            <p>いいね：{{ $labtask->is_liked }}</p>
+            @if (Auth::id() != $User->id)
+                @if (Auth::user()->is_lt_favorite($labtask->id))
+                    <form action="/ltfavorite/unfavorite/{{ $labtask->id }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value="いいね！を外す" class="button btn btn-warning">
+                    </form>
+                @else
+                    <form action="/ltfavorite/favorite/{{ $labtask->id }}" method="POST">
+                        @csrf
+                        <input type="submit" value="いいね！" class="button btn btn-success">
+                    </form>
+                @endif
+            @endif
+            <div>いいね！
+                <span class="badge badge-pill badge-success">{{ $labtask->is_liked }}</span>
+            </div>
             <p>詳細：{{ $labtask->description }}</p>
             <div class="image">
                 <h2>補足画像</h2>
@@ -30,7 +46,23 @@
                     <div class="comment" style="border:solid; margin:10px;">
                         <p>{{ $users["$comment->user_id"-1]->name }}</p>
                         <p>{{ $comment->created_at->format('Y年m月d日') }}</p>
-                        <p>いいね：{{ $comment->is_liked }}</p>
+                        @if (Auth::id() != $comment->user_id)
+                                @if (Auth::user()->is_c_favorite($comment->id))
+                                    <form action="/cfavorite/unfavorite/{{ $comment->id }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="submit" value="いいね！を外す" class="button btn btn-warning">
+                                    </form>
+                                @else
+                                    <form action="/cfavorite/favorite/{{ $comment->id }}" method="POST">
+                                        @csrf
+                                        <input type="submit" value="いいね！" class="button btn btn-success">
+                                    </form>
+                                @endif
+                            @endif
+                            <div>いいね！
+                                <span class="badge badge-pill badge-success">{{ $comment->is_liked }}</span>
+                            </div>
                         <p>@ {{ $users["$comment->mention_to"-1]->name }}</p>
                         <h3>{{ $comment->content }}</h3>
                         @if($comment->user_id == Auth::user()->id)

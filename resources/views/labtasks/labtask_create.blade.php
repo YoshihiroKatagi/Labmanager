@@ -23,7 +23,9 @@
                     <div class="labtask" style="width:40%; margin:20px; border:solid;">
                         <h2>タイトル：<a href="/mypage/labtask/{{ $labtask->id }}">{{ $labtask->title }}</a></h2>
                         <p>{{ $labtask->created_at->format('Y年m月d日') }}~</p>
-                        <p>いいね：{{ $labtask->is_liked }}</p>
+                        <div>いいね！
+                            <span class="badge badge-pill badge-success">{{ $labtask->is_liked }}</span>
+                        </div>
                         <form action="/mypage/labtask/{{ $labtask->id }}" method="POST">
                             @csrf
                             @method('PUT')
@@ -43,7 +45,9 @@
                     <div class="labtask" style="width:40%; margin:20px; border:solid;">
                         <h2>タイトル：<a href="/mypage/labtask/{{ $labtask->id }}">{{ $labtask->title }}</a></h2>
                         <p>{{ $labtask->created_at->format('Y年m月d日') }}~</p>
-                        <p>いいね：{{ $labtask->is_liked }}</p>
+                        <div>いいね！
+                            <span class="badge badge-pill badge-success">{{ $labtask->is_liked }}</span>
+                        </div>
                         <form action="/mypage/labtask/{{ $labtask->id }}" method="POST">
                             @csrf
                             @method('PUT')
