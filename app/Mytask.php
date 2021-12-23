@@ -24,10 +24,10 @@ class Mytask extends Model
     ];
     
     // データ取得制限
-    public function getByLimit()
-    {
-        return $this::with('labtask')->orderBy('created_at', 'ASC')->get();
-    }
+    // public function getByLimit()
+    // {
+    //     return $this::with('labtask')->orderBy('created_at', 'ASC')->get();
+    // }
     
     public function getByToday()
     {

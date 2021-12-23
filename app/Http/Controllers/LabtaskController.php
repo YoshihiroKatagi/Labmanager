@@ -7,6 +7,7 @@ use App\Labtask;
 use App\Image;
 use App\Http\Requests\LabtaskRequest;
 use Illuminate\Support\Facades\Auth;
+use Storage;
 
 class LabtaskController extends Controller
 {
@@ -29,23 +30,50 @@ class LabtaskController extends Controller
         $labtask->fill($input)->save();
         return redirect('/mypage/labtask');
     }
-    public function labtask_edit(Labtask $labtask, Image $image)
+    public function labtask_edit(Labtask $labtask)
     {
         return view('labtasks/labtask_edit')->with([
             'labtask' => $labtask,
-            'images' => $image->get(),
+            'images' => $labtask->getByLabtaskForImage(),
         ]);
     }
     public function labtask_update(LabtaskRequest $request, Labtask $labtask)
     {
         $input = $request['labtask'];
         $labtask->fill($input)->save();
-        return redirect('/mypage/labtask');
+        
+        return redirect('/mypage/labtask/' . $labtask->id);
     }
     public function labtask_delete(Labtask $labtask)
     {
         $labtask->delete();
         return redirect('/mypage/labtask');
+    }
+    
+    public function image_create(LabtaskRequest $request, Labtask $labtask)
+    {
+        $image = new Image();
+        
+        $img = $request->file('image');
+        $path = Storage::disk('s3')->put('/labtask_images', $img, 'public');
+        $image->image_path = Storage::disk('s3')->url($path);
+        $image->labtask_id = $labtask->id;
+        $image->save();
+        
+        return redirect('mypage/labtask/' . $labtask->id);
+    }
+    public function image_update(LabtaskRequest $request, Labtask $labtask, Image $image)
+    {
+        // $input = $request['image'];
+        // $image->fill($input)->save();
+        
+        // return redirect('/mypage/labtask/' . $labtask->id);
+        return $request;
+    }
+    public function image_delete(Labtask $labtask, Image $image)
+    {
+        $image->delete();
+        return redirect('/mypage/labtask/' . $labtask->id);
     }
     
     
@@ -56,12 +84,13 @@ class LabtaskController extends Controller
             'labtasks' => $user->getByUser(),
         ]);
     }
-    public function membertask_detail(User $user, Labtask $labtask, Image $image)
+    public function membertask_detail(User $user, Labtask $labtask)
     {
         return view('/labtasks/membertask_detail')->with([
             'user' => $user,
             'labtask' => $labtask,
-            'images' => $image->get(),
+            'images' => $labtask->getByLabtaskForImage(),
         ]);
     }
+    
 }

@@ -21,7 +21,7 @@ class MytaskController extends Controller
     public function bylabtask(Labtask $labtask)
     {
         return view('mypages/mytask_bylabtask')->with([
-            'mytasks' => $labtask->getByLabtask(),
+            'mytasks' => $labtask->getByLabtaskForMytask(),
             'labtasks' => Auth::user()->getByUser(),
             'Labtask' => $labtask,
         ]);
@@ -36,7 +36,7 @@ class MytaskController extends Controller
     {
         return view('mypages/bylabtask_edit')->with([
             'Mytask' => $mytask,
-            'mytasks' => $labtask->getByLabtask(),
+            'mytasks' => $labtask->getByLabtaskForMytask(),
             'labtasks' => Auth::user()->getByUser(),
         ]);
     }

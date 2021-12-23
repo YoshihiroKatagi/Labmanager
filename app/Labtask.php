@@ -15,24 +15,29 @@ class Labtask extends Model
     ];
     
     // データ取得制限
-    public function getByLimit()
-    {
-        return $this->orderBy('created_at', 'ASC')->get();
-    }
+    // public function getByLimit()
+    // {
+    //     return $this->orderBy('created_at', 'ASC')->get();
+    // }
     
-    public function getByLabtask()
+    public function getByLabtaskForMytask()
     {
         return $this->mytasks()->with('labtask')->orderBy('created_at', 'ASC')->get();
     }
     
-    public function getWithUser()
-    {
-        return $this::with('user')->orderBy('created_at', 'ASC')->get();
-    }
+    // public function getWithUser()
+    // {
+    //     return $this::with('user')->orderBy('created_at', 'ASC')->get();
+    // }
     
     public function getByLabtaskForComment()
     {
         return $this::comments()->with('labtask')->orderBy('created_at', 'ASC')->get();
+    }
+    
+    public function getByLabtaskForImage()
+    {
+        return $this::images()->with('labtask')->orderBy('created_at', 'ASC')->get();
     }
     
     // リレーション

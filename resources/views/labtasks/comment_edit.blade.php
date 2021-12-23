@@ -26,6 +26,7 @@
             <div>いいね！
                 <span class="badge badge-pill badge-success">{{ $labtask->is_liked }}</span>
             </div>
+            <a href="/labpage/membertask/{{ $User->id }}/{{ $labtask->id }}/comment">コメント</a>
             <p>詳細：{{ $labtask->description }}</p>
             <div class="image">
                 <h2>補足画像</h2>
@@ -34,7 +35,6 @@
                     <p>説明：{{ $image->description }}</p>
                 @endforeach
             </div>
-            <a href="/labpage/membertask/{{ $User->id }}/{{ $labtask->id }}/comment">コメント</a>
         </div>
         
         <div class="comments" style="width:30%;">

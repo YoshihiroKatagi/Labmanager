@@ -18,6 +18,7 @@ class CreateImagesTable extends Migration
             $table->unsignedBigInteger('labtask_id');
             $table->string('image_path');
             $table->string('description')->nullable();
+            $table->timestamps();
         });
     }
 

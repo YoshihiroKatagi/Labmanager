@@ -24,8 +24,8 @@ class LabtaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'labtask.title' => 'required|max:50',
-            'labtask.description' => 'required|max:250',
+            'labtask.title' => 'max:50',
+            'labtask.description' => 'max:250',
         ];
     }
 }
