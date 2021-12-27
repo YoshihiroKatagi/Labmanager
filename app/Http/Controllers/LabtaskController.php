@@ -64,11 +64,10 @@ class LabtaskController extends Controller
     }
     public function image_update(LabtaskRequest $request, Labtask $labtask, Image $image)
     {
-        // $input = $request['image'];
-        // $image->fill($input)->save();
+        $input = $request['image'];
+        $image->fill($input)->save();
         
-        // return redirect('/mypage/labtask/' . $labtask->id);
-        return $request;
+        return redirect('/mypage/labtask/' . $labtask->id);
     }
     public function image_delete(Labtask $labtask, Image $image)
     {
