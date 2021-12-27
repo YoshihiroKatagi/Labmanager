@@ -78,6 +78,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::delete('/cfavorite/unfavorite/{comment}', 'FavoriteController@cfavorite_destroy');
     
     
+    //カレンダーページ
+    // Route::get('/mypage/calendar', 'ApiController@test');
+    Route::get('/mypage/calendar', 'ApiController@getEvents');
+    
     
     //ラボページ
     Route::get('/labpage/labtop', 'LabpageController@index');
