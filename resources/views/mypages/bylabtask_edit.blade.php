@@ -4,23 +4,51 @@
 
 @section('content')
     <div class="container" style="display:flex">
-        <div class="filter" style="width:20%; text-align:center;">
+        <div class="side_bar" style="width:20%; text-align:center; border:solid;">
+            <div style="text-align:left; border:solid; padding:10px;">
+                <h2>
+                    <a href="/labpage/top"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/labtop.svg">ラボページ</a>
+                </h2>
+            </div>
+            <div style="text-align:left; border:solid; padding:10px;">
+                <h2>
+                    <a href="/mypage/mytask/today"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/mytask.svg">マイタスク</a>
+                </h2>
+            </div>
+            <div style="text-align:left; border:solid; padding:10px;">
+                <h2>
+                    <a href="/mypage/labtask"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/labtask.svg">ラボタスク</a>
+                </h2>
+            </div>
+            <div style="text-align:left; border:solid; padding:10px;">
+                <h2>
+                    <a href="/mypage/calendar"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/calendar.svg">カレンダー</a>
+                </h2>
+            </div>
+            <div style="text-align:left; border:solid; padding:10px;">
+                <h2>
+                    <a href="/mypage/statistic"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/statistic.svg">統計</a>
+                </h2>
+            </div>
+        </div>
+        
+        <div class="filter" style="width:15%; text-align:center;">
             <h1>Filter</h1>
-            <h2>現在のラボタスク</h2>
+            <h2>Labtask</h2>
             @foreach($labtasks as $labtask)
                     <a href="/mypage/mytask/bylabtask/{{ $labtask->id }}">{{ $labtask->title }}</a><br>
             @endforeach
             
-            <h2>日程別</h2>
+            <h2>Due Date</h2>
             <a href="/mypage/mytask/today">Today</a><br>
             <a href="/mypage/mytask/tomorrow">Tomorrow</a><br>
             <a href="/mypage/mytask/thisweek">This Week</a><br>
             <a href="/mypage/mytask/thismonth">This Month</a><br>
         </div>
         
-        <div class="content" style="width:50%; text-align:center;">
+        <div class="content" style="width:35%; text-align:center;">
             <div class="create_mytask">
-                <h2>新規作成</h2>
+                <h2>New</h2>
                 <form action="/mypage/mytask/bylabtask/{{ $mytasks[0]->labtask->id }}" method="POST">
                     @csrf
                     <input type="hidden" name="mytask[labtask_id]" value="{{ $mytasks[0]->labtask->id }}">
@@ -100,11 +128,7 @@
                 <input type="submit" value="保存">
             </form>
             <p>作成日：{{ $Mytask->created_at->format('Y年m月d日') }}</p>
-            <p>完了日時：{{ $Mytask->is_finished_at }}</p>
-            <p>タスク状態：{{ $Mytask->task_state }}</p>
-            <p>結果タイマー数：{{ $Mytask->timer_result }}</p>
-            <p>期限内完了：{{ $Mytask->on_time_or_not }}</p>
-            <p>想定タイマー数完了：{{ $Mytask->within_timer_count }}</p>
+            <p>タイマー数：{{ $Mytask->timer_result }}</p>
             
             <form action="/mypage/mytask/bylabtask/{{ $mytasks[0]->labtask->id }}/{{ $Mytask->id }}" method="POST">
                 @csrf

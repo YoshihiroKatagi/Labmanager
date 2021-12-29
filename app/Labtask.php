@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Labtask extends Model
 {
@@ -39,6 +40,7 @@ class Labtask extends Model
     {
         return $this::images()->with('labtask')->orderBy('created_at', 'ASC')->get();
     }
+    
     
     // リレーション
     public function user()

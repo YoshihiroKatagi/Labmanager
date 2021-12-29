@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Labmanager') }}</title>
+    <link rel="icon" href="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/Labmanager_logo.png">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -23,7 +24,8 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/mypage/mytask/today') }}">
+                    <img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/Labmanager_logo.png" style="width:10%; height:10%">
                     {{ config('app.name', 'Labmanager') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -33,7 +35,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li>
+                            <a href="/setting/outline"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/setting.svg"></a>
+                        </li>
+                        <li>
+                            <a href=""><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/timer.svg"></a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -71,6 +78,7 @@
                 </div>
             </div>
         </nav>
+        
 
         <main class="py-4">
             @yield('content')

@@ -42,7 +42,7 @@ class LabtaskController extends Controller
         $input = $request['labtask'];
         $labtask->fill($input)->save();
         
-        return redirect('/mypage/labtask/' . $labtask->id);
+        return redirect('/mypage/labtask');
     }
     public function labtask_delete(Labtask $labtask)
     {
@@ -79,16 +79,18 @@ class LabtaskController extends Controller
     public function membertask(User $user, Labtask $labtask)
     {
         return view('/labtasks/membertask')->with([
-            'user' => $user,
+            'User' => $user,
             'labtasks' => $user->getByUser(),
+            'users' => $user->get(),
         ]);
     }
     public function membertask_detail(User $user, Labtask $labtask)
     {
         return view('/labtasks/membertask_detail')->with([
-            'user' => $user,
+            'User' => $user,
             'labtask' => $labtask,
             'images' => $labtask->getByLabtaskForImage(),
+            'users' => $user->get(),
         ]);
     }
     

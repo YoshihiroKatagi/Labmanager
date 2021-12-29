@@ -13,7 +13,7 @@
 
 Route::group(['middleware' => 'auth'], function(){
     //マイタスクページ
-    Route::get('/', 'MytaskController@top');
+    Route::get('/', 'MytaskController@today');
     
     Route::get('/mypage/mytask/bylabtask/{labtask}', 'MytaskController@bylabtask');
     Route::post('/mypage/mytask/bylabtask/{labtask}', 'MytaskController@bylabtask_create');
@@ -84,7 +84,7 @@ Route::group(['middleware' => 'auth'], function(){
     
     
     //ラボページ
-    Route::get('/labpage/labtop', 'LabpageController@index');
+    Route::get('/labpage/top', 'LabpageController@index');
     
     
     
@@ -94,13 +94,13 @@ Route::group(['middleware' => 'auth'], function(){
     //設定ページ
     Route::get('/setting/account', 'UserController@account');
     
-    Route::get('/setting/profile', 'UserController@profile');
-    
     Route::get('/setting/outline', 'UserController@outline');
     Route::put('/setting/outline', 'UserController@outline_update');
     Route::delete('/setting/outline', 'UserController@outline_delete');
     
     Route::get('/setting/timer', 'UserController@timier');
+    
+    Route::get('/setting/lab', 'LabController@lab');
     
 });
 

@@ -17,6 +17,7 @@ class MytasksTableSeeder extends Seeder
             'title' => 'OpenCV学習',
             'description' => 'OpenCVの使い方を学ぶ',
             'created_at' => '2021-11-12 09:00:00',
+            'task_state' => 2,
         ];
         DB::table('mytasks')->insert($param);
         
@@ -53,7 +54,33 @@ class MytasksTableSeeder extends Seeder
         DB::table('mytasks')->insert($param);
         
         $param = [
-            'labtask_id' => 1,
+            'labtask_id' => 3,
+            'title' => 'アポ',
+            'description' => '担当教員のアポを取る',
+            'created_at' => '2021-11-20 09:00:00',
+            'task_state' => 2,
+        ];
+        DB::table('mytasks')->insert($param);
+        
+        $param = [
+            'labtask_id' => 3,
+            'title' => '疑問点の整理',
+            'description' => 'どこにつまずいているかを明確にする',
+            'created_at' => '2021-11-21 09:00:00',
+            'task_state' => 2,
+        ];
+        DB::table('mytasks')->insert($param);
+        
+        $param = [
+            'labtask_id' => 3,
+            'title' => '資料作成',
+            'description' => 'パワポを作成し、自分の考えをきちんと伝える',
+            'created_at' => '2021-11-21 15:00:00',
+        ];
+        DB::table('mytasks')->insert($param);
+        
+        $param = [
+            'labtask_id' => 4,
             'title' => '調査',
             'description' => '必要な機材を調査する',
             'created_at' => '2021-11-16 09:00:00',
@@ -61,7 +88,7 @@ class MytasksTableSeeder extends Seeder
         DB::table('mytasks')->insert($param);
         
         $param = [
-            'labtask_id' => 1,
+            'labtask_id' => 4,
             'title' => '報告',
             'description' => '必要経費をまとめて報告する',
             'created_at' => '2021-11-17 09:00:00',

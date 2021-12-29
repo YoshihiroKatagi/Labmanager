@@ -56,6 +56,11 @@ class User extends Authenticatable
         return $this->labtasks()->with('user')->orderBy('created_at', 'ASC')->get();
     }
     
+    public function getByUserForComment()
+    {
+        return $this->comments()->with('user')->orderBy('created_at', 'DESC')->get();
+    }
+    
     
     //リレーション
     public function lab()

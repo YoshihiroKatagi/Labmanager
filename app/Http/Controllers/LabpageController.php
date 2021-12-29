@@ -9,6 +9,7 @@ use App\Labtask;
 use App\Comment;
 use App\Event;
 use App\Image;
+use Illuminate\Support\Facades\Auth;
 
 class LabpageController extends Controller
 {
@@ -19,14 +20,6 @@ class LabpageController extends Controller
             'users' => $user->get(),
             'labtasks' => $labtask->get(),
             'events' => $event->get()
-        ]);
-    }
-    
-    public function member(Labtask $labtask, User $user)
-    {
-        return view('labpages/membertask')->with([
-            'labtasks' => $labtask->get(),
-            'users' => $user->get()
         ]);
     }
     
@@ -46,7 +39,7 @@ class LabpageController extends Controller
         return view('labpages/mention')->with([
             'users' => $user->get(),
             'labtasks' => $labtask->get(),
-            'comments' => $comment->get()
+            'comments' => $comment->getMentionedComment()
         ]);
     }
 }

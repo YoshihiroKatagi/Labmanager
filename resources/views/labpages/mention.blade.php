@@ -1,37 +1,71 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>メンション</h1>
+    <div class="container" style="text-align:center; display:flex;">
+        <div class="side_bar" style="width:20%; text-align:center; border:solid;">
+            <div style="text-align:left; border:solid; padding:10px;">
+                <h2>
+                    <a href="/mypage/mytask/today"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/mytask.svg">マイページ</a>
+                </h2>
+            </div>
+            <div style="text-align:left; border:solid; padding:10px;">
+                <h2>
+                    <a href="/labpage/top"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/labtop.svg">ラボトップ</a>
+                </h2>
+            </div>
+            <div style="text-align:left; border:solid; padding:10px;">
+                <h2>
+                    <img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/member.svg">メンバー
+                </h2>
+                @foreach($users as $user)
+                    <div style="border:solid;">
+                        <h3>
+                            <a href="/labpage/membertask/{{ $user->id }}">{{ $user->name }}</a>
+                        </h3>
+                    </div>
+                @endforeach
+            </div>
+            <div style="text-align:left; border:solid; padding:10px;">
+                <h2>
+                    <a href="/labpage/mention"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/mention.svg">メンション</a>
+                </h2>
+            </div>
+            <div style="text-align:left; border:solid; padding:10px;">
+                <h2>
+                    <a href="/labpage/ranking"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/ranking.svg">ランキング</a>
+                </h2>
+            </div>
+        </div>
+        
+        <div class="mention" style="width:80%; text-align:center;">
+            <h1>メンション</h1>
+            
+            <h2>コメント</h2>
+            @foreach($comments as $comment)
+                <div class="comment" style="border:solid; margin:10px;">
+                    <p>{{ $users["$comment->user_id"-1]->name }}</p>
+                    <p>{{ $comment->content }}</p>
+                    <p>created_at: {{ $comment->created_at->format('Y年m月d日') }}</p>
+                    <p>@ {{ $users["$comment->mention_to"-1]->name }}</p>
+                    @if (Auth::user()->is_c_favorite($comment->id))
+                        <form action="/cfavorite/unfavorite/{{ $comment->id }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="いいね！を外す" class="button btn btn-warning">
+                        </form>
+                    @else
+                        <form action="/cfavorite/favorite/{{ $comment->id }}" method="POST">
+                            @csrf
+                            <input type="submit" value="いいね！" class="button btn btn-success">
+                        </form>
+                    @endif
+                    <div>いいね！
+                        <span class="badge badge-pill badge-success">{{ $comment->is_liked }}</span>
+                    </div>
+                    <a href="/labpage/membertask/{{ Auth::user()->id }}/{{ $comment->labtask->id }}/comment">詳細確認</a>
+                </div>
+            @endforeach
+        </div>
+    </div>
     
-    <h2>ユーザ情報</h2>
-    @foreach($users as $user)
-        <br>
-        <p>ID: {{ $user->id }}</p>
-        <h2>ユーザ名：{{ $user->name }}</h2>
-        <br>
-    @endforeach
-    <br>
-    
-    <h2>ラボタスク</h2>
-    @foreach($labtasks as $labtask)
-        <br>
-        <p>ID: {{ $labtask->id }}</p>
-        <h2>タイトル：{{ $labtask->title }}</h2>
-        <p>詳細：{{ $labtask->description }}</p>
-        <br>
-    @endforeach
-    <br>
-    
-    <h2>コメント</h2>
-    @foreach($comments as $comment)
-        <br>
-        <p>ID: {{ $comment->id }}</p>
-        <p>内容：{{ $comment->content }}</p>
-        <p>labaskID: {{ $comment->labtask_id }}</p>
-        <p>userID: {{ $comment->user_id }}</p>
-        <p>created_at: {{ $comment->created_at }}</p>
-        <p>mention_to: {{ $comment->mention_to }}</p>
-        <p>いいね数：{{ $comment->is_liked }}</p>
-        <br>
-    @endforeach
 @endsection

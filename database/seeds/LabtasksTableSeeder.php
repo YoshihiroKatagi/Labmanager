@@ -32,7 +32,7 @@ class LabtasksTableSeeder extends Seeder
             'user_id' => 1,
             'title' => 'ミーティング 準備',
             'description' => 'ミーティングに向けて、相談内容の整理',
-            'created_at' => '2021-11-01 00:00:00',
+            'created_at' => '2021-11-20 00:00:00',
             'is_done' => 1,
         ];
         DB::table('labtasks')->insert($param);
