@@ -11,10 +11,10 @@
 |
 */
 
+Route::get('/', 'MytaskController@index');
+
 Route::group(['middleware' => 'auth'], function(){
     //マイタスクページ
-    Route::get('/', 'MytaskController@today');
-    
     Route::get('/mypage/mytask/bylabtask/{labtask}', 'MytaskController@bylabtask');
     Route::post('/mypage/mytask/bylabtask/{labtask}', 'MytaskController@bylabtask_create');
     Route::get('/mypage/mytask/bylabtask/{labtask}/{mytask}', 'MytaskController@bylabtask_edit');
@@ -44,7 +44,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/mypage/mytask/thismonth/{mytask}', 'MytaskController@thismonth_edit');
     Route::put('/mypage/mytask/thismonth/{mytask}', 'MytaskController@thismonth_update');
     Route::delete('/mypage/mytask/thismonth/{mytask}', 'MytaskController@thismonth_delete');
-    
     
     //ラボタスクページ
     Route::get('/mypage/labtask', 'LabtaskController@labtask');
@@ -82,25 +81,30 @@ Route::group(['middleware' => 'auth'], function(){
     // Route::get('/mypage/calendar', 'ApiController@test');
     Route::get('/mypage/calendar', 'ApiController@getEvents');
     
+    //統計ページ
+    Route::get('/mypage/statistic', 'DataController@statistic');
     
-    //ラボページ
+    
+    //ラボトップページ
     Route::get('/labpage/top', 'LabpageController@index');
     
-    
-    
+    //メンションページ
     Route::get('/labpage/mention', 'LabpageController@mention');
+    
+    //ランキングページ
+    Route::get('/labpage/ranking', 'DataController@ranking');
     
     
     //設定ページ
     Route::get('/setting/account', 'UserController@account');
+    Route::post('/setting/account', 'UserController@account_icon');
+    Route::put('/setting/account', 'UserController@account_update');
     
     Route::get('/setting/outline', 'UserController@outline');
     Route::put('/setting/outline', 'UserController@outline_update');
-    Route::delete('/setting/outline', 'UserController@outline_delete');
     
-    Route::get('/setting/timer', 'UserController@timier');
-    
-    Route::get('/setting/lab', 'LabController@lab');
+    Route::get('/setting/timer', 'UserController@timer');
+    Route::put('/setting/timer', 'UserController@timer_update');
     
 });
 

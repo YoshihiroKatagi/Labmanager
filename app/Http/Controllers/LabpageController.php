@@ -18,7 +18,7 @@ class LabpageController extends Controller
         return view('labpages/labtop')->with([
             'labs' => $lab->get(),
             'users' => $user->get(),
-            'labtasks' => $labtask->get(),
+            'labtasks' => $labtask->getWithUser(),
             'events' => $event->get()
         ]);
     }

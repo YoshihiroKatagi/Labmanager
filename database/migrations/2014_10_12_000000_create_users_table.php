@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('icon')->nullable();
+            $table->string('icon')->default('https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/first_icon.svg');
             $table->boolean('student_or_not');
             $table->string('thema', 50)->nullable();
             $table->text('background')->nullable();

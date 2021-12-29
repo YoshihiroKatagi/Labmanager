@@ -57,7 +57,7 @@
                     <form action="/mypage/labtask/{{ $labtask->id }}/{{ $image->id }}" method="POST">
                         @csrf
                         @method('PUT')
-                        <img src="{{ $image->image_path }}">
+                        <img src="{{ $image->image_path }}" style="width:30vw;">
                         <textarea name="image[description]">{{ $image->description }}</textarea>
                         <input type="submit" value="保存">
                     </form>

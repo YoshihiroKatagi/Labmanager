@@ -26,14 +26,14 @@ class Labtask extends Model
         return $this->mytasks()->with('labtask')->orderBy('created_at', 'ASC')->get();
     }
     
-    // public function getWithUser()
-    // {
-    //     return $this::with('user')->orderBy('created_at', 'ASC')->get();
-    // }
+    public function getWithUser()
+    {
+        return $this::with('user')->orderBy('created_at', 'ASC')->get();
+    }
     
     public function getByLabtaskForComment()
     {
-        return $this::comments()->with('labtask')->orderBy('created_at', 'ASC')->get();
+        return $this::comments()->with('labtask')->with('user')->orderBy('created_at', 'ASC')->get();
     }
     
     public function getByLabtaskForImage()

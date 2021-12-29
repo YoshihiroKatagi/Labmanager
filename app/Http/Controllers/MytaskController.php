@@ -11,11 +11,9 @@ use Illuminate\Support\Facades\Auth;
 
 class MytaskController extends Controller
 {
-    public function top(User $user)
+    public function index(User $user)
     {
-        return view('index')->with([
-            'users' => $user->get(),
-        ]);
+        return view('top');
     }
     
     public function bylabtask(Labtask $labtask)

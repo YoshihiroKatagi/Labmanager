@@ -36,7 +36,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li>
-                            <a href="/setting/outline"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/setting.svg"></a>
+                            <a href="/setting/account"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/setting.svg"></a>
                         </li>
                         <li>
                             <a href=""><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/timer.svg"></a>

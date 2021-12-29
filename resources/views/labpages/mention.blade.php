@@ -20,7 +20,7 @@
                 @foreach($users as $user)
                     <div style="border:solid;">
                         <h3>
-                            <a href="/labpage/membertask/{{ $user->id }}">{{ $user->name }}</a>
+                            <a href="/labpage/membertask/{{ $user->id }}"><img src="{{ $user->icon }}" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:solid; color:black;">{{ $user->name }}</a>
                         </h3>
                     </div>
                 @endforeach
@@ -45,18 +45,18 @@
                 <div class="comment" style="border:solid; margin:10px;">
                     <p>{{ $users["$comment->user_id"-1]->name }}</p>
                     <p>{{ $comment->content }}</p>
-                    <p>created_at: {{ $comment->created_at->format('Y年m月d日') }}</p>
+                    <p>{{ $comment->created_at->format('Y年m月d日') }}</p>
                     <p>@ {{ $users["$comment->mention_to"-1]->name }}</p>
                     @if (Auth::user()->is_c_favorite($comment->id))
                         <form action="/cfavorite/unfavorite/{{ $comment->id }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <input type="submit" value="いいね！を外す" class="button btn btn-warning">
+                            <input type="image" name="submit" src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/good_button_done.svg">
                         </form>
                     @else
                         <form action="/cfavorite/favorite/{{ $comment->id }}" method="POST">
                             @csrf
-                            <input type="submit" value="いいね！" class="button btn btn-success">
+                            <input type="image" name="submit" src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/good_button.svg">
                         </form>
                     @endif
                     <div>いいね！

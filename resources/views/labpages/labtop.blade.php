@@ -22,7 +22,7 @@
                 @foreach($users as $user)
                     <div style="border:solid;">
                         <h3>
-                            <a href="/labpage/membertask/{{ $user->id }}">{{ $user->name }}</a>
+                            <a href="/labpage/membertask/{{ $user->id }}"><img src="{{ $user->icon }}" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:solid; color:black;">{{ $user->name }}</a>
                         </h3>
                     </div>
                 @endforeach
@@ -39,48 +39,23 @@
             </div>
         </div>
         
-        <div class="labtop" style="width:80%; text-align:center;">
-            <h1>ラボトップページ</h1>
-            <h2>ラボ情報</h2>
-            @foreach($labs as $lab)
-                <p>ID:{{ $lab->id }}</p>
-                <h2>ラボ名：{{ $lab->name}}</h2>
-                <p>Introduction：{{ $lab->description }}</p>
-            @endforeach
-            <br>
+        <div class="labtop" style="width:60%; text-align:center;">
+                <h1>Lab:{{ $labs[0]->name}}</h1>
+                <p>description:{{ $labs[0]->description }}</p>
             
-            <h2>ラボイベント</h2>
-            @foreach($events as $event)
-                <br>
-                <p>ID:{{ $event->id }}</p>
-                <h2>イベント名：{{ $event->title}}</h2>
-                <p>日付：{{ $event->date }}</p>
-                <p>時刻：{{ $event->start_at }} - {{ $event->end_at }}</p>
-                <p>繰り返し：{{$event->repeat }}</p>
-                <br>
-            @endforeach
-            <br>
-            
-            <h2>ラボタスク</h2>
+            <h2>Labtask</h2>
             @foreach($labtasks as $labtask)
-                <br>
-                <p>ID：{{ $labtask->id }}</p>
-                <h2>タイトル：{{ $labtask->title }}</h2>
-                <p>ユーザID：{{ $labtask->user_id }}</p>
-                <p>作成日時：{{ $labtask->created_at }}</p>
-                <p>タスク状態：{{ $labtask->is_done }}</p>
-                <p>いいね数：{{ $labtask->is_liked }}</p>
-                <br>
+                @if($labtask->is_done == 0)
+                    <div class="labtask" style="border:solid; margin:20px;">
+                        <h2>{{ $labtask->user->name }}</h2>
+                        <h3>{{ $labtask->title }}</h3>
+                        <p>{{ $labtask->created_at->format('Y年m月d日') }}</p>
+                        <div>いいね！
+                            <span class="badge badge-pill badge-success">{{ $labtask->is_liked }}</span>
+                        </div>
+                        <a href="/labpage/membertask/{{ Auth::user()->id }}/{{ $labtask->id }}">詳細確認</a>
+                    </div>
+                @endif
             @endforeach
-            <br>
-            
-            <h3>研究室メンバー</h3>
-            @foreach($users as $user)
-                <br>
-                <p>ID：{{ $user->id }}</p>
-                <h3>ユーザ名：{{ $user->name }}</h3>
-                <br>
-            @endforeach
-        </div>
     </div>
 @endsection

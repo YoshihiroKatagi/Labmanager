@@ -22,7 +22,7 @@
                 @foreach($users as $user)
                     <div style="border:solid;">
                         <h3>
-                            <a href="/labpage/membertask/{{ $user->id }}">{{ $user->name }}</a>
+                            <a href="/labpage/membertask/{{ $user->id }}"><img src="{{ $user->icon }}" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:solid; color:black;">{{ $user->name }}</a>
                         </h3>
                     </div>
                 @endforeach
