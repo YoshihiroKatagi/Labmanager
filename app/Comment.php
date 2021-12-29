@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Comment extends Model
 {
@@ -23,6 +24,11 @@ class Comment extends Model
     public function getWithUser()
     {
         return $this->with('user')->orderBy('created_at', 'ASC')->get();
+    }
+    
+    public function getMentionedComment()
+    {
+        return $this->with('user')->with('labtask')->where('mention_to', Auth::user()->id)->orderBy('created_at', 'DESC')->get();
     }
     
     //リレーション

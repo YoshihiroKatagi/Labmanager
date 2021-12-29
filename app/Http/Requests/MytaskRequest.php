@@ -24,7 +24,7 @@ class MytaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'mytask.title' => 'required|max:50',
+            'mytask.title' => 'max:50',
             'mytask.description' => 'max:250',
             'mytask.timer_count' => 'min:0',
         ];

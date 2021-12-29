@@ -52,7 +52,7 @@ class ApiController extends Controller
         
         $now = date('c');
         $optParams = array(
-            'maxResults' => 300,
+            'maxResults' => 100,
             'orderBy' => 'startTime',
             'singleEvents' => true,
             'timeZone' => 'Asia/Tokyo',

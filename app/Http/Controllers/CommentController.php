@@ -10,14 +10,14 @@ use App\Http\Requests\CommentRequest;
 
 class CommentController extends Controller
 {
-    public function comment(User $user, Labtask $labtask, Image $image)
+    public function comment(User $user, Labtask $labtask)
     {
         return view('labtasks/membertask_comment')->with([
             'User' => $user,
             'users' => $user->get(),
             'labtask' => $labtask,
             'comments' => $labtask->getByLabtaskForComment(),
-            'images' => $image->get(),
+            'images' => $labtask->getByLabtaskForImage(),
         ]);
     }
     
@@ -28,7 +28,7 @@ class CommentController extends Controller
         return redirect('/labpage/membertask/' . $user->id . '/' . $labtask->id . '/comment');
     }
     
-    public function comment_edit(User $user, Labtask $labtask, Comment $comment, Image $image)
+    public function comment_edit(User $user, Labtask $labtask, Comment $comment)
     {
         return view('labtasks/comment_edit')->with([
             'User' => $user,
@@ -36,7 +36,7 @@ class CommentController extends Controller
             'labtask' => $labtask,
             'Comment' => $comment,
             'comments' => $labtask->getByLabtaskForComment(),
-            'images' => $image->get(),
+            'images' => $labtask->getByLabtaskForImage(),
         ]);
     }
     
