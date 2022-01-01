@@ -68,7 +68,8 @@ class ApiController extends Controller
             $tmp['end'] = date('Y/m/d H:i', strtotime($event->end->dateTime));
             $events[] = $tmp;
         }
-        return view('mypages/calendar')->with([
+        // return view('mypages/calendar')->with([
+        return view('mypages/calendar_tmp')->with([
             'events' => $events,
         ]);
     }

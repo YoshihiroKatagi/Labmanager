@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class Labtask extends Model
 {
@@ -41,6 +42,21 @@ class Labtask extends Model
         return $this::images()->with('labtask')->orderBy('created_at', 'ASC')->get();
     }
     
+    //statistic data
+    public function getByLACD()
+    {
+        return $this::with('user')->where('is_done', 1)->whereDate('updated_at', '>=', Carbon::today())->get();
+    }
+    public function getByLACW()
+    {
+        return $this::with('user')->where('is_done', 1)->whereDate('updated_at', '>=', Carbon::now()->subWeek())->get();
+    }
+    public function getByLACM()
+    {
+        return $this::with('user')->where('is_done', 1)->whereDate('updated_at', '>=', Carbon::now()->subMonth())->get();
+    }
+    
+    
     
     // リレーション
     public function user()
@@ -61,5 +77,10 @@ class Labtask extends Model
     public function images()
     {
         return $this->hasMany('App\Image');
+    }
+    
+    public function ltfavorites()
+    {
+        return $this->hasMany('App\Ltfavorite');
     }
 }

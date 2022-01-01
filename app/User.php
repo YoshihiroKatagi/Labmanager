@@ -61,6 +61,14 @@ class User extends Authenticatable
         return $this->comments()->with('user')->orderBy('created_at', 'DESC')->get();
     }
     
+    public function getByMACD()
+    {
+        return $this::with(['labtasks' => function($query){
+            $query->with('mytasks');
+        }])->get();
+        // return $this::with('labtask')->where('task_state', 2)->whereDate('updated_at', '>=', Carbon::today())->count();
+    }
+    
     
     //リレーション
     public function lab()

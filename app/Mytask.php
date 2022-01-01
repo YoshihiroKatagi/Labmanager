@@ -34,21 +34,45 @@ class Mytask extends Model
     {
         return $this::with('labtask')->whereDate('will_finish_on', '<=', Carbon::today())->orderBy('created_at', 'ASC')->get();
     }
-    
     public function getByTomorrow()
     {
         return $this::with('labtask')->whereDate('will_finish_on', '<=', Carbon::tomorrow())->orderby('created_at', 'ASC')->get();
     }
-    
     public function getByThisweek()
     {
         return $this::with('labtask')->whereDate('will_finish_on','<=', Carbon::now()->endOfWeek())->orderby('created_at', 'ASC')->get();
     }
-    
     public function getByThismonth()
     {
         return $this::with('labtask')->whereDate('will_finish_on','<=', Carbon::now()->endOfMonth())->orderby('created_at', 'ASC')->get();
     }
+    
+    //statistic data
+    public function getByMACD()
+    {
+        return $this::with('labtask')->where('task_state', 2)->whereDate('updated_at', '>=', Carbon::today())->get();
+    }
+    public function getByMACW()
+    {
+        return $this::with('labtask')->where('task_state', 2)->whereDate('updated_at', '>=', Carbon::now()->subWeek())->get();
+    }
+    public function getByMACM()
+    {
+        return $this::with('labtask')->where('task_state', 2)->whereDate('updated_at', '>=', Carbon::now()->subMonth())->get();
+    }
+    
+    // public function getByTUCD()
+    // {
+    //     return $this::with('labtask')->where('task_state', 2)->whereDate('updated_at', '>=', Carbon::today())->get();
+    // }
+    // public function getByTUCW()
+    // {
+    //     return $this::with('labtask')->where('task_state', 2)->whereDate('updated_at', '>=', Carbon::now()->subWeek())->get();
+    // }
+    // public function getByTUCM()
+    // {
+    //     return $this::with('labtask')->where('task_state', 2)->whereDate('updated_at', '>=', Carbon::now()->subMonth())->get();
+    // }
     
     // リレーション
     public function labtask()

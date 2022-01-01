@@ -42,4 +42,9 @@ class Comment extends Model
         return $this->belongsTo('App\User');
     }
     
+    public function cfavorites()
+    {
+        return $this->hasMany('App\Cfavorite');
+    }
+    
 }
