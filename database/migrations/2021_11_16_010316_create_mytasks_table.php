@@ -24,7 +24,7 @@ class CreateMytasksTable extends Migration
             $table->time('will_begin_at')->nullable();
             $table->date('will_finish_on')->nullable();
             $table->time('will_finish_at')->nullable();
-            $table->boolean('task_state')->default(0);
+            $table->smallInteger('task_state')->default(0);
             $table->integer('timer_count')->nullable();
             $table->integer('timer_result')->nullable();
             $table->boolean('on_timer_or_not')->nullable();

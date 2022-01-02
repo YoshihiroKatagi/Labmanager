@@ -50,6 +50,8 @@ class DataController extends Controller
         
         foreach($users as $user){
             $userdata = [
+                'user_name' => $user->name,
+                
                 'labtask_achieve_count_day' => $labtask->getByLACD()->where('user_id', $user->id)->count(),
                 'labtask_achieve_count_week' => $labtask->getByLACW()->where('user_id', $user->id)->count(),
                 'labtask_achieve_count_month' => $labtask->getByLACM()->where('user_id', $user->id)->count(),
@@ -65,7 +67,7 @@ class DataController extends Controller
             $data[] = $userdata;
         }
         
-        // return view('labpages/ranking')->with(['data' => $data, 'users' => $user->get(),]);
+        return view('labpages/ranking')->with(['data' => $data, 'users' => $user->get(),]);
         return $data;
     }
 }

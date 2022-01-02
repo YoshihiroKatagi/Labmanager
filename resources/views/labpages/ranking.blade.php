@@ -34,8 +34,40 @@
 
         <div class="content" style="width:70%; text-align:center;">
             <div class="labtask_achieve" style="height:200px; margin:10px; border:solid; text-align:center;">
+                <h2>ラボタスク消費数（今日）</h2>
                 @foreach($data as $userdata)
-                    <p>{{ $userdata->labtask_achieve_count_day }}</p>
+                    <p>{{ $userdata['user_name'] }}:{{ $userdata['labtask_achieve_count_day'] }}</p>
+                @endforeach
+            </div>
+            <div class="labtask_achieve" style="height:200px; margin:10px; border:solid; text-align:center;">
+                <h2>ラボタスク消費数（今週）</h2>
+                @foreach($data as $userdata)
+                    <p>{{ $userdata['user_name'] }}:{{ $userdata['labtask_achieve_count_week'] }}</p>
+                @endforeach
+            </div>
+            <div class="labtask_achieve" style="height:200px; margin:10px; border:solid; text-align:center;">
+                <h2>ラボタスク消費数（今月）</h2>
+                @foreach($data as $userdata)
+                    <p>{{ $userdata['user_name'] }}:{{ $userdata['labtask_achieve_count_month'] }}</p>
+                @endforeach
+            </div>
+            
+            <div class="good_count" style="height:200px; margin:10px; border:solid; text-align:center;">
+                <h2>いいね獲得数（今日）</h2>
+                @foreach($data as $userdata)
+                    <p>{{ $userdata['user_name'] }}:{{ $userdata['labtask_good_count_day'] + $userdata['comment_good_count_day'] }}</p>
+                @endforeach
+            </div>
+            <div class="good_count" style="height:200px; margin:10px; border:solid; text-align:center;">
+                <h2>いいね獲得数（今週）</h2>
+                @foreach($data as $userdata)
+                    <p>{{ $userdata['user_name'] }}:{{ $userdata['labtask_good_count_week'] + $userdata['comment_good_count_week'] }}</p>
+                @endforeach
+            </div>
+            <div class="good_count" style="height:200px; margin:10px; border:solid; text-align:center;">
+                <h2>いいね獲得数（今月）</h2>
+                @foreach($data as $userdata)
+                    <p>{{ $userdata['user_name'] }}:{{ $userdata['labtask_good_count_month'] + $userdata['comment_good_count_month'] }}</p>
                 @endforeach
             </div>
         </div>
