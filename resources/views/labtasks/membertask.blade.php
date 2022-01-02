@@ -76,7 +76,6 @@
         
         <div class="research" style="width:30%;">
             <h2>研究概要</h2>
-            <p>ユーザ名：{{ $User->name }}</h2>
             <p>研究テーマ：{{ $User->thema }}</p>
             <p>研究背景：{{ $User->background }}</p>
             <p>研究動機：{{ $User->motivation }}</p>
