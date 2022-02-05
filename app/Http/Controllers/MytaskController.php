@@ -63,9 +63,10 @@ class MytaskController extends Controller
         $mytask->fill($input)->save();
         return redirect('/mypage/mytask/today');
     }
-    public function today_edit(Mytask $mytask, Labtask $labtask)
+    public function today_edit(User $user, Mytask $mytask, Labtask $labtask)
     {
         return view('mypages/today_edit')->with([
+            'users' => $user->get(),
             'Mytask' => $mytask,
             'mytasks' => $mytask->getByToday(),
             'labtasks' => Auth::user()->getByUser(),
