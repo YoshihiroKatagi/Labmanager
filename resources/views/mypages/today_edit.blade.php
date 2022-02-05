@@ -40,16 +40,21 @@
         
         <div class="col-md-2">
             <h1>Filter</h1>
-            <h2>Labtask</h2>
-            @foreach($labtasks as $labtask)
-                    <a href="/mypage/mytask/bylabtask/{{ $labtask->id }}">{{ $labtask->title }}</a><br>
-            @endforeach
-            
-            <h2>Due Date</h2>
-            <a href="/mypage/mytask/today">Today</a><br>
-            <a href="/mypage/mytask/tomorrow">Tomorrow</a><br>
-            <a href="/mypage/mytask/thisweek">This Week</a><br>
-            <a href="/mypage/mytask/thismonth">This Month</a><br>
+            <div class="list-group list-group-flush">
+              <h3>Labtask</h3>
+              @foreach($labtasks as $labtask)
+                <a href="/mypage/mytask/bylabtask/{{ $labtask->id }}" class="list-group-item list-group-item-action">
+                  {{ $labtask->title }}
+                </a>
+              @endforeach
+            </div><br>
+            <div class="list-group list-group-flush">
+              <h3>Due Date</h3>
+              <a href="/mypage/mytask/today" class="list-group-item list-group-item-action">Today</a>
+              <a href="/mypage/mytask/tomorrow" class="list-group-item list-group-item-action">Tomorrow</a>
+              <a href="/mypage/mytask/thisweek" class="list-group-item list-group-item-action">This Week</a>
+              <a href="/mypage/mytask/thismonth" class="list-group-item list-group-item-action">This Month</a>
+            </div>
         </div>
         
         <!-- Todoリスト -->
