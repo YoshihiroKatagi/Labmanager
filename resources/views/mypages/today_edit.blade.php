@@ -37,7 +37,6 @@
         </div>
         
         <!-- フィルター -->
-        
         <div class="col-md-1" style="margin:5px;">
             <div class="list-group list-group-flush">
               <h4>Labtask</h4>
@@ -57,8 +56,7 @@
         </div>
         
         <!-- Todoリスト -->
-        
-        <div class="col-md-6">
+        <div class="col-md-5">
             <h1>Mytask -Today</h1>
             
             <div class="card" style="margin:10px;">
@@ -167,50 +165,73 @@
         </div>
         
         <!-- 詳細・編集 -->
-        
-        <div class="col-md-3">
-            <a href="/mypage/mytask/today">閉じる</a>
-            <h2>マイタスク詳細・編集</h2>
-            <form action="/mypage/mytask/today/{{ $Mytask->id }}" method="POST">
-                @csrf
-                @method('PUT')
-                <p>タイトル：</p>
-                <input type="text" name="mytask[title]" value="{{ $Mytask->title }}">
-                <p style="color:red">{{ $errors->first('mytask.title') }}</p>
-                <p>詳細：</p>
-                <textarea name="mytask[description]">{{ $Mytask->description }}</textarea>
-                <p style="color:red">{{ $errors->first('mytask.description') }}</p>
-                <p>開始予定日：</p>
-                <input type="date" name="mytask[will_begin_on]" value="{{ $Mytask->will_begin_on }}">
-                <p>開始予定時刻：</p>
-                <input type="time" name="mytask[will_begin_at]" value="{{ $Mytask->will_begin_at }}">
-                <p>完了予定日：</p>
-                <input type="date" name="mytask[will_finish_on]" value="{{ $Mytask->will_finish_on }}">
-                <p>完了予定時刻：</p>
-                <input type="time" name="mytask[will_finish_at]" value="{{ $Mytask->will_finish_at }}">
-                <p>想定タイマー数：</p>
-                <input type="number" name="mytask[timer_count]" value="{{ $Mytask->timer_count }}" min='0'>
-                <p style="color:red">{{ $errors->first('mytask.timer_count') }}</p>
-                <p>関連ラボタスク</p>
-                    <select name="mytask[labtask_id]">
-                        @foreach($labtasks as $labtask)
-                            @if($labtask->id == $Mytask->labtask_id)
-                                <option value="{{ $labtask->id }}" selected>{{ $labtask->title }}</option>
-                            @else
-                                <option value="{{ $labtask->id }}">{{ $labtask->title }}</option>
-                            @endif
-                        @endforeach
+        <div class="col-md-4">
+            <div class="card">
+                <button type="button" class="btn-close" aria-label="Close" onclick="location.href='/mypage/mytask/today'"></button>
+                <h2>Detail & Edit</h2>
+                
+                <form action="/mypage/mytask/today/{{ $Mytask->id }}" method="POST">
+                  @csrf
+                  @method('PUT')
+                  <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="mytask[title]" value="{{ $Mytask->title }}">
+                  </div>
+                  <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" name="mytask[description]" placeholder="description about this task..." id="description" style="height: 100px">{{ $Mytask->description }}</textarea>
+                  </div>
+                  <div class="mb-3">
+                    <select class="form-select" name="mytask[labtask_id]">
+                      <option value="" disabled selected style="display:none;">Related Labtask</option>
+                      @foreach($labtasks as $labtask)
+                        @if($labtask->id == $Mytask->labtask_id)
+                            <option value="{{ $labtask->id }}" selected>{{ $labtask->title }}</option>
+                        @else
+                            <option value="{{ $labtask->id }}">{{ $labtask->title }}</option>
+                        @endif
+                      @endforeach
                     </select>
-                <input type="submit" value="保存">
-            </form>
-            <p>作成日：{{ $Mytask->created_at->format('Y年m月d日') }}</p>
-            <p>タイマー数：{{ $Mytask->timer_result }}</p>
-            
-            <form action="/mypage/mytask/today/{{ $Mytask->id }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <input type="submit" value="削除">
-            </form>
+                  </div>
+                  <div class="mb-3">
+                    <label for="due date" class="form-label">Due date</label>
+                    <input type="date" name="mytask[will_finish_on]" value="{{ $Mytask->will_finish_on }}" class="form-control" id="due date">
+                  </div>
+                  <div class="mb-3">
+                    <label for="due time" class="form-label">Due time</label>
+                    <input type="time" name="mytask[will_finish_at]" value="{{ $Mytask->will_finish_at }}" class="form-control" id="due time">
+                  </div>
+                  <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="task state">
+                    <label class="form-check-label" for="task state">Task State</label>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+                
+                <!-- Button trigger modal -->
+                <form action="/mypage/mytask/today/{{ $Mytask->id }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                      Delete
+                    </button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-body">
+                            Are you sure to delete?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
