@@ -3,7 +3,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" style="display:flex">
+    <div class="container-fluid" style="display:flex">
         
         <!-- サイドバー -->
         <div class="col-md-2">
@@ -61,7 +61,7 @@
             
             <div class="card" style="margin:10px;">
                 <div class="card-header">
-                  New Mytask
+                  Create a new task
                 </div>
                 <form class="row g-2" action="/mypage/mytask/today" method="POST" style="margin:10px;">
                   @csrf
@@ -109,8 +109,7 @@
                                           <form action="/mypage/mytask/today/{{ $mytask->id }}" method="POST">
                                             @csrf
                                             @method('PUT')
-                                                
-                                            <input class="form-check-input" type="checkbox" name="mytask[task_state]" value=2>
+                                            <input class="form-check-input" type="checkbox" name="mytask[task_state]" value=2 onChange='submit();'>
                                           </form>
                                         </div>
                                       </th>
@@ -146,8 +145,7 @@
                                           <form action="/mypage/mytask/today/{{ $mytask->id }}" method="POST">
                                             @csrf
                                             @method('PUT')
-                                                
-                                            <input class="form-check-input" type="checkbox" name="mytask[task_state]" checked value=0>
+                                            <input class="form-check-input" type="checkbox" name="mytask[task_state]" checked value=0 onChange='submit();'>
                                           </form>
                                         </div>
                                       </th>
@@ -166,13 +164,17 @@
         
         <!-- 詳細・編集 -->
         <div class="col-md-4">
-            <div class="card">
+            <div class="card" style="padding:10px; margin:10px;">
                 <button type="button" class="btn-close" aria-label="Close" onclick="location.href='/mypage/mytask/today'"></button>
                 <h2>Detail & Edit</h2>
                 
                 <form action="/mypage/mytask/today/{{ $Mytask->id }}" method="POST">
                   @csrf
                   @method('PUT')
+                  <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="task state" name="mytask[task_state]" value=2 onChange='submit();'>
+                    <label class="form-check-label" for="task state">DONE!</label>
+                  </div>
                   <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
                     <input type="text" class="form-control" id="title" name="mytask[title]" value="{{ $Mytask->title }}">
@@ -182,7 +184,8 @@
                     <textarea class="form-control" name="mytask[description]" placeholder="description about this task..." id="description" style="height: 100px">{{ $Mytask->description }}</textarea>
                   </div>
                   <div class="mb-3">
-                    <select class="form-select" name="mytask[labtask_id]">
+                    <label for="related labtask" class="form-label">Related Labtask</label>
+                    <select class="form-select" name="mytask[labtask_id]" id="related labtask">
                       <option value="" disabled selected style="display:none;">Related Labtask</option>
                       @foreach($labtasks as $labtask)
                         @if($labtask->id == $Mytask->labtask_id)
@@ -197,40 +200,38 @@
                     <label for="due date" class="form-label">Due date</label>
                     <input type="date" name="mytask[will_finish_on]" value="{{ $Mytask->will_finish_on }}" class="form-control" id="due date">
                   </div>
-                  <div class="mb-3">
-                    <label for="due time" class="form-label">Due time</label>
-                    <input type="time" name="mytask[will_finish_at]" value="{{ $Mytask->will_finish_at }}" class="form-control" id="due time">
+                  
+                  <div class="mb-3 d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Save</button>
                   </div>
-                  <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="task state">
-                    <label class="form-check-label" for="task state">Task State</label>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Save</button>
                 </form>
                 
                 <!-- Button trigger modal -->
-                <form action="/mypage/mytask/today/{{ $Mytask->id }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                      Delete
-                    </button>
-                    
-                    <!-- Modal -->
-                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-body">
-                            Are you sure to delete?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                <div class="delete-button">
+                  <form action="/mypage/mytask/today/{{ $Mytask->id }}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                        Delete
+                      </button>
+                      
+                      <!-- Modal -->
+                      <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-body">
+                              Are you sure to delete?
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                              <button type="submit" class="btn btn-danger">Delete</button>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                </form>
+                  </form>
+                </div>
+                
             </div>
         </div>
     </div>
