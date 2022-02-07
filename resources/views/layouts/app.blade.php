@@ -23,7 +23,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/mypage/mytask/today') }}">
                     <img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/Labmanager_logo.png" style="width:10%; height:10%">
                     {{ config('app.name', 'Labmanager') }}

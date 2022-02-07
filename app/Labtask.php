@@ -22,9 +22,13 @@ class Labtask extends Model
     //     return $this->orderBy('created_at', 'ASC')->get();
     // }
     
-    public function getByLabtaskForMytask()
+    public function getMytaskTodoByLabtask()
     {
-        return $this->mytasks()->with('labtask')->orderBy('created_at', 'ASC')->get();
+        return $this->mytasks()->with('labtask')->where('task_state', 0)->orderBy('created_at', 'ASC')->get();
+    }
+    public function getMytaskCompletedByLabtask()
+    {
+        return $this->mytasks()->with('labtask')->where('task_state', 2)->orderBy('created_at', 'ASC')->get();
     }
     
     public function getWithUser()

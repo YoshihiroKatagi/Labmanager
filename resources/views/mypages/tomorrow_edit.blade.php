@@ -3,146 +3,231 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" style="display:flex">
-        <div class="side_bar" style="width:20%; text-align:center; border:solid;">
-            <div style="text-align:left; border:solid; padding:10px;">
-                <h2>
-                    <a href="/labpage/top"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/labtop.svg">ラボページ</a>
-                </h2>
-            </div>
-            <div style="text-align:left; border:solid; padding:10px;">
-                <h2>
-                    <a href="/mypage/mytask/today"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/mytask.svg">マイタスク</a>
-                </h2>
-            </div>
-            <div style="text-align:left; border:solid; padding:10px;">
-                <h2>
-                    <a href="/mypage/labtask"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/labtask.svg">ラボタスク</a>
-                </h2>
-            </div>
-            <div style="text-align:left; border:solid; padding:10px;">
-                <h2>
-                    <a href="/mypage/calendar"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/calendar.svg">カレンダー</a>
-                </h2>
-            </div>
-            <div style="text-align:left; border:solid; padding:10px;">
-                <h2>
-                    <a href="/mypage/statistic"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/statistic.svg">統計</a>
-                </h2>
-            </div>
-        </div>
+    <div class="container-fluid" style="display:flex">
         
-        <div class="filter" style="width:15%; text-align:center;">
-            <h1>Filter</h1>
-            <h2>Labtask</h2>
-            @foreach($labtasks as $labtask)
-                    <a href="/mypage/mytask/bylabtask/{{ $labtask->id }}">{{ $labtask->title }}</a><br>
-            @endforeach
+        <!-- サイドバー -->
+        <div class="col-md-2">
+            <div class="list-group">
+              <h3>Mypage</h3>
+              <a href="/mypage/mytask/today" class="list-group-item list-group-item-action active" aria-current="true"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/mytask.svg">マイタスク</a>
+              <a href="/mypage/labtask" class="list-group-item list-group-item-action"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/labtask.svg">ラボタスク</a>
+              <a href="/mypage/calendar" class="list-group-item list-group-item-action"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/calendar.svg">カレンダー</a>
+              <a href="/mypage/statistic" class="list-group-item list-group-item-action"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/statistic.svg">統計</a>
+            </div><br>
+            <div class="list-group">
+              <h3>Labpage</h3>
+              <a href="/labpage/top" class="list-group-item list-group-item-action"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/labtop.svg">ラボページ</a>
+              <div class="dropdown">
+                  <a class="list-group-item list-group-item-action dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/member.svg">メンバー
+                  </a>
+                
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    @foreach($users as $user)
+                      <li><a class="dropdown-item" href="/labpage/membertask/{{ $user->id }}"><img src="{{ $user->icon }}" style="width:30px; height:30px; border-radius:50%; object-fit:cover; border:solid; color:black;">{{ $user->name }}</a></li>
+                    @endforeach
+                  </ul>
+                </div>
+              <a href="/labpage/mention" class="list-group-item list-group-item-action"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/mention.svg">メンション</a>
+              <a href="/labpage/ranking" class="list-group-item list-group-item-action"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/ranking.svg">ランキング</a>
+            </div>
             
-            <h2>Due Date</h2>
-            <a href="/mypage/mytask/today">Today</a><br>
-            <a href="/mypage/mytask/tomorrow">Tomorrow</a><br>
-            <a href="/mypage/mytask/thisweek">This Week</a><br>
-            <a href="/mypage/mytask/thismonth">This Month</a><br>
         </div>
         
-        <div class="content" style="width:35%; text-align:center;">
-            <div class="create_mytask">
-                <h2>New</h2>
-                <form action="/mypage/mytask/tomorrow" method="POST">
-                    @csrf
-                    <input type="hidden" name="mytask[will_finish_on]" value="{{ \Carbon\Carbon::tomorrow() }}">
-                    <select name="mytask[labtask_id]">
-                        @foreach($labtasks as $labtask)
-                            <option value="{{ $labtask->id }}">{{ $labtask->title }}</option>
-                        @endforeach
-                    </select>
-                    <input type="text" name="mytask[title]" placeholder="Press Enter to Add Task" value="{{ old('mytask.title') }}">
+        <!-- フィルター -->
+        <div class="col-md-1" style="margin:10px;">
+            <div class="list-group list-group-flush">
+              <h4>Labtask</h4>
+              @foreach($labtasks as $labtask)
+                <a href="/mypage/mytask/bylabtask/{{ $labtask->id }}" class="list-group-item list-group-item-action">
+                  {{ $labtask->title }}
+                </a>
+              @endforeach
+            </div><br>
+            <div class="list-group list-group-flush">
+              <h4>Due Date</h4>
+              <a href="/mypage/mytask/today" class="list-group-item list-group-item-action">Today</a>
+              <a href="/mypage/mytask/tomorrow" class="list-group-item list-group-item-action active">Tomorrow</a>
+              <a href="/mypage/mytask/thisweek" class="list-group-item list-group-item-action">This Week</a>
+              <a href="/mypage/mytask/thismonth" class="list-group-item list-group-item-action">This Month</a>
+            </div>
+        </div>
+        
+        <!-- Todoリスト -->
+        <div class="col-md-5">
+            <h1>Mytask -Tomorrow</h1>
+            
+            <!-- 新規作成 -->
+            <div class="card" style="margin:10px;">
+                <div class="card-header">
+                  Create a new task
+                </div>
+                <form class="row g-2" action="/mypage/mytask/tomorrow" method="POST" style="margin:10px;">
+                  @csrf
+                  <div class="col-md-11">
+                    <label for="title" class="visually-hidden">title</label>
+                    <input type="text" name="mytask[title]" class="form-control" id="title" placeholder="Title"  value="{{ old('mytask.title') }}">
                     <p style="color:red">{{ $errors->first('mytask.title') }}</p>
+                  </div>
+                  <div class="col-md-9">
+                      <select class="form-select" name="mytask[labtask_id]">
+                          <option value="" disabled selected style="display:none;">Related Labtask</option>
+                          @foreach($labtasks as $labtask)
+                            <option value="{{ $labtask->id }}">{{ $labtask->title }}</option>
+                          @endforeach
+                        </select>
+                        <p style="color:red">{{ $errors->first('labtask_id') }}</p>
+                  </div>
+                  <input type="hidden" name="mytask[will_finish_on]" value="{{ \Carbon\Carbon::tomorrow() }}">
+                  <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary mb-3">Create</button>
+                  </div>
                 </form>
-            </div>
-            <br>
-            <div class="mytask_list">
-                <h1>Tomorrow</h1>
-                @foreach($mytasks as $mytask)
-                    @if($mytask->labtask->user_id == Auth::user()->id)
-                        @if($mytask->task_state != 2)
-                            <h3>タイトル：<a href="/mypage/mytask/tomorrow/{{ $mytask->id }}">{{ $mytask->title }}</a></h3>
-                            <p>関連ラボタスク：{{ $mytask->labtask->title }}</p>
-                            <p>完了予定日：{{ $mytask->will_finish_on }}</p>
-                            <form action="/mypage/mytask/tomorrow/{{ $mytask->id }}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <input type="checkbox" name="mytask[task_state]" value=1>doing
-                                <input type="checkbox" name="mytask[task_state]" value=2>done
-                                <input type="submit" value="保存">
-                            </form>
-                            <br>
-                        @endif
-                    @endif
-                @endforeach
-            </div>
-            <div class="complete_list">
-                <h2>Completed</h2>
-                @foreach($mytasks as $mytask)
-                    @if($mytask->labtask->user_id == Auth::user()->id)
-                        @if($mytask->task_state == 2)
-                            <h3>タイトル：<a href="/mypage/mytask/tomorrow/{{ $mytask->id }}">{{ $mytask->title }}</a></h3>
-                            <form action="/mypage/mytask/tomorrow/{{ $mytask->id }}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <input type="checkbox" name="mytask[task_state]" value=0>todo
-                                <input type="submit" value="保存">
-                            </form>
-                            <br>
-                        @endif
-                    @endif
-                @endforeach
-            </div>
-        </div>
-        
-        <div class="edit_sidebar" style="width:30%; text-align:center;">
-            <a href="/mypage/mytask/tomorrow">閉じる</a>
-            <h2>マイタスク詳細・編集</h2>
-            <form action="/mypage/mytask/tomorrow/{{ $Mytask->id }}" method="POST">
-                @csrf
-                @method('PUT')
-                <p>タイトル：</p>
-                <input type="text" name="mytask[title]" value="{{ $Mytask->title }}">
-                <p style="color:red">{{ $errors->first('mytask.title') }}</p>
-                <p>詳細：</p>
-                <textarea name="mytask[description]">{{ $Mytask->description }}</textarea>
-                <p style="color:red">{{ $errors->first('mytask.description') }}</p>
-                <p>開始予定日：</p>
-                <input type="date" name="mytask[will_begin_on]" value="{{ $Mytask->will_begin_on }}">
-                <p>開始予定時刻：</p>
-                <input type="time" name="mytask[will_begin_at]" value="{{ $Mytask->will_begin_at }}">
-                <p>完了予定日：</p>
-                <input type="date" name="mytask[will_finish_on]" value="{{ $Mytask->will_finish_on }}">
-                <p>完了予定時刻：</p>
-                <input type="time" name="mytask[will_finish_at]" value="{{ $Mytask->will_finish_at }}">
-                <p>想定タイマー数：</p>
-                <input type="number" name="mytask[timer_count]" value="{{ $Mytask->timer_count }}" min='0'>
-                <p>関連ラボタスク</p>
-                    <select name="mytask[labtask_id]">
-                        @foreach($labtasks as $labtask)
-                            @if($labtask->id == $Mytask->labtask_id)
-                                <option value="{{ $labtask->id }}" selected>{{ $labtask->title }}</option>
-                            @else
-                                <option value="{{ $labtask->id }}">{{ $labtask->title }}</option>
+            </div><br>
+            
+            <div class="mytask_list" style="margin:5px;">
+                
+                <div class="todo">
+                    <h2>Todo</h2>
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col"></th>
+                          <th scope="col">Title</th>
+                          <th scope="col">Related Labtask</th>
+                          <th scope="col">Due Date</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach($mytasks_todo as $mytask)
+                            @if($mytask->labtask->user_id == Auth::user()->id)
+                                <tr>
+                                  <td>
+                                    <div class="form-check">
+                                      <form action="/mypage/mytask/tomorrow/{{ $mytask->id }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <input class="form-check-input" type="checkbox" name="mytask[task_state]" value=2 onChange='submit();'>
+                                      </form>
+                                    </div>
+                                  </th>
+                                  <td><a href="/mypage/mytask/tomorrow/{{ $mytask->id }}">{{ $mytask->title }}</a></td>
+                                  <td>{{ $mytask->labtask->title }}</td>
+                                  <td>{{ $mytask->will_finish_on }}</td>
+                                </tr>
                             @endif
                         @endforeach
+                      </tbody>
+                    </table>
+                </div><br>
+                
+                <div class="completed">
+                    <h2>Completed</h2>
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col"></th>
+                          <th scope="col">Title</th>
+                          <th scope="col">Related Labtask</th>
+                          <th scope="col">Due Date</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach($mytasks_completed as $mytask)
+                            @if($mytask->labtask->user_id == Auth::user()->id)
+                                <tr>
+                                  <td>
+                                    <div class="form-check">
+                                      <form action="/mypage/mytask/tomorrow/{{ $mytask->id }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <input class="form-check-input" type="checkbox" name="mytask[task_state]" value=0 onChange='submit();'>
+                                      </form>
+                                    </div>
+                                  </th>
+                                  <td><a href="/mypage/mytask/tomorrow/{{ $mytask->id }}">{{ $mytask->title }}</a></td>
+                                  <td>{{ $mytask->labtask->title }}</td>
+                                  <td>{{ $mytask->will_finish_on }}</td>
+                                </tr>
+                            @endif
+                        @endforeach
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 詳細・編集 -->
+        <div class="col-md-4">
+            <div class="card" style="padding:10px; margin:15px; margin-top:60px;">
+                <button type="button" class="btn-close" aria-label="Close" onclick="location.href='/mypage/mytask/tomorrow'"></button>
+                <h2>Detail & Edit</h2>
+                
+                <form action="/mypage/mytask/tomorrow/{{ $Mytask->id }}" method="POST">
+                  @csrf
+                  @method('PUT')
+                  <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="task state" name="mytask[task_state]" value=2 onChange='submit();'>
+                    <label class="form-check-label" for="task state">DONE!</label>
+                  </div>
+                  <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="mytask[title]" value="{{ $Mytask->title }}">
+                  </div>
+                  <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" name="mytask[description]" placeholder="description about this task..." id="description" style="height: 100px">{{ $Mytask->description }}</textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label for="related labtask" class="form-label">Related Labtask</label>
+                    <select class="form-select" name="mytask[labtask_id]" id="related labtask">
+                      <option value="" disabled selected style="display:none;">Related Labtask</option>
+                      @foreach($labtasks as $labtask)
+                        @if($labtask->id == $Mytask->labtask_id)
+                            <option value="{{ $labtask->id }}" selected>{{ $labtask->title }}</option>
+                        @else
+                            <option value="{{ $labtask->id }}">{{ $labtask->title }}</option>
+                        @endif
+                      @endforeach
                     </select>
-                <input type="submit" value="保存">
-            </form>
-            <p>作成日：{{ $Mytask->created_at->format('Y年m月d日') }}</p>
-            <p>タイマー数：{{ $Mytask->timer_result }}</p>
-            
-            <form action="/mypage/mytask/tomorrow/{{ $Mytask->id }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <input type="submit" value="削除">
-            </form>
+                  </div>
+                  <div class="mb-3">
+                    <label for="due date" class="form-label">Due date</label>
+                    <input type="date" name="mytask[will_finish_on]" value="{{ $Mytask->will_finish_on }}" class="form-control" id="due date">
+                  </div>
+                  
+                  <div class="mb-3 d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                  </div>
+                </form>
+                
+                <!-- Button trigger modal -->
+                <div class="delete-button">
+                  <form action="/mypage/mytask/tomorrow/{{ $Mytask->id }}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                        Delete
+                      </button>
+                      
+                      <!-- Modal -->
+                      <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-body">
+                              Are you sure to delete?
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                              <button type="submit" class="btn btn-danger">Delete</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </form>
+                </div>
+                
+            </div>
         </div>
     </div>
 @endsection

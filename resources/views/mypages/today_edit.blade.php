@@ -57,6 +57,7 @@
         <div class="col-md-5">
             <h1>Mytask -Today</h1>
             
+            <!-- 新規作成 -->
             <div class="card" style="margin:10px;">
                 <div class="card-header">
                   Create a new task
@@ -82,7 +83,7 @@
                     <button type="submit" class="btn btn-primary mb-3">Create</button>
                   </div>
                 </form>
-            </div>
+            </div><br>
             
             <div class="mytask_list" style="margin:5px;">
                 
@@ -98,24 +99,22 @@
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach($mytasks as $mytask)
+                        @foreach($mytasks_todo as $mytask)
                             @if($mytask->labtask->user_id == Auth::user()->id)
-                                @if($mytask->task_state != 2)
-                                    <tr>
-                                      <td>
-                                        <div class="form-check">
-                                          <form action="/mypage/mytask/today/{{ $mytask->id }}" method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            <input class="form-check-input" type="checkbox" name="mytask[task_state]" value=2 onChange='submit();'>
-                                          </form>
-                                        </div>
-                                      </th>
-                                      <td><a href="/mypage/mytask/today/{{ $mytask->id }}">{{ $mytask->title }}</a></td>
-                                      <td>{{ $mytask->labtask->title }}</td>
-                                      <td>{{ $mytask->will_finish_on }}</td>
-                                    </tr>
-                                @endif
+                                <tr>
+                                  <td>
+                                    <div class="form-check">
+                                      <form action="/mypage/mytask/today/{{ $mytask->id }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <input class="form-check-input" type="checkbox" name="mytask[task_state]" value=2 onChange='submit();'>
+                                      </form>
+                                    </div>
+                                  </th>
+                                  <td><a href="/mypage/mytask/today/{{ $mytask->id }}">{{ $mytask->title }}</a></td>
+                                  <td>{{ $mytask->labtask->title }}</td>
+                                  <td>{{ $mytask->will_finish_on }}</td>
+                                </tr>
                             @endif
                         @endforeach
                       </tbody>
@@ -134,24 +133,22 @@
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach($mytasks as $mytask)
+                        @foreach($mytasks_completed as $mytask)
                             @if($mytask->labtask->user_id == Auth::user()->id)
-                                @if($mytask->task_state == 2)
-                                    <tr>
-                                      <td>
-                                        <div class="form-check">
-                                          <form action="/mypage/mytask/today/{{ $mytask->id }}" method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            <input class="form-check-input" type="checkbox" name="mytask[task_state]" value=0 onChange='submit();'>
-                                          </form>
-                                        </div>
-                                      </th>
-                                      <td><a href="/mypage/mytask/today/{{ $mytask->id }}">{{ $mytask->title }}</a></td>
-                                      <td>{{ $mytask->labtask->title }}</td>
-                                      <td>{{ $mytask->will_finish_on }}</td>
-                                    </tr>
-                                @endif
+                                <tr>
+                                  <td>
+                                    <div class="form-check">
+                                      <form action="/mypage/mytask/today/{{ $mytask->id }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <input class="form-check-input" type="checkbox" name="mytask[task_state]" value=0 onChange='submit();'>
+                                      </form>
+                                    </div>
+                                  </th>
+                                  <td><a href="/mypage/mytask/today/{{ $mytask->id }}">{{ $mytask->title }}</a></td>
+                                  <td>{{ $mytask->labtask->title }}</td>
+                                  <td>{{ $mytask->will_finish_on }}</td>
+                                </tr>
                             @endif
                         @endforeach
                       </tbody>

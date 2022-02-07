@@ -30,21 +30,40 @@ class Mytask extends Model
     //     return $this::with('labtask')->orderBy('created_at', 'ASC')->get();
     // }
     
-    public function getByToday()
+    public function getTodoByToday()
     {
-        return $this::with('labtask')->whereDate('will_finish_on', '<=', Carbon::today())->orderBy('created_at', 'ASC')->get();
+        return $this::with('labtask')->where('task_state', 0)->whereDate('will_finish_on', '<=', Carbon::today())->orderBy('created_at', 'ASC')->get();
     }
-    public function getByTomorrow()
+    public function getCompletedByToday()
     {
-        return $this::with('labtask')->whereDate('will_finish_on', '<=', Carbon::tomorrow())->orderby('created_at', 'ASC')->get();
+        return $this::with('labtask')->where('task_state', 2)->whereDate('will_finish_on', '<=', Carbon::today())->orderBy('updated_at', 'DESC')->limit(10)->get();
     }
-    public function getByThisweek()
+    
+    public function getTodoByTomorrow()
     {
-        return $this::with('labtask')->whereDate('will_finish_on','<=', Carbon::now()->endOfWeek())->orderby('created_at', 'ASC')->get();
+        return $this::with('labtask')->where('task_state', 0)->whereDate('will_finish_on', '<=', Carbon::tomorrow())->orderby('created_at', 'ASC')->get();
     }
-    public function getByThismonth()
+    public function getCompletedByTomorrow()
     {
-        return $this::with('labtask')->whereDate('will_finish_on','<=', Carbon::now()->endOfMonth())->orderby('created_at', 'ASC')->get();
+        return $this::with('labtask')->where('task_state', 2)->whereDate('will_finish_on', '<=', Carbon::tomorrow())->orderby('updated_at', 'DESC')->limit(10)->get();
+    }
+    
+    public function getTodoByThisweek()
+    {
+        return $this::with('labtask')->where('task_state', 0)->whereDate('will_finish_on','<=', Carbon::now()->endOfWeek())->orderby('created_at', 'ASC')->get();
+    }
+    public function getCompletedByThisweek()
+    {
+        return $this::with('labtask')->where('task_state', 2)->whereDate('will_finish_on','<=', Carbon::now()->endOfWeek())->orderby('updated_at', 'DESC')->limit(10)->get();
+    }
+    
+    public function getTodoByThismonth()
+    {
+        return $this::with('labtask')->where('task_state', 0)->whereDate('will_finish_on','<=', Carbon::now()->endOfMonth())->orderby('created_at', 'ASC')->get();
+    }
+    public function getCompletedByThismonth()
+    {
+        return $this::with('labtask')->where('task_state', 2)->whereDate('will_finish_on','<=', Carbon::now()->endOfMonth())->orderby('updated_at', 'DESC')->limit(10)->get();
     }
     
     //statistic data
