@@ -22,7 +22,8 @@
 </head>
 <body>
     <div id="app">
-            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
                 <a class="navbar-brand" href="{{ url('/mypage/mytask/today') }}">
                     <img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/Labmanager_logo.png" style="width:10%; height:10%">
                     {{ config('app.name', 'Labmanager') }}
@@ -75,7 +76,8 @@
                         @endguest
                     </ul>
                 </div>
-            </nav>
+            </div>
+        </nav>
         
 
         <main class="py-4">

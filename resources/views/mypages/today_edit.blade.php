@@ -9,9 +9,7 @@
         <div class="col-md-2">
             <div class="list-group">
               <h3>Mypage</h3>
-              <a href="/mypage/mytask/today" class="list-group-item list-group-item-action active" aria-current="true">
-                <img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/mytask.svg">マイタスク
-              </a>
+              <a href="/mypage/mytask/today" class="list-group-item list-group-item-action active" aria-current="true"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/mytask.svg">マイタスク</a>
               <a href="/mypage/labtask" class="list-group-item list-group-item-action"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/labtask.svg">ラボタスク</a>
               <a href="/mypage/calendar" class="list-group-item list-group-item-action"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/calendar.svg">カレンダー</a>
               <a href="/mypage/statistic" class="list-group-item list-group-item-action"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/statistic.svg">統計</a>
@@ -37,7 +35,7 @@
         </div>
         
         <!-- フィルター -->
-        <div class="col-md-1" style="margin:5px;">
+        <div class="col-md-1" style="margin:10px;">
             <div class="list-group list-group-flush">
               <h4>Labtask</h4>
               @foreach($labtasks as $labtask)
@@ -48,7 +46,7 @@
             </div><br>
             <div class="list-group list-group-flush">
               <h4>Due Date</h4>
-              <a href="/mypage/mytask/today" class="list-group-item list-group-item-action">Today</a>
+              <a href="/mypage/mytask/today" class="list-group-item list-group-item-action active">Today</a>
               <a href="/mypage/mytask/tomorrow" class="list-group-item list-group-item-action">Tomorrow</a>
               <a href="/mypage/mytask/thisweek" class="list-group-item list-group-item-action">This Week</a>
               <a href="/mypage/mytask/thismonth" class="list-group-item list-group-item-action">This Month</a>
@@ -86,7 +84,7 @@
                 </form>
             </div>
             
-            <div class="mytask_list" style="margin:10px;">
+            <div class="mytask_list" style="margin:5px;">
                 
                 <div class="todo">
                     <h2>Todo</h2>
@@ -145,7 +143,7 @@
                                           <form action="/mypage/mytask/today/{{ $mytask->id }}" method="POST">
                                             @csrf
                                             @method('PUT')
-                                            <input class="form-check-input" type="checkbox" name="mytask[task_state]" checked value=0 onChange='submit();'>
+                                            <input class="form-check-input" type="checkbox" name="mytask[task_state]" value=0 onChange='submit();'>
                                           </form>
                                         </div>
                                       </th>
@@ -164,7 +162,7 @@
         
         <!-- 詳細・編集 -->
         <div class="col-md-4">
-            <div class="card" style="padding:10px; margin:10px;">
+            <div class="card" style="padding:10px; margin:15px; margin-top:60px;">
                 <button type="button" class="btn-close" aria-label="Close" onclick="location.href='/mypage/mytask/today'"></button>
                 <h2>Detail & Edit</h2>
                 

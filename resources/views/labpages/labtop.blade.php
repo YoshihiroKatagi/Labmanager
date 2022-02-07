@@ -53,7 +53,7 @@
                         <div>いいね！
                             <span class="badge badge-pill badge-success">{{ $labtask->is_liked }}</span>
                         </div>
-                        <a href="/labpage/membertask/{{ Auth::user()->id }}/{{ $labtask->id }}">詳細確認</a>
+                        <a href="/labpage/membertask/{{ $labtask->user_id }}/{{ $labtask->id }}">詳細確認</a>
                     </div>
                 @endif
             @endforeach
