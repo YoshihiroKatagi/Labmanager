@@ -24,7 +24,7 @@
                 
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     @foreach($users as $user)
-                      <li><a class="dropdown-item" href="/labpage/membertask/{{ $user->id }}"><img src="{{ $user->icon }}" style="width:30px; height:30px; border-radius:50%; object-fit:cover; border:solid; color:black;">{{ $user->name }}</a></li>
+                      <li><a class="dropdown-item" href="/labpage/membertask/{{ $user->id }}"><img src="{{ $user->icon }}" style="width:30px; height:30px; border-radius:50%; object-fit:cover; border:solid; border-width:thin; color:black;">{{ $user->name }}</a></li>
                     @endforeach
                   </ul>
                 </div>

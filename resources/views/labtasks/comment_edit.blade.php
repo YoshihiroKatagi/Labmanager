@@ -240,7 +240,7 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                          <textarea class="form-control" name="comment[content]" style="height: 100px">{{ $comment->content }}</textarea>
+                          <textarea class="form-control" name="comment[content]" style="height: 100px" placeholder="comment..."></textarea>
                           <p style="color:red">{{ $errors->first('comment.content') }}</p>
                         </div>
                         <div class="d-grid gap-2 d-md-block" style="text-align:right;">

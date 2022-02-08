@@ -24,7 +24,7 @@
                 
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     @foreach($users as $user)
-                      <li><a class="dropdown-item" href="/labpage/membertask/{{ $user->id }}"><img src="{{ $user->icon }}" style="width:30px; height:30px; border-radius:50%; object-fit:cover; border:solid; color:black;">{{ $user->name }}</a></li>
+                      <li><a class="dropdown-item" href="/labpage/membertask/{{ $user->id }}"><img src="{{ $user->icon }}" style="width:30px; height:30px; border-radius:50%; object-fit:cover; border:solid; border-width:thin; color:black;">{{ $user->name }}</a></li>
                     @endforeach
                   </ul>
                 </div>
@@ -156,7 +156,7 @@
         
         <!-- 詳細・編集 -->
         <div class="col-md-4">
-            <div class="card" style="padding:10px; margin:15px; margin-top:60px;">
+            <div class="card mt-5 m-4 p-3">
                 <button type="button" class="btn-close" aria-label="Close" onclick="location.href='/mypage/mytask/bylabtask/{{ $Labtask->id }}'"></button>
                 <h2>Detail & Edit</h2>
                 
