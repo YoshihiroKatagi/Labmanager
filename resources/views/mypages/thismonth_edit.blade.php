@@ -206,9 +206,11 @@
                   <form action="/mypage/mytask/thismonth/{{ $Mytask->id }}" method="POST">
                       @csrf
                       @method('DELETE')
-                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                        Delete
-                      </button>
+                      <div style="text-align:right;">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                          Delete
+                        </button>
+                      </div>
                       
                       <!-- Modal -->
                       <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">

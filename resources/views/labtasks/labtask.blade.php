@@ -65,67 +65,79 @@
             
             <!-- 一覧 -->
             <div>
-                <h2>Todo</h2>
-                <div class="row">
-                    @foreach($labtasks as $labtask)
-                        @if($labtask->is_done == 0)
-                            <div  class="card col-md-5 m-3">
-                                <div class="card-body" style="text-align:center;">
-                                    <h2 class="card-title"><a href="/mypage/labtask/{{ $labtask->id }}">{{ $labtask->title }}</a></h2>
-                                    <div class="form-check"  style="text-align:left">
-                                      <form action="/mypage/labtask/{{ $labtask->id }}" method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <input class="form-check-input" id="is_done" type="checkbox" name="labtask[is_done]" value=1 onChange='submit();'>
-                                        <label class="form-check-label" for="is_done">DONE!</label>
-                                      </form>
-                                    </div>
-                                    <p>Start at：{{ $labtask->created_at->format('Y年m月d日') }}</p>
-                                    <div>Good：
-                                        <span class="badge badge-pill badge-success">{{ $labtask->is_liked }}</span>
-                                    </div>
-                                </div>
+              <h2>Todo</h2>
+              <div class="row">
+                @foreach($labtasks as $labtask)
+                  @if($labtask->is_done == 0)
+                      <div  class="card col-md-4 m-3">
+                          <div class="card-body">
+                            <div style="display:flex;">
+                              <div class="form-check"  style="text-align:left">
+                                <form action="/mypage/labtask/{{ $labtask->id }}" method="POST">
+                                  @csrf
+                                  @method('PUT')
+                                  <input class="form-check-input" id="is_done" type="checkbox" name="labtask[is_done]" value=1 onChange='submit();'>
+                                  <label class="form-check-label" for="is_done">DONE!</label>
+                                </form>
+                              </div>
+                              <div style="margin-left:auto;">
+                                <p>{{ $labtask->created_at->format('Y年m月d日') }}</p>
+                              </div>
                             </div>
-                        @endif
-                    @endforeach
-                    <br>
-                </div>
+                            <div style="text-align:center;">
+                              <h2 class="card-title"><a href="/mypage/labtask/{{ $labtask->id }}">{{ $labtask->title }}</a></h2>
+                              <div>Good: 
+                                  <span class="badge bg-primary">{{ $labtask->is_liked }}</span>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                  @endif
+                @endforeach
+                <br>
+              </div>
             </div><br>
             
             <div>
-                <h2>Completed</h2>
-                <div class="row">
-                    @foreach($labtasks as $labtask)
-                        @if($labtask->is_done == 1)
-                            <div  class="card col-md-5 m-3">
-                                <div class="card-body" style="text-align:center;">
-                                    <h2 class="card-title"><a href="/mypage/labtask/{{ $labtask->id }}">{{ $labtask->title }}</a></h2>
-                                    <div class="form-check"  style="text-align:left">
-                                      <form action="/mypage/labtask/{{ $labtask->id }}" method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <input class="form-check-input" id="is_done" type="checkbox" name="labtask[is_done]" value=0 onChange='submit();'>
-                                        <label class="form-check-label" for="is_done">DONE!</label>
-                                      </form>
-                                    </div>
-                                    <p>Starat at：{{ $labtask->created_at->format('Y年m月d日') }}</p>
-                                    <div>Good：
-                                        <span class="badge badge-pill badge-success">{{ $labtask->is_liked }}</span>
-                                    </div>
-                                </div>
+              <h2>Completed</h2>
+              <div class="row">
+                @foreach($labtasks as $labtask)
+                  @if($labtask->is_done == 1)
+                      <div  class="card col-md-4 m-3">
+                          <div class="card-body">
+                            <div style="display:flex;">
+                              <div class="form-check"  style="text-align:left">
+                                <form action="/mypage/labtask/{{ $labtask->id }}" method="POST">
+                                  @csrf
+                                  @method('PUT')
+                                  <input class="form-check-input" id="is_done" type="checkbox" name="labtask[is_done]" value=0 onChange='submit();'>
+                                  <label class="form-check-label" for="is_done">Back todo</label>
+                                </form>
+                              </div>
+                              <div style="margin-left:auto;">
+                                <p>{{ $labtask->created_at->format('Y年m月d日') }}</p>
+                              </div>
                             </div>
-                        @endif
-                    @endforeach
-                    <br>
-                </div>
+                            <div style="text-align:center;">
+                              <h2 class="card-title"><a href="/mypage/labtask/{{ $labtask->id }}">{{ $labtask->title }}</a></h2>
+                              <div>Good: 
+                                  <span class="badge bg-primary">{{ $labtask->is_liked }}</span>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                  @endif
+                @endforeach
+                <br>
+              </div>
             </div><br>
             
             <div class="card col-md-9 m-5 p-3">
                 <h2>研究概要</h2>
-                <h5>Theme：{{ Auth::user()->thema }}</h5>
-                <h6>Background：{{ Auth::user()->background }}</h6>
-                <h6>Object：{{ Auth::user()->motivation }}</h6>
-                <h6>Goal：{{ Auth::user()->object }}</h6>
+                <h5>Theme: {{ Auth::user()->thema }}</h5>
+                <h6>Background: {{ Auth::user()->background }}</h6>
+                <h6>Object: {{ Auth::user()->motivation }}</h6>
+                <h6>Goal: {{ Auth::user()->object }}</h6>
                 <h6><a href="/setting/outline">編集</a></h6>
             </div>
         </div>
