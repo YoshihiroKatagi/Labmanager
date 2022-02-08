@@ -11,11 +11,11 @@ use Storage;
 
 class LabtaskController extends Controller
 {
-    public function labtask(Labtask $labtask)
+    public function labtask(User $user, Labtask $labtask)
     {
-        $labtasks = Auth::user()->getByUser();
         return view('labtasks/labtask')->with([
-            'labtasks' => $labtasks,
+            'users' => $user->get(),
+            'labtasks' => Auth::user()->getByUser(),
         ]);
     }
     public function labtask_new()
@@ -30,9 +30,10 @@ class LabtaskController extends Controller
         $labtask->fill($input)->save();
         return redirect('/mypage/labtask');
     }
-    public function labtask_edit(Labtask $labtask)
+    public function labtask_edit(User $user, Labtask $labtask)
     {
         return view('labtasks/labtask_edit')->with([
+            'users' => $user->get(),
             'labtask' => $labtask,
             'images' => $labtask->getByLabtaskForImage(),
         ]);
