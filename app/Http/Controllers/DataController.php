@@ -13,9 +13,11 @@ use App\Cfavorite;
 
 class DataController extends Controller
 {
-    public function statistic(Labtask $labtask, Mytask $mytask, Ltfavorite $ltfavorite, Cfavorite $cfavorite)
+    public function statistic(User $user, Labtask $labtask, Mytask $mytask, Ltfavorite $ltfavorite, Cfavorite $cfavorite)
     {
         $data = [
+            'users' => $user->get(),
+            
             'mytask_achieve_count_day' => $mytask->getByMACD()->where('labtask.user_id', Auth::user()->id)->count(),
             'mytask_achieve_count_week' => $mytask->getByMACW()->where('labtask.user_id', Auth::user()->id)->count(),
             'mytask_achieve_count_month' => $mytask->getByMACM()->where('labtask.user_id', Auth::user()->id)->count(),
