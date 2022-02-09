@@ -36,7 +36,7 @@
         
         <!-- Labtask一覧 -->
         <div class="col-md-9" style="margin:0 auto;">
-            <h1>Labtask</h1>
+            <h1>My Labtask</h1>
             
             <!-- 新規作成 -->
             <div class="card col-md-6 m-4">

@@ -36,7 +36,7 @@
         
         <!-- Labtask一覧 -->
         <div class="col-md-9" style="margin:0 auto;">
-            <h1>Labtask of {{ $User->name }}</h1><br>
+            <h1>{{ $User->name }}のLabtask</h1><br>
             
             <!-- 一覧 -->
             <div>

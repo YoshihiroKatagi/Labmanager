@@ -28,7 +28,7 @@ class Labtask extends Model
     }
     public function getMytaskCompletedByLabtask()
     {
-        return $this->mytasks()->with('labtask')->where('task_state', 2)->orderBy('created_at', 'ASC')->get();
+        return $this->mytasks()->with('labtask')->where('task_state', 2)->orderBy('updated_at', 'DESC')->limit(10)->get();
     }
     
     public function getWithUser()

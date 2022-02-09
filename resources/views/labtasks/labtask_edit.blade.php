@@ -40,7 +40,7 @@
             <div class="col-md-1">
             </div>
             <div class="col-md-11">
-              <h1>Labtask</h1>
+              <h1>My Labtask</h1>
               
               <!-- 新規作成 -->
               <div class="card col-md-10 m-4">
@@ -70,10 +70,10 @@
               <!-- 一覧 -->
               <div>
                 <h2>Todo</h2>
-                <div class="row">
+                <div>
                   @foreach($labtasks as $labtask)
                     @if($labtask->is_done == 0)
-                        <div  class="card col-md-7 m-2">
+                        <div  class="card col-md-7 m-2 mx-auto">
                             <div class="card-body">
                               <div style="display:flex;">
                                 <div class="form-check"  style="text-align:left">
@@ -104,10 +104,10 @@
               
               <div>
                 <h2>Completed</h2>
-                <div class="row">
+                <div>
                   @foreach($labtasks as $labtask)
                     @if($labtask->is_done == 1)
-                        <div  class="card col-md-7 m-2">
+                        <div  class="card col-md-7 m-2 mx-auto">
                             <div class="card-body">
                               <div style="display:flex;">
                                 <div class="form-check"  style="text-align:left">
@@ -153,12 +153,10 @@
           <h1 style="margin-left:15px;">Detail & Edit</h1>
           <div class="card m-3 p-3">
               <div style="display:flex;">
-                  <div>
-                      <a href="/mypage/labtask">back</a>
-                  </div>
-                  <div style="margin-left:auto;">
-                      <p>{{ $Labtask->created_at->format('Y年m月d日') }}</p>
-                  </div>
+                <button type="button" class="btn-close" aria-label="Close" onclick="location.href='/mypage/labtask'"></button>
+                <div style="margin-left:auto;">
+                    <p>{{ $Labtask->created_at->format('Y年m月d日') }}</p>
+                </div>
               </div>
               <div style="text-align:right;">
                   <h5><a href="/labpage/membertask/{{ Auth::user()->id }}/{{ $Labtask->id }}/comment">Check commments</a></h5>
