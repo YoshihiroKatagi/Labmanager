@@ -35,7 +35,7 @@
         
         <!-- Labtask詳細 -->
         <div class="col-md-9">
-            <h1 style="margin-left:15px;">Labtask Detail & Comment</h1>
+            <h1 style="margin-left:15px;">Labtask Detail</h1>
             <div class="card m-3 p-3" style="text-align:center;">
                 <div style="display:flex;">
                     <div style="text-align:left;">

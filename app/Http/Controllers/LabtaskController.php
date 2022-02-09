@@ -34,7 +34,8 @@ class LabtaskController extends Controller
     {
         return view('labtasks/labtask_edit')->with([
             'users' => $user->get(),
-            'labtask' => $labtask,
+            'labtasks' => Auth::user()->getByUser(),
+            'Labtask' => $labtask,
             'images' => $labtask->getByLabtaskForImage(),
         ]);
     }

@@ -53,7 +53,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('/mypage/labtask/{labtask}', 'LabtaskController@labtask_update');
     Route::delete('/mypage/labtask/{labtask}', 'LabtaskController@labtask_delete');
     
-    Route::post('mypage/labtask/{labtask}', 'LabtaskController@image_create');
+    Route::post('/mypage/labtask/{labtask}', 'LabtaskController@image_create');
     Route::put('/mypage/labtask/{labtask}/{image}', 'LabtaskController@image_update');
     Route::delete('/mypage/labtask/{labtask}/{image}', 'LabtaskController@image_delete');
     
