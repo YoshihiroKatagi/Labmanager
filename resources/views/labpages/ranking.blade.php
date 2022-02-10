@@ -8,14 +8,14 @@
         <!-- サイドバー -->
         <div class="col-md-2">
             <div class="list-group">
-              <h4>Mypage</h4>
+              <h3>Mypage</h3>
               <a href="/mypage/mytask/today" class="list-group-item list-group-item-action"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/mytask.svg">マイタスク</a>
               <a href="/mypage/labtask" class="list-group-item list-group-item-action"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/labtask.svg">ラボタスク</a>
               <a href="/mypage/calendar" class="list-group-item list-group-item-action"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/calendar.svg">カレンダー</a>
               <a href="/mypage/statistic" class="list-group-item list-group-item-action"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/statistic.svg">統計</a>
             </div><br>
             <div class="list-group">
-              <h4>Labpage</h4>
+              <h3>Labpage</h3>
               <a href="/labpage/top" class="list-group-item list-group-item-action"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/labtop.svg">ラボページ</a>
               <div class="dropdown">
                   <a class="list-group-item list-group-item-action dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
@@ -49,14 +49,14 @@
                                 <h4>Today</h4>
                             </div>
                             <div class="card-body main-tag-list">
-                                @foreach ($labtasks_ranking as $user)
+                                @foreach ($mytasks_today_ranking as $user)
                                     <div class="mx-3">
                                         <div class="d-flex">
                                             <div class="">
-                                                <h5>{{ $user->name }}: </h5>
+                                                <h5>{{ $user['name'] }}: </h5>
                                             </div>
                                             <div class="ms-auto">
-                                                <h5>{{ $user->labtasks_count }}</h5>
+                                                <h5>{{ $user['mytasks_count'] }}</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -70,14 +70,14 @@
                                 <h4>This Week</h4>
                             </div>
                             <div class="card-body main-tag-list">
-                                @foreach ($labtasks_ranking as $user)
+                                @foreach ($mytasks_week_ranking as $user)
                                     <div class="mx-3">
                                         <div class="d-flex">
                                             <div class="">
-                                                <h5>{{ $user->name }}: </h5>
+                                                <h5>{{ $user['name'] }}: </h5>
                                             </div>
                                             <div class="ms-auto">
-                                                <h5>{{ $user->labtasks_count }}</h5>
+                                                <h5>{{ $user['mytasks_count'] }}</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -91,14 +91,14 @@
                                 <h4>This Month</h4>
                             </div>
                             <div class="card-body main-tag-list">
-                                @foreach ($labtasks_ranking as $user)
+                                @foreach ($mytasks_month_ranking as $user)
                                     <div class="mx-3">
                                         <div class="d-flex">
                                             <div class="">
-                                                <h5>{{ $user->name }}: </h5>
+                                                <h5>{{ $user['name'] }}: </h5>
                                             </div>
                                             <div class="ms-auto">
-                                                <h5>{{ $user->labtasks_count }}</h5>
+                                                <h5>{{ $user['mytasks_count'] }}</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -121,14 +121,14 @@
                                 <h4>Today</h4>
                             </div>
                             <div class="card-body main-tag-list">
-                                @foreach ($labtasks_ranking as $user)
+                                @foreach ($good_today_ranking as $user)
                                     <div class="mx-3">
                                         <div class="d-flex">
                                             <div class="">
-                                                <h5>{{ $user->name }}: </h5>
+                                                <h5>{{ $user['user_name'] }}: </h5>
                                             </div>
                                             <div class="ms-auto">
-                                                <h5>{{ $user->labtasks_count }}</h5>
+                                                <h5>{{ $user['good_today_count'] }}</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -142,14 +142,14 @@
                                 <h4>This Week</h4>
                             </div>
                             <div class="card-body main-tag-list">
-                                @foreach ($labtasks_ranking as $user)
+                                @foreach ($good_week_ranking as $user)
                                     <div class="mx-3">
                                         <div class="d-flex">
                                             <div class="">
-                                                <h5>{{ $user->name }}: </h5>
+                                                <h5>{{ $user['user_name'] }}: </h5>
                                             </div>
                                             <div class="ms-auto">
-                                                <h5>{{ $user->labtasks_count }}</h5>
+                                                <h5>{{ $user['good_week_count'] }}</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -163,14 +163,14 @@
                                 <h4>This Month</h4>
                             </div>
                             <div class="card-body main-tag-list">
-                                @foreach ($labtasks_ranking as $user)
+                                @foreach ($good_month_ranking as $user)
                                     <div class="mx-3">
                                         <div class="d-flex">
                                             <div class="">
-                                                <h5>{{ $user->name }}: </h5>
+                                                <h5>{{ $user['user_name'] }}: </h5>
                                             </div>
                                             <div class="ms-auto">
-                                                <h5>{{ $user->labtasks_count }}</h5>
+                                                <h5>{{ $user['good_month_count'] }}</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -193,7 +193,7 @@
                                 <h4>Today</h4>
                             </div>
                             <div class="card-body main-tag-list">
-                                @foreach ($labtasks_ranking as $user)
+                                @foreach ($labtasks_today_ranking as $user)
                                     <div class="mx-3">
                                         <div class="d-flex">
                                             <div class="">
@@ -214,7 +214,7 @@
                                 <h4>This Week</h4>
                             </div>
                             <div class="card-body main-tag-list">
-                                @foreach ($labtasks_ranking as $user)
+                                @foreach ($labtasks_thisweek_ranking as $user)
                                     <div class="mx-3">
                                         <div class="d-flex">
                                             <div class="">
@@ -235,7 +235,7 @@
                                 <h4>This Month</h4>
                             </div>
                             <div class="card-body main-tag-list">
-                                @foreach ($labtasks_ranking as $user)
+                                @foreach ($labtasks_thismonth_ranking as $user)
                                     <div class="mx-3">
                                         <div class="d-flex">
                                             <div class="">

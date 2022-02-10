@@ -82,9 +82,105 @@ class User extends Authenticatable
     //     }])->orderBy('labtasks_count', 'DESC')->limit(3)->get();
     // }
     
-    public function labtasksRanking()
+    
+    public function mytaskTodayRanking()
     {
-        $users = $this::withCount('labtasks')->orderBy('labtasks_count', 'DESC')->limit(3)->get();
+        $users = $this::with(['labtasks' => function ($query) {
+            $query->withCount(['mytasks' => function ($query) {
+                $query->where('task_state', 2)->whereDate('updated_at', '>=', Carbon::today());
+            }])->orderBy('mytasks_count', 'DESC');
+        }])->limit(3)->get();
+        
+        foreach($users as $user) {
+            $mytasks_count = 0;
+            foreach($user->labtasks as $labtask) {
+                $mytasks_count += $labtask->mytasks_count;
+            }
+            $data = [
+                'name' => $user->name,
+                'mytasks_count' => $mytasks_count,
+            ];
+            $mytask_data[] = $data;
+        }
+        foreach((array) $mytask_data as $key => $value)
+        {
+            $sort[$key] = $value['mytasks_count'];
+        }
+        array_multisort($sort, SORT_DESC, $mytask_data);
+        return $mytask_data;
+    }
+    public function mytaskWeekRanking()
+    {
+        $users = $this::with(['labtasks' => function ($query) {
+            $query->withCount(['mytasks' => function ($query) {
+                $query->where('task_state', 2)->whereDate('updated_at', '>=', Carbon::now()->subWeek());
+            }])->orderBy('mytasks_count', 'DESC');
+        }])->limit(3)->get();
+        
+        foreach($users as $user) {
+            $mytasks_count = 0;
+            foreach($user->labtasks as $labtask) {
+                $mytasks_count += $labtask->mytasks_count;
+            }
+            $data = [
+                'name' => $user->name,
+                'mytasks_count' => $mytasks_count,
+            ];
+            $mytask_data[] = $data;
+        }
+        foreach((array) $mytask_data as $key => $value)
+        {
+            $sort[$key] = $value['mytasks_count'];
+        }
+        array_multisort($sort, SORT_DESC, $mytask_data);
+        return $mytask_data;
+    }
+    public function mytaskMonthRanking()
+    {
+        $users = $this::with(['labtasks' => function ($query) {
+            $query->withCount(['mytasks' => function ($query) {
+                $query->where('task_state', 2)->whereDate('updated_at', '>=', Carbon::now()->subMonth());
+            }])->orderBy('mytasks_count', 'DESC');
+        }])->limit(3)->get();
+        
+        foreach($users as $user) {
+            $mytasks_count = 0;
+            foreach($user->labtasks as $labtask) {
+                $mytasks_count += $labtask->mytasks_count;
+            }
+            $data = [
+                'name' => $user->name,
+                'mytasks_count' => $mytasks_count,
+            ];
+            $mytask_data[] = $data;
+        }
+        foreach((array) $mytask_data as $key => $value)
+        {
+            $sort[$key] = $value['mytasks_count'];
+        }
+        array_multisort($sort, SORT_DESC, $mytask_data);
+        return $mytask_data;
+    }
+    
+    public function labtasksTodayRanking()
+    {
+        $users = $this::withCount(['labtasks' => function ($query) {
+            $query->where('is_done', 1)->whereDate('updated_at', '>=', Carbon::today());
+        }])->orderBy('labtasks_count', 'DESC')->limit(3)->get();
+        return $users;
+    }
+    public function labtasksThisweekRanking()
+    {
+        $users = $this::withCount(['labtasks' => function ($query) {
+            $query->where('is_done', 1)->whereDate('updated_at', '>=', Carbon::now()->subWeek());
+        }])->orderBy('labtasks_count', 'DESC')->limit(3)->get();
+        return $users;
+    }
+    public function labtasksThismonthRanking()
+    {
+        $users = $this::withCount(['labtasks' => function ($query) {
+            $query->where('is_done', 1)->whereDate('updated_at', '>=', Carbon::now()->subMonth());
+        }])->orderBy('labtasks_count', 'DESC')->limit(3)->get();
         return $users;
     }
     

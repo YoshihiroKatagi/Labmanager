@@ -73,22 +73,75 @@ class DataController extends Controller
     //     return $data;
     // }
     
-    public function ranking(User $user)
+    public function ranking(User $user, Ltfavorite $ltfavorite, Cfavorite $cfavorite)
     {
-        $labtasks_ranking = $user->labtasksRanking();
-        // $goods_ranking = app()->make(User::class)->goodsRanking();
+        $users = $user->get();
         
-        // $data = [
-        //     'users' => $user->get(),
-        //     'labtasks_ranking' => $labtasks_ranking,
-        //     // 'goods_ranking' => $goods_ranking,
-        // ];
+        foreach($users as $user){
+            $data = [
+                'user_name' => $user->name,
+                
+                $lt_today_count = $ltfavorite->getByLGCD()->where('labtask.user_id', $user->id)->count(),
+                $c_today_count = $cfavorite->getByCGCD()->where('comment.user_id', $user->id)->count(),
+                'good_today_count' => $lt_today_count + $c_today_count,
+                
+                $lt_week_count = $ltfavorite->getByLGCW()->where('labtask.user_id', $user->id)->count(),
+                $c_week_count = $cfavorite->getByCGCW()->where('comment.user_id', $user->id)->count(),
+                'good_week_count' => $lt_week_count + $c_week_count,
+                
+                $lt_month_count = $ltfavorite->getByLGCM()->where('labtask.user_id', $user->id)->count(),
+                $c_month_count = $cfavorite->getByCGCM()->where('comment.user_id', $user->id)->count(),
+                'good_month_count' => $lt_month_count + $c_month_count,
+            ];
+            $good_count[] = $data;
+        }
         
-        // return $data;
-        return view('labpages/ranking')->with([
+        foreach((array) $good_count as $key => $value)
+        {
+            $sort[$key] = $value['good_today_count'];
+        }
+        array_multisort($sort, SORT_DESC, $good_count);
+        $good_today_ranking = array_slice($good_count, 0, 3);
+        
+        foreach((array) $good_count as $key => $value)
+        {
+            $sort[$key] = $value['good_week_count'];
+        }
+        array_multisort($sort, SORT_DESC, $good_count);
+        $good_week_ranking = array_slice($good_count, 0, 3);
+        
+        foreach((array) $good_count as $key => $value)
+        {
+            $sort[$key] = $value['good_month_count'];
+        }
+        array_multisort($sort, SORT_DESC, $good_count);
+        $good_month_ranking = array_slice($good_count, 0, 3);
+        
+        
+        $mytasks_today_ranking = $user->mytaskTodayRanking();
+        $mytasks_week_ranking = $user->mytaskWeekRanking();
+        $mytasks_month_ranking = $user->mytaskMonthRanking();
+            
+        $labtasks_today_ranking = $user->labtasksTodayRanking();
+        $labtasks_thisweek_ranking = $user->labtasksThisweekRanking();
+        $labtasks_thismonth_ranking = $user->labtasksThismonthRanking();
+        
+        $data = [
             'users' => $user->get(),
-            'labtasks_ranking' => $labtasks_ranking,
-            // 'goods_ranking' => $goods_ranking,
-        ]);
+            
+            'mytasks_today_ranking' => $mytasks_today_ranking,
+            'mytasks_week_ranking' => $mytasks_week_ranking,
+            'mytasks_month_ranking' => $mytasks_month_ranking,
+            
+            'good_today_ranking'=> $good_today_ranking,
+            'good_week_ranking'=> $good_week_ranking,
+            'good_month_ranking'=> $good_month_ranking,
+            
+            'labtasks_today_ranking' => $labtasks_today_ranking,
+            'labtasks_thisweek_ranking' => $labtasks_thisweek_ranking,
+            'labtasks_thismonth_ranking' => $labtasks_thismonth_ranking,
+        ];
+        // return $mytasks_month_ranking;
+        return view('labpages/ranking', $data);
     }
 }
