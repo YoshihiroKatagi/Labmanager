@@ -46,30 +46,49 @@ class DataController extends Controller
         return view('mypages/statistic')->with($data);
     }
     
-    public function ranking(User $user, Labtask $labtask, Ltfavorite $ltfavorite, Cfavorite $cfavorite)
+    // public function ranking(User $user, Labtask $labtask, Ltfavorite $ltfavorite, Cfavorite $cfavorite)
+    // {
+    //     $users = $user->get();
+        
+    //     foreach($users as $user){
+    //         $userdata = [
+    //             'user_name' => $user->name,
+                
+    //             'labtask_achieve_count_day' => $labtask->getByLACD()->where('user_id', $user->id)->count(), 
+    //             'labtask_achieve_count_week' => $labtask->getByLACW()->where('user_id', $user->id)->count(),
+    //             'labtask_achieve_count_month' => $labtask->getByLACM()->where('user_id', $user->id)->count(),
+                
+    //             'labtask_good_count_day' => $ltfavorite->getByLGCD()->where('labtask.user_id', $user->id)->count(),
+    //             'labtask_good_count_week' => $ltfavorite->getByLGCW()->where('labtask.user_id', $user->id)->count(),
+    //             'labtask_good_count_month' => $ltfavorite->getByLGCM()->where('labtask.user_id', $user->id)->count(),
+                
+    //             'comment_good_count_day' => $cfavorite->getByCGCD()->where('comment.user_id', $user->id)->count(),
+    //             'comment_good_count_week' => $cfavorite->getByCGCW()->where('comment.user_id', $user->id)->count(),
+    //             'comment_good_count_month' => $cfavorite->getByCGCM()->where('comment.user_id', $user->id)->count(),
+    //         ];
+    //         $data[] = $userdata;
+    //     }
+        
+    //     return view('labpages/ranking')->with(['data' => $data, 'users' => $user->get(),]);
+    //     return $data;
+    // }
+    
+    public function ranking(User $user)
     {
-        $users = $user->get();
+        $labtasks_ranking = $user->labtasksRanking();
+        // $goods_ranking = app()->make(User::class)->goodsRanking();
         
-        foreach($users as $user){
-            $userdata = [
-                'user_name' => $user->name,
-                
-                'labtask_achieve_count_day' => $labtask->getByLACD()->where('user_id', $user->id)->count(),
-                'labtask_achieve_count_week' => $labtask->getByLACW()->where('user_id', $user->id)->count(),
-                'labtask_achieve_count_month' => $labtask->getByLACM()->where('user_id', $user->id)->count(),
-                
-                'labtask_good_count_day' => $ltfavorite->getByLGCD()->where('labtask.user_id', $user->id)->count(),
-                'labtask_good_count_week' => $ltfavorite->getByLGCW()->where('labtask.user_id', $user->id)->count(),
-                'labtask_good_count_month' => $ltfavorite->getByLGCM()->where('labtask.user_id', $user->id)->count(),
-                
-                'comment_good_count_day' => $cfavorite->getByCGCD()->where('comment.user_id', $user->id)->count(),
-                'comment_good_count_week' => $cfavorite->getByCGCW()->where('comment.user_id', $user->id)->count(),
-                'comment_good_count_month' => $cfavorite->getByCGCM()->where('comment.user_id', $user->id)->count(),
-            ];
-            $data[] = $userdata;
-        }
+        // $data = [
+        //     'users' => $user->get(),
+        //     'labtasks_ranking' => $labtasks_ranking,
+        //     // 'goods_ranking' => $goods_ranking,
+        // ];
         
-        return view('labpages/ranking')->with(['data' => $data, 'users' => $user->get(),]);
-        return $data;
+        // return $data;
+        return view('labpages/ranking')->with([
+            'users' => $user->get(),
+            'labtasks_ranking' => $labtasks_ranking,
+            // 'goods_ranking' => $goods_ranking,
+        ]);
     }
 }

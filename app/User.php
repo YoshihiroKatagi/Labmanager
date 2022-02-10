@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -51,9 +53,13 @@ class User extends Authenticatable
     
     
     //データ取得制限
-    public function getByUser()
+    public function getLabtaskTodoByUser()
     {
-        return $this->labtasks()->with('user')->orderBy('created_at', 'ASC')->get();
+        return $this->labtasks()->with('user')->where('is_done', 0)->orderBy('created_at', 'ASC')->get();
+    }
+    public function getLabtaskCompletedByUser()
+    {
+        return $this->labtasks()->with('user')->where('is_done', 1)->orderBy('updated_at', 'DESC')->limit(10)->get();
     }
     
     public function getByUserForComment()
@@ -68,6 +74,20 @@ class User extends Authenticatable
         }])->get();
         // return $this::with('labtask')->where('task_state', 2)->whereDate('updated_at', '>=', Carbon::today())->count();
     }
+    
+    // public function labtasksRanking()
+    // {
+    //     $query = User::withCount(['labtasks' => function (Builder $query) {
+    //         $query->where('is_done', 1)->whereDate('updated_at', '>=', Carbon::now()->subWeek());
+    //     }])->orderBy('labtasks_count', 'DESC')->limit(3)->get();
+    // }
+    
+    public function labtasksRanking()
+    {
+        $users = $this::withCount('labtasks')->orderBy('labtasks_count', 'DESC')->limit(3)->get();
+        return $users;
+    }
+    
     
     
     //リレーション

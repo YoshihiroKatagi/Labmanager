@@ -15,7 +15,8 @@ class LabtaskController extends Controller
     {
         return view('labtasks/labtask')->with([
             'users' => $user->get(),
-            'labtasks' => Auth::user()->getByUser(),
+            'labtasks_todo' => Auth::user()->getLabtaskTodoByUser(),
+            'labtasks_completed' => Auth::user()->getLabtaskCompletedByUser(),
         ]);
     }
     public function labtask_new()
@@ -34,7 +35,8 @@ class LabtaskController extends Controller
     {
         return view('labtasks/labtask_edit')->with([
             'users' => $user->get(),
-            'labtasks' => Auth::user()->getByUser(),
+            'labtasks_todo' => Auth::user()->getLabtaskTodoByUser(),
+            'labtasks_completed' => Auth::user()->getLabtaskCompletedByUser(),
             'Labtask' => $labtask,
             'images' => $labtask->getByLabtaskForImage(),
         ]);
@@ -82,7 +84,8 @@ class LabtaskController extends Controller
     {
         return view('/labtasks/membertask')->with([
             'User' => $user,
-            'labtasks' => $user->getByUser(),
+            'labtasks_todo' => $user->getLabtaskTodoByUser(),
+            'labtasks_completed' => $user->getLabtaskCompletedByUser(),
             'users' => $user->get(),
         ]);
     }

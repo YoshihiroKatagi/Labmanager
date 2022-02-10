@@ -33,64 +33,67 @@
             </div>
         </div>
         
-        <!-- Todoリスト -->
+        <!-- Statistic -->
         <div class="col-md-9 text-center">
             <h1>Statistic</h1><br>
-            <div class="m-5"></div>
-            <h2>Mytask Consumption</h2>
-            <div class="row justify-content-md-center">
-                <div class="card col-md-3 m-3 p-3 text-center">
-                    <h3>Today: 
-                        <span class="badge bg-danger">{{ $mytask_achieve_count_day }}</span>
-                    </h3>
-                </div>
-                <div class="card col-md-3 m-3 p-3 text-center">
-                    <h3>This Week: 
-                        <span class="badge bg-danger">{{ $mytask_achieve_count_week }}</span>
-                    </h3>
-                </div>
-                <div class="card col-md-3 m-3 p-3 text-center">
-                    <h3>This Month: 
-                    <span class="badge bg-danger">{{ $mytask_achieve_count_month }}</span>
-                    </h3>
+            <div class="m-5">
+                <h2>Mytask Consumption</h2>
+                <div class="row justify-content-md-center">
+                    <div class="card col-md-3 m-3 p-3 text-center">
+                        <h3>Today: 
+                            <span class="badge bg-danger">{{ $mytask_achieve_count_day }}</span>
+                        </h3>
+                    </div>
+                    <div class="card col-md-3 m-3 p-3 text-center">
+                        <h3>This Week: 
+                            <span class="badge bg-danger">{{ $mytask_achieve_count_week }}</span>
+                        </h3>
+                    </div>
+                    <div class="card col-md-3 m-3 p-3 text-center">
+                        <h3>This Month: 
+                        <span class="badge bg-danger">{{ $mytask_achieve_count_month }}</span>
+                        </h3>
+                    </div>
+            </div>
+            </div>
+            <div class="m-5">
+                <h2>Good you got</h2>
+                <div class="row justify-content-md-center">
+                    <div class="card col-md-3 m-3 p-3 text-center">
+                        <h3>Today: 
+                            <span class="badge bg-info">{{ $labtask_good_count_day + $comment_good_count_day }}</span>
+                        </h3>
+                    </div>
+                    <div class="card col-md-3 m-3 p-3 text-center">
+                        <h3>This Week: 
+                            <span class="badge bg-info">{{ $labtask_good_count_week + $comment_good_count_week }}</span>
+                        </h3>
+                    </div>
+                    <div class="card col-md-3 m-3 p-3 text-center">
+                        <h3>This Month: 
+                        <span class="badge bg-info">{{ $labtask_good_count_month + $comment_good_count_month }}</span>
+                        </h3>
+                    </div>
                 </div>
             </div>
-            <div class="m-5"></div>
-            <h2>Number of Good</h2>
-            <div class="row justify-content-md-center">
-                <div class="card col-md-3 m-3 p-3 text-center">
-                    <h3>Today: 
-                        <span class="badge bg-info">{{ $labtask_good_count_day + $comment_good_count_day }}</span>
-                    </h3>
-                </div>
-                <div class="card col-md-3 m-3 p-3 text-center">
-                    <h3>This Week: 
-                        <span class="badge bg-info">{{ $labtask_good_count_week + $comment_good_count_week }}</span>
-                    </h3>
-                </div>
-                <div class="card col-md-3 m-3 p-3 text-center">
-                    <h3>This Month: 
-                    <span class="badge bg-info">{{ $labtask_good_count_month + $comment_good_count_month }}</span>
-                    </h3>
-                </div>
-            </div>
-            <div class="m-5"></div>
-            <h2>Labtask Consumption</h2>
-            <div class="row justify-content-md-center">
-                <div class="card col-md-3 m-3 p-3 text-center">
-                    <h3>Today: 
-                        <span class="badge bg-success">{{ $labtask_achieve_count_day }}</span>
-                    </h3>
-                </div>
-                <div class="card col-md-3 m-3 p-3 text-center">
-                    <h3>This Week: 
-                        <span class="badge bg-success">{{ $labtask_achieve_count_week }}</span>
-                    </h3>
-                </div>
-                <div class="card col-md-3 m-3 p-3 text-center">
-                    <h3>This Month: 
-                    <span class="badge bg-success">{{ $labtask_achieve_count_month }}</span>
-                    </h3>
+            <div class="m-5">
+                <h2>Labtask Consumption</h2>
+                <div class="row justify-content-md-center">
+                    <div class="card col-md-3 m-3 p-3 text-center">
+                        <h3>Today: 
+                            <span class="badge bg-success">{{ $labtask_achieve_count_day }}</span>
+                        </h3>
+                    </div>
+                    <div class="card col-md-3 m-3 p-3 text-center">
+                        <h3>This Week: 
+                            <span class="badge bg-success">{{ $labtask_achieve_count_week }}</span>
+                        </h3>
+                    </div>
+                    <div class="card col-md-3 m-3 p-3 text-center">
+                        <h3>This Month: 
+                        <span class="badge bg-success">{{ $labtask_achieve_count_month }}</span>
+                        </h3>
+                    </div>
                 </div>
             </div>
         </div>

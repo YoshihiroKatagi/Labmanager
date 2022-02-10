@@ -22,7 +22,7 @@ class MytaskController extends Controller
             'users' => $user->get(),
             'mytasks_todo' => $labtask->getMytaskTodoByLabtask(),
             'mytasks_completed' => $labtask->getMytaskCompletedByLabtask(),
-            'labtasks' => Auth::user()->getByUser(),
+            'labtasks' => Auth::user()->getLabtaskTodoByUser(),
             'Labtask' => $labtask,
         ]);
     }
@@ -39,7 +39,7 @@ class MytaskController extends Controller
             'Mytask' => $mytask,
             'mytasks_todo' => $labtask->getMytaskTodoByLabtask(),
             'mytasks_completed' => $labtask->getMytaskCompletedByLabtask(),
-            'labtasks' => Auth::user()->getByUser(),
+            'labtasks' => Auth::user()->getLabtaskTodoByUser(),
             'Labtask' => $labtask,
         ]);
     }
@@ -59,7 +59,7 @@ class MytaskController extends Controller
     {
         return view('mypages/mytask_today')->with([
             'users' => $user->get(),
-            'labtasks' => Auth::user()->getByUser(),
+            'labtasks' => Auth::user()->getLabtaskTodoByUser(),
             'mytasks_todo' => $mytask->getTodoByToday(),
             'mytasks_completed' => $mytask->getCompletedByToday(),
         ]);
@@ -77,7 +77,7 @@ class MytaskController extends Controller
             'Mytask' => $mytask,
             'mytasks_todo' => $mytask->getTodoByToday(),
             'mytasks_completed' => $mytask->getCompletedByToday(),
-            'labtasks' => Auth::user()->getByUser(),
+            'labtasks' => Auth::user()->getLabtaskTodoByUser(),
         ]);
     }
     public function today_update(MytaskRequest $request, Mytask $mytask)
@@ -96,7 +96,7 @@ class MytaskController extends Controller
     {
         return view('mypages/mytask_tomorrow')->with([
             'users' => $user->get(),
-            'labtasks' => Auth::user()->getByUser(),
+            'labtasks' => Auth::user()->getLabtaskTodoByUser(),
             'mytasks_todo' => $mytask->getTodoByTomorrow(),
             'mytasks_completed' => $mytask->getCompletedByTomorrow(),
         ]);
@@ -114,7 +114,7 @@ class MytaskController extends Controller
             'Mytask' => $mytask,
             'mytasks_todo' => $mytask->getTodoByTomorrow(),
             'mytasks_completed' => $mytask->getCompletedByTomorrow(),
-            'labtasks' => Auth::user()->getByUser(),
+            'labtasks' => Auth::user()->getLabtaskTodoByUser(),
         ]);
     }
     public function tomorrow_update(MytaskRequest $request, Mytask $mytask)
@@ -133,7 +133,7 @@ class MytaskController extends Controller
     {
         return view('mypages/mytask_thisweek')->with([
             'users' => $user->get(),
-            'labtasks' => Auth::user()->getByUser(),
+            'labtasks' => Auth::user()->getLabtaskTodoByUser(),
             'mytasks_todo' => $mytask->getTodoByThisweek(),
             'mytasks_completed' => $mytask->getCompletedByThisweek(),
         ]);
@@ -151,7 +151,7 @@ class MytaskController extends Controller
             'Mytask' => $mytask,
             'mytasks_todo' => $mytask->getTodoByThisweek(),
             'mytasks_completed' => $mytask->getCompletedByThisweek(),
-            'labtasks' => Auth::user()->getByUser(),
+            'labtasks' => Auth::user()->getLabtaskTodoByUser(),
         ]);
     }
     public function thisweek_update(MytaskRequest $request, Mytask $mytask)
@@ -170,7 +170,7 @@ class MytaskController extends Controller
     {
         return view('mypages/mytask_thismonth')->with([
             'users' => $user->get(),
-            'labtasks' => Auth::user()->getByUser(),
+            'labtasks' => Auth::user()->getLabtaskTodoByUser(),
             'mytasks_todo' => $mytask->getTodoByThismonth(),
             'mytasks_completed' => $mytask->getCompletedByThismonth(),
         ]);
@@ -188,7 +188,7 @@ class MytaskController extends Controller
             'Mytask' => $mytask,
             'mytasks_todo' => $mytask->getTodoByThismonth(),
             'mytasks_completed' => $mytask->getCompletedByThismonth(),
-            'labtasks' => Auth::user()->getByUser(),
+            'labtasks' => Auth::user()->getLabtaskTodoByUser(),
         ]);
     }
     public function thismonth_update(MytaskRequest $request, Mytask $mytask)

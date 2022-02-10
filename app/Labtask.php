@@ -62,6 +62,7 @@ class Labtask extends Model
     
     
     
+    
     // リレーション
     public function user()
     {

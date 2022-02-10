@@ -42,7 +42,7 @@
             <div>
               <h2>Todo</h2>
               <div class="row">
-                @foreach($labtasks as $labtask)
+                @foreach($labtasks_todo as $labtask)
                   @if($labtask->is_done == 0)
                       <div  class="card col-md-4 m-3">
                           <div class="card-body">
@@ -68,7 +68,7 @@
             <div>
               <h2>Completed</h2>
               <div class="row">
-                @foreach($labtasks as $labtask)
+                @foreach($labtasks_completed as $labtask)
                   @if($labtask->is_done == 1)
                       <div  class="card col-md-4 m-3">
                           <div class="card-body">
