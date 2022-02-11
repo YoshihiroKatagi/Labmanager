@@ -36,7 +36,10 @@
         
         <!-- Labtask一覧 -->
         <div class="col-md-9" style="margin:0 auto;">
-            <h1>{{ $User->name }}のLabtask</h1><br>
+            <h1>
+              <img src="{{ $User->icon }}" style="width:70px; height:70px; border-radius:50%; object-fit:cover; border:solid; border-width:thin; color:black;">
+              {{ $User->name }}のLabtask
+            </h1><br>
             
             <!-- 一覧 -->
             <div>
