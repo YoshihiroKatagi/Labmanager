@@ -35,64 +35,119 @@
         
         <!-- Statistic -->
         <div class="col-md-9 text-center">
-            <h1>Statistic</h1><br>
-            <div class="m-5">
-                <h2>Mytask Consumption</h2>
+            <h1>Statistic</h1>
+            
+            <!-- マイタスク消費数 -->
+            <div class="card m-5 sidebar-content">
+                <div class="card-header">
+                    <h2>Mytask Consumption</h2>
+                </div>
                 <div class="row justify-content-md-center">
-                    <div class="card col-md-3 m-3 p-3 text-center">
-                        <h3>Today: 
-                            <span class="badge bg-danger">{{ $mytask_achieve_count_day }}</span>
-                        </h3>
+                    <div class="col-md-3 my-3 m-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Today</h4>
+                            </div>
+                            <div class="card-body">
+                                <h4>{{ $mytask_achieve_count_day }}</h4>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card col-md-3 m-3 p-3 text-center">
-                        <h3>This Week: 
-                            <span class="badge bg-danger">{{ $mytask_achieve_count_week }}</span>
-                        </h3>
+                    <div class="col-md-3 my-3 m-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>This Week</h4>
+                            </div>
+                            <div class="card-body">
+                                <h4>{{ $mytask_achieve_count_week }}</h4>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card col-md-3 m-3 p-3 text-center">
-                        <h3>This Month: 
-                        <span class="badge bg-danger">{{ $mytask_achieve_count_month }}</span>
-                        </h3>
-                    </div>
-            </div>
-            </div>
-            <div class="m-5">
-                <h2>Good you got</h2>
-                <div class="row justify-content-md-center">
-                    <div class="card col-md-3 m-3 p-3 text-center">
-                        <h3>Today: 
-                            <span class="badge bg-info">{{ $labtask_good_count_day + $comment_good_count_day }}</span>
-                        </h3>
-                    </div>
-                    <div class="card col-md-3 m-3 p-3 text-center">
-                        <h3>This Week: 
-                            <span class="badge bg-info">{{ $labtask_good_count_week + $comment_good_count_week }}</span>
-                        </h3>
-                    </div>
-                    <div class="card col-md-3 m-3 p-3 text-center">
-                        <h3>This Month: 
-                        <span class="badge bg-info">{{ $labtask_good_count_month + $comment_good_count_month }}</span>
-                        </h3>
+                    <div class="col-md-3 my-3 m-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>This Month</h4>
+                            </div>
+                            <div class="card-body">
+                                <h4>{{ $mytask_achieve_count_month }}</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="m-5">
-                <h2>Labtask Consumption</h2>
+            <!-- いいね獲得数 -->
+            <div class="card m-5 sidebar-content">
+                <div class="card-header">
+                    <h2>Mytask Consumption</h2>
+                </div>
                 <div class="row justify-content-md-center">
-                    <div class="card col-md-3 m-3 p-3 text-center">
-                        <h3>Today: 
-                            <span class="badge bg-success">{{ $labtask_achieve_count_day }}</span>
-                        </h3>
+                    <div class="col-md-3 my-3 m-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Today</h4>
+                            </div>
+                            <div class="card-body">
+                                <h4>{{ $labtask_good_count_day + $comment_good_count_day }}</h4>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card col-md-3 m-3 p-3 text-center">
-                        <h3>This Week: 
-                            <span class="badge bg-success">{{ $labtask_achieve_count_week }}</span>
-                        </h3>
+                    <div class="col-md-3 my-3 m-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>This Week</h4>
+                            </div>
+                            <div class="card-body">
+                                <h4>{{ $labtask_good_count_week + $comment_good_count_week }}</h4>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card col-md-3 m-3 p-3 text-center">
-                        <h3>This Month: 
-                        <span class="badge bg-success">{{ $labtask_achieve_count_month }}</span>
-                        </h3>
+                    <div class="col-md-3 my-3 m-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>This Month</h4>
+                            </div>
+                            <div class="card-body">
+                                <h4>{{ $labtask_good_count_month + $comment_good_count_month }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ラボタスク消費数 -->
+            <div class="card m-5 sidebar-content">
+                <div class="card-header">
+                    <h2>Mytask Consumption</h2>
+                </div>
+                <div class="row justify-content-md-center">
+                    <div class="col-md-3 my-3 m-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Today</h4>
+                            </div>
+                            <div class="card-body">
+                                <h4>{{ $labtask_achieve_count_day }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 my-3 m-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>This Week</h4>
+                            </div>
+                            <div class="card-body">
+                                <h4>{{ $labtask_achieve_count_week }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 my-3 m-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>This Month</h4>
+                            </div>
+                            <div class="card-body">
+                                <h4>{{ $labtask_achieve_count_month }}</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
