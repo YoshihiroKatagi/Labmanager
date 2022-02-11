@@ -34,17 +34,17 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav ms-auto">
                         <li>
                             <a href="/setting/account"><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/setting.svg"></a>
                         </li>
-                        <li>
-                            <a href=""><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/timer.svg"></a>
-                        </li>
+                        <!--<li>-->
+                        <!--    <a href=""><img src="https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/timer.svg"></a>-->
+                        <!--</li>-->
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">

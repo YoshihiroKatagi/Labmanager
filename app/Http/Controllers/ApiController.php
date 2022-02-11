@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 use Google_Client;
 use Google_Service_Calendar;
@@ -44,7 +45,7 @@ class ApiController extends Controller
     //     return $client;
     // }
     
-    public function getEvents()
+    public function getEvents(User $user)
     {
         $client = $this->getClient();
         $service = new Google_Service_Calendar($client);
@@ -70,6 +71,7 @@ class ApiController extends Controller
         }
         // return view('mypages/calendar')->with([
         return view('mypages/calendar_tmp')->with([
+            'users' => $user->get(),
             'events' => $events,
         ]);
     }

@@ -210,6 +210,8 @@
                       </div>
                     </div>
                 </form>
+                
+                <!--図-->
                 <label for="Figures" class="form-label">Figures</label>
                 <div style="text-align:center;" id="Figures">
                   @foreach($images as $image)

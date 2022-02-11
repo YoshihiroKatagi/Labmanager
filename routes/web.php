@@ -98,6 +98,7 @@ Route::group(['middleware' => 'auth'], function(){
     //設定ページ
     Route::get('/setting/account', 'UserController@account');
     Route::post('/setting/account', 'UserController@account_icon');
+    Route::post('/setting/account/default', 'UserController@icon_default');
     Route::put('/setting/account', 'UserController@account_update');
     
     Route::get('/setting/outline', 'UserController@outline');

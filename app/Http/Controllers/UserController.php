@@ -24,6 +24,12 @@ class UserController extends Controller
         
         return back();
     }
+    public function icon_default()
+    {
+        Auth::user()->icon = "https://labmanager-backet.s3.ap-northeast-1.amazonaws.com/app_icon/first_icon.svg";
+        Auth::user()->save();
+        return back();
+    }
     public function account_update(Request $request)
     {
         $param = [

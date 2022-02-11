@@ -5,7 +5,7 @@
 @section('content')
     <div class="container-fluid" style="display:flex">
         
-        <!-- サイドバー -->
+         <!--サイドバー -->
         <div class="col-md-2">
             <div class="list-group">
               <h3>Mypage</h3>

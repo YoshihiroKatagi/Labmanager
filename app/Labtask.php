@@ -31,9 +31,9 @@ class Labtask extends Model
         return $this->mytasks()->with('labtask')->where('task_state', 2)->orderBy('updated_at', 'DESC')->limit(10)->get();
     }
     
-    public function getWithUser()
+    public function getLabtaskTodoWithUser()
     {
-        return $this::with('user')->orderBy('created_at', 'ASC')->get();
+        return $this::with('user')->where('is_done', 0)->orderBy('created_at', 'DESC')->limit(20)->get();
     }
     
     public function getByLabtaskForComment()
