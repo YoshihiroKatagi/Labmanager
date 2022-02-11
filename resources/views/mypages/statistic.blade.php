@@ -78,7 +78,7 @@
             <!-- いいね獲得数 -->
             <div class="card m-5 sidebar-content">
                 <div class="card-header">
-                    <h2>Mytask Consumption</h2>
+                    <h2>Good you got</h2>
                 </div>
                 <div class="row justify-content-md-center">
                     <div class="col-md-3 my-3 m-2">
@@ -116,7 +116,7 @@
             <!-- ラボタスク消費数 -->
             <div class="card m-5 sidebar-content">
                 <div class="card-header">
-                    <h2>Mytask Consumption</h2>
+                    <h2>Labtask Consumption</h2>
                 </div>
                 <div class="row justify-content-md-center">
                     <div class="col-md-3 my-3 m-2">
