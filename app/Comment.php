@@ -28,7 +28,7 @@ class Comment extends Model
     
     public function getMentionedComment()
     {
-        return $this->with('user')->with('labtask')->where('mention_to', Auth::user()->id)->orderBy('created_at', 'DESC')->get();
+        return $this->with('user')->with('labtask')->where('mention_to', Auth::user()->id)->orderBy('created_at', 'DESC')->limit(20)->get();
     }
     
     //リレーション
