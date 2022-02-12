@@ -19,6 +19,6 @@ ___
 作成背景：大学での研究活動において、研究室内でタスク管理やコミュニケーションをうまく行う仕組みができておらず、これを機にそれらの課題を解決するツールを作成しようと考えました。
 
 
-開発環境：
-言語：PHP(Laravel), HTML/CSS, JS,
-その他：AWS Cloud9, MariaDB, Bootstrap
+開発環境：  
+言語：PHP(Laravel), HTML/CSS, JS,  
+その他：AWS Cloud9, MariaDB, Bootstrap  
